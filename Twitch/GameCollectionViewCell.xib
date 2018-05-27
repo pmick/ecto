@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.XIB" version="3.0" toolsVersion="14109" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="appleTV" orientation="landscape">
+        <adaptation id="light"/>
+    </device>
+    <dependencies>
+        <deployment identifier="tvOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" id="Rz2-K0-ksD" customClass="GameCollectionViewCell" customModule="Twitch" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="118" height="136"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="118" height="136"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VcY-vT-ikI">
+                        <rect key="frame" x="0.0" y="0.0" width="118" height="136"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="VcY-vT-ikI" secondAttribute="bottom" id="83p-kf-beT"/>
+                <constraint firstAttribute="trailing" secondItem="VcY-vT-ikI" secondAttribute="trailing" id="R0k-ss-RlB"/>
+                <constraint firstItem="VcY-vT-ikI" firstAttribute="leading" secondItem="Rz2-K0-ksD" secondAttribute="leading" id="fhT-9U-BMS"/>
+                <constraint firstItem="VcY-vT-ikI" firstAttribute="top" secondItem="Rz2-K0-ksD" secondAttribute="top" id="idg-YR-hcK"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="7PP-Ag-gPX"/>
+            <size key="customSize" width="118" height="136"/>
+            <connections>
+                <outlet property="imageView" destination="VcY-vT-ikI" id="epk-cn-wAT"/>
+            </connections>
+            <point key="canvasLocation" x="184" y="150"/>
+        </collectionViewCell>
+    </objects>
+</document>

@@ -11,10 +11,10 @@ import UIKit
 import AVKit
 
 final class StreamViewController: UIViewController {
-    private let stream: TwitchKit.Stream
+    private let name: String?
     
-    init(stream: TwitchKit.Stream) {
-        self.stream = stream
+    init(name: String?) {
+        self.name = name
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -29,8 +29,12 @@ final class StreamViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        guard let name = name else {
+            fatalError("Not implemented")
+        }
+        
         let controller = FetchStreamUrlController()
-        controller.fetchStreamUrl(forStreamNamed: stream.channel.name) { (result) in
+        controller.fetchStreamUrl(forStreamNamed: name) { (result) in
             switch result {
             case .success(let url):
                 DispatchQueue.main.async {

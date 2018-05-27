@@ -32,7 +32,7 @@
         <!--Item 1-->
         <scene sceneID="Qfg-rc-5fX">
             <objects>
-                <viewController id="OCa-XX-25w" customClass="FirstViewController" customModule="Twitch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="OCa-XX-25w" customClass="HomeViewController" customModule="Twitch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="o3Q-5W-46u"/>
                         <viewControllerLayoutGuide type="bottom" id="cNg-FM-KJw"/>

@@ -10,19 +10,45 @@ import TwitchKit
 import IGListKit
 import UIKit
 
-final class FeaturedViewModel: ListDiffable {
-    let id: Int
+protocol ChannelNameProviding {
+    var name: String? { get }
+}
+
+extension LegacyStream: ChannelNameProviding {
+    var name: String? {
+        return channel.name
+    }
+}
+
+extension TwitchKit.Stream: ChannelNameProviding {
+    var name: String? {
+        return nil
+    }
+}
+
+final class StreamViewModel: ListDiffable {
+    let id: String
     let title: String
     let imageUrl: URL
     
-    let stream: TwitchKit.Stream
+    let stream: ChannelNameProviding
     
     init(featured: Featured) {
-        self.id = featured.stream.id
+        self.id = String(featured.stream.id)
         self.title = featured.title
         self.imageUrl = URL(string: featured.stream.preview.large)!
         
         self.stream = featured.stream
+    }
+    
+    init(stream: TwitchKit.Stream) {
+        self.id = stream.id
+        self.title = stream.title
+        // 640x360
+        let largePath = stream.thumbnailUrl.replacingOccurrences(of: "{width}", with: "640").replacingOccurrences(of: "{height}", with: "360")
+        self.imageUrl = URL(string: largePath)!
+        
+        self.stream = stream
     }
     
     func diffIdentifier() -> NSObjectProtocol {
@@ -35,7 +61,7 @@ final class FeaturedViewModel: ListDiffable {
 }
 
 final class HorizontalSectionController: ListSectionController {
-    private var items: [FeaturedViewModel]? {
+    private var items: [StreamViewModel]? {
         didSet {
             adapter.performUpdates(animated: true, completion: nil)
         }
@@ -65,8 +91,8 @@ final class HorizontalSectionController: ListSectionController {
     }
     
     override func didUpdate(to object: Any) {
-        assert(object is List<FeaturedViewModel>)
-        items = (object as? List<FeaturedViewModel>)?.items
+        assert(object is List<StreamViewModel>)
+        items = (object as? List<StreamViewModel>)?.items
     }
 }
 

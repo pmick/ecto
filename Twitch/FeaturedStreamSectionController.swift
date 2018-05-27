@@ -16,7 +16,7 @@ final class FeaturedStreamSectionController: ListSectionController {
         static let aspectRatio: CGFloat = (16/9)
     }
     
-    private var featuredViewModel: FeaturedViewModel?
+    private var featuredViewModel: StreamViewModel?
     
     override func sizeForItem(at index: Int) -> CGSize {
         let height = collectionContext?.containerSize.height ?? 0
@@ -36,8 +36,8 @@ final class FeaturedStreamSectionController: ListSectionController {
     }
     
     override func didUpdate(to object: Any) {
-        assert(object is FeaturedViewModel)
-        featuredViewModel = object as? FeaturedViewModel
+        assert(object is StreamViewModel)
+        featuredViewModel = object as? StreamViewModel
         
         if isLastSection {
             self.inset = .zero
@@ -49,7 +49,7 @@ final class FeaturedStreamSectionController: ListSectionController {
     override func didSelectItem(at index: Int) {
         guard let viewModel = featuredViewModel,
             let viewController = viewController else { return }
-        let vc = StreamViewController(stream: viewModel.stream)
+        let vc = StreamViewController(name: viewModel.stream.name)
         viewController.show(vc, sender: viewController)
     }
 }
