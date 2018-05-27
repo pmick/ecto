@@ -77,11 +77,11 @@ final class FeaturedSectionController: ListSectionController {
 
 extension FeaturedSectionController: ListAdapterDataSource {
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
-        return featured.map(StreamViewModel.init)
+        return [List(items:featured.map(StreamViewModel.init))]
     }
     
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
-        return FeaturedStreamSectionController()
+        return StreamsBindingController(scrollDirection: .horizontal)
     }
     
     func emptyView(for listAdapter: ListAdapter) -> UIView? {
@@ -114,7 +114,7 @@ final class TopStreamsSectionController: ListSectionController {
     override init() {
         super.init()
         inset = UIEdgeInsets(top: 0, left: 0, bottom: 64, right: 0)
-        Twitch().request(TopStreamsResource()) { result in
+        Twitch().request(StreamsResource()) { result in
             switch result {
             case .success(let welcome):
                 self.streams = welcome.data
@@ -142,11 +142,11 @@ final class TopStreamsSectionController: ListSectionController {
 
 extension TopStreamsSectionController: ListAdapterDataSource {
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
-        return streams.map(StreamViewModel.init)
+        return [List(items: streams.map(StreamViewModel.init))]
     }
     
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
-        return FeaturedStreamSectionController()
+        return StreamsBindingController(scrollDirection: .horizontal)
     }
     
     func emptyView(for listAdapter: ListAdapter) -> UIView? {
@@ -179,7 +179,7 @@ final class TopGamesSectionController: ListSectionController {
     override init() {
         super.init()
         inset = UIEdgeInsets(top: 0, left: 0, bottom: 64, right: 0)
-        Twitch().request(TopGamesResource()) { result in
+        Twitch().request(GamesResource()) { result in
             switch result {
             case .success(let welcome):
                 self.games = welcome.data
@@ -210,10 +210,14 @@ final class GameViewModel: ListDiffable {
     let name: String
     let boxArtUrl: String
     
+    let game: Game
+    
     init(game: Game) {
         self.id = game.id
         self.name = game.name
         self.boxArtUrl = game.boxArtUrl
+        
+        self.game = game
     }
     
     func diffIdentifier() -> NSObjectProtocol {

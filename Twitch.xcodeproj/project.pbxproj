@@ -40,6 +40,12 @@
 		CD6429B320B0B9F2007EBE79 /* LegacyTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD64298C20B0B2AB007EBE79 /* LegacyTypes.swift */; };
 		CD6429B520B0EE21007EBE79 /* M3U8Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6429B420B0EE21007EBE79 /* M3U8Parser.swift */; };
 		CD6429B720B10852007EBE79 /* M3UParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6429B620B10852007EBE79 /* M3UParserTests.swift */; };
+		CD98CBA820BA7FC600F4098B /* GameStreamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD98CBA720BA7FC600F4098B /* GameStreamsViewController.swift */; };
+		CD98CBAF20BB2BC800F4098B /* HeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD98CBAD20BB2BC800F4098B /* HeaderCollectionViewCell.swift */; };
+		CD98CBB020BB2BC800F4098B /* HeaderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD98CBAE20BB2BC800F4098B /* HeaderCollectionViewCell.xib */; };
+		CD98CBB220BB2F8B00F4098B /* HeaderSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD98CBB120BB2F8B00F4098B /* HeaderSectionController.swift */; };
+		CD98CBB420BB2FB200F4098B /* UIView+Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD98CBB320BB2FB200F4098B /* UIView+Autolayout.swift */; };
+		CD98CBB620BB2FCD00F4098B /* StreamBindingSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD98CBB520BB2FCD00F4098B /* StreamBindingSectionController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +141,12 @@
 		CD6429B120B0B938007EBE79 /* Twitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Twitch.swift; sourceTree = "<group>"; };
 		CD6429B420B0EE21007EBE79 /* M3U8Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M3U8Parser.swift; sourceTree = "<group>"; };
 		CD6429B620B10852007EBE79 /* M3UParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M3UParserTests.swift; sourceTree = "<group>"; };
+		CD98CBA720BA7FC600F4098B /* GameStreamsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStreamsViewController.swift; sourceTree = "<group>"; };
+		CD98CBAD20BB2BC800F4098B /* HeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionViewCell.swift; sourceTree = "<group>"; };
+		CD98CBAE20BB2BC800F4098B /* HeaderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCollectionViewCell.xib; sourceTree = "<group>"; };
+		CD98CBB120BB2F8B00F4098B /* HeaderSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSectionController.swift; sourceTree = "<group>"; };
+		CD98CBB320BB2FB200F4098B /* UIView+Autolayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Autolayout.swift"; sourceTree = "<group>"; };
+		CD98CBB520BB2FCD00F4098B /* StreamBindingSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamBindingSectionController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +239,12 @@
 				CD5AE09120BA4AC70002CC95 /* GameSectionController.swift */,
 				CD5AE09320BA4B6C0002CC95 /* GameCollectionViewCell.swift */,
 				CD5AE09420BA4B6C0002CC95 /* GameCollectionViewCell.xib */,
+				CD98CBA720BA7FC600F4098B /* GameStreamsViewController.swift */,
+				CD98CBAD20BB2BC800F4098B /* HeaderCollectionViewCell.swift */,
+				CD98CBAE20BB2BC800F4098B /* HeaderCollectionViewCell.xib */,
+				CD98CBB120BB2F8B00F4098B /* HeaderSectionController.swift */,
+				CD98CBB320BB2FB200F4098B /* UIView+Autolayout.swift */,
+				CD98CBB520BB2FCD00F4098B /* StreamBindingSectionController.swift */,
 			);
 			path = Twitch;
 			sourceTree = "<group>";
@@ -444,6 +462,7 @@
 				CD39981620AFCDA400BFA58C /* Assets.xcassets in Resources */,
 				CD39981420AFCDA300BFA58C /* Main.storyboard in Resources */,
 				CD64298720AFDF8D007EBE79 /* Constants.plist in Resources */,
+				CD98CBB020BB2BC800F4098B /* HeaderCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,17 +522,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD98CBB220BB2F8B00F4098B /* HeaderSectionController.swift in Sources */,
 				CD39981120AFCDA200BFA58C /* SecondViewController.swift in Sources */,
 				CD540B5020B3B190002044F6 /* EmbeddedCollectionViewCell.swift in Sources */,
 				CD39980D20AFCDA200BFA58C /* AppDelegate.swift in Sources */,
+				CD98CBAF20BB2BC800F4098B /* HeaderCollectionViewCell.swift in Sources */,
 				CD5AE08E20BA38890002CC95 /* List.swift in Sources */,
 				CD5AE09220BA4AC70002CC95 /* GameSectionController.swift in Sources */,
 				CD540B5B20B3C56A002044F6 /* FeaturedStreamCollectionViewCell.swift in Sources */,
 				CD5AE09020BA402B0002CC95 /* HomeViewController.swift in Sources */,
+				CD98CBB620BB2FCD00F4098B /* StreamBindingSectionController.swift in Sources */,
 				CD269CB920B9E7FA00CD795B /* StreamViewController.swift in Sources */,
 				CD5AE09520BA4B6C0002CC95 /* GameCollectionViewCell.swift in Sources */,
 				CD64298B20AFDFDB007EBE79 /* Constants.swift in Sources */,
 				CD540B5420B3B5DE002044F6 /* FeaturedStreamSectionController.swift in Sources */,
+				CD98CBB420BB2FB200F4098B /* UIView+Autolayout.swift in Sources */,
+				CD98CBA820BA7FC600F4098B /* GameStreamsViewController.swift in Sources */,
 				CD540B5220B3B432002044F6 /* HorizontalSectionController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

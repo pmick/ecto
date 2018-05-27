@@ -8,6 +8,7 @@
 
 import Foundation
 import IGListKit
+import Kingfisher
 
 final class GameSectionController: ListSectionController {
     struct Constants {
@@ -27,8 +28,10 @@ final class GameSectionController: ListSectionController {
                 fatalError()
         }
         
-        let imageUrl = URL(string: viewModel.boxArtUrl.replacingOccurrences(of: "{width}", with: "272").replacingOccurrences(of: "{height}", with: "380"))!
-        cell.imageView.kf.setImage(with: imageUrl)
+
+        let url = URL(string: viewModel.boxArtUrl.replacingOccurrences(of: "{width}", with: "272").replacingOccurrences(of: "{height}", with: "380"))!
+        let processor = RoundCornerImageProcessor(cornerRadius: 8)
+        cell.imageView.kf.setImage(with: url, placeholder: nil, options: [.processor(processor), .transition(.fade(0.2))])
         return cell
     }
     
@@ -44,9 +47,9 @@ final class GameSectionController: ListSectionController {
     }
     
     override func didSelectItem(at index: Int) {
-//        guard let viewModel = featuredViewModel,
-//            let viewController = viewController else { return }
-//        let vc = StreamViewController(name: viewModel.stream.name)
-//        viewController.show(vc, sender: viewController)
+        guard let viewModel = viewModel,
+            let viewController = viewController else { return }
+        let vc = GameStreamsViewController(game: viewModel.game)
+        viewController.show(vc, sender: viewController)
     }
 }

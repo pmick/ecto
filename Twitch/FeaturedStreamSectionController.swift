@@ -31,7 +31,8 @@ final class FeaturedStreamSectionController: ListSectionController {
         }
 
         cell.titleLabel.text = featuredViewModel.title
-        cell.imageView.kf.setImage(with: featuredViewModel.imageUrl)
+        let processor = RoundCornerImageProcessor(cornerRadius: 16)
+        cell.imageView.kf.setImage(with: featuredViewModel.imageUrl, placeholder: nil, options: [.processor(processor), .transition(.fade(0.2))])
         return cell
     }
     

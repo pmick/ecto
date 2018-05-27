@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import IGListKit
+import Kingfisher
 
 final class FeaturedStreamCollectionViewCell: UICollectionViewCell {
     @IBOutlet var titleLabel: UILabel!
@@ -22,5 +24,16 @@ final class FeaturedStreamCollectionViewCell: UICollectionViewCell {
         titleLabel.layer.shadowRadius = 1.5
         titleLabel.layer.shadowOpacity = 0.7
         titleLabel.layer.shadowOffset = .zero
+    }
+}
+
+extension FeaturedStreamCollectionViewCell: ListBindable {
+    func bindViewModel(_ viewModel: Any) {
+        assert(viewModel is StreamViewModel, "Expected \(viewModel) to be of type StreamViewModel")
+        guard let viewModel = viewModel as? StreamViewModel else { return }
+        
+        titleLabel.text = viewModel.title
+        let processor = RoundCornerImageProcessor(cornerRadius: 16)
+        imageView.kf.setImage(with: viewModel.imageUrl, placeholder: nil, options: [.processor(processor), .transition(.fade(0.2))])
     }
 }

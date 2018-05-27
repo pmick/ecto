@@ -19,13 +19,14 @@ public struct Twitch {
     public init() {}
     
     public func request<T>(_ resource: T, completion: @escaping (Result<T.PayloadType>) -> Void) where T: Resource {
-        var request = URLRequest(url: resource.url)
-        request.setValue("***REMOVED***", forHTTPHeaderField: "Client-ID")
+        var urlComponents = URLComponents(url: resource.url, resolvingAgainstBaseURL: false)!
+        urlComponents.queryItems = resource.parameters.map({ (key, value) -> URLQueryItem in
+            return URLQueryItem(name: key, value: value)
+        })
         
-//        resource.parameters.forEach { (key, value) in
-//            let queryItem = URLQueryItem(name: key, value: value)
-//
-//        }
+        var request = URLRequest(url: urlComponents.url!)
+        request.setValue("***REMOVED***", forHTTPHeaderField: "Client-ID")
+
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {

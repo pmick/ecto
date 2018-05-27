@@ -63,16 +63,27 @@ public struct VideoUrlResource: Resource {
     }
 }
 
-public struct TopStreamsResource: Resource {    
+public struct StreamsResource: Resource {    
     public typealias PayloadType = DataPayload<Stream>
     public let url = URL(string: "https://api.twitch.tv/helix/streams")!
-    public var parameters: [String : String] = [:]
-    public init() {}
+    
+    private let gameId: String?
+    public init(gameId: String? = nil) {
+        self.gameId = gameId
+    }
+    
+    public var parameters: [String : String] {
+        if let gameId = gameId {
+            return ["game_id": gameId]
+        } else {
+            return [:]
+        }
+    }
 }
 
-public struct TopGamesResource: Resource {
+public struct GamesResource: Resource {
     public typealias PayloadType = DataPayload<Game>
     public let url = URL(string: "https://api.twitch.tv/helix/games/top")!
     public var parameters: [String : String] = [:]
-    public init() {}
+    public init() { }
 }
