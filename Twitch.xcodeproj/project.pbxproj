@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		CD269CB920B9E7FA00CD795B /* StreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD269CB820B9E7FA00CD795B /* StreamViewController.swift */; };
 		CD269CBC20B9EF8D00CD795B /* FetchStreamUrlController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD269CBA20B9EAAC00CD795B /* FetchStreamUrlController.swift */; };
+		CD36D6CF20BCAC24003E8840 /* UIScrollView+HasReachedEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD36D6CE20BCAC24003E8840 /* UIScrollView+HasReachedEnd.swift */; };
+		CD36D6D120BCFF10003E8840 /* PaginatedRequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD36D6D020BCFF10003E8840 /* PaginatedRequestController.swift */; };
+		CD36D6D320BCFF26003E8840 /* LegacyPaginatedRequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD36D6D220BCFF26003E8840 /* LegacyPaginatedRequestController.swift */; };
+		CD36D6D520BCFF74003E8840 /* FeaturedSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD36D6D420BCFF74003E8840 /* FeaturedSectionController.swift */; };
+		CD36D6D720BCFF9C003E8840 /* TopStreamsSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD36D6D620BCFF9C003E8840 /* TopStreamsSectionController.swift */; };
+		CD36D6D920BCFFD3003E8840 /* TopGamesSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD36D6D820BCFFD3003E8840 /* TopGamesSectionController.swift */; };
+		CD36D6DB20BCFFF3003E8840 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD36D6DA20BCFFF3003E8840 /* GameViewModel.swift */; };
 		CD39980D20AFCDA200BFA58C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD39980C20AFCDA200BFA58C /* AppDelegate.swift */; };
 		CD39981120AFCDA200BFA58C /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD39981020AFCDA200BFA58C /* SecondViewController.swift */; };
 		CD39981420AFCDA300BFA58C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD39981220AFCDA300BFA58C /* Main.storyboard */; };
@@ -103,6 +110,13 @@
 /* Begin PBXFileReference section */
 		CD269CB820B9E7FA00CD795B /* StreamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamViewController.swift; sourceTree = "<group>"; };
 		CD269CBA20B9EAAC00CD795B /* FetchStreamUrlController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchStreamUrlController.swift; sourceTree = "<group>"; };
+		CD36D6CE20BCAC24003E8840 /* UIScrollView+HasReachedEnd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+HasReachedEnd.swift"; sourceTree = "<group>"; };
+		CD36D6D020BCFF10003E8840 /* PaginatedRequestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedRequestController.swift; sourceTree = "<group>"; };
+		CD36D6D220BCFF26003E8840 /* LegacyPaginatedRequestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyPaginatedRequestController.swift; sourceTree = "<group>"; };
+		CD36D6D420BCFF74003E8840 /* FeaturedSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedSectionController.swift; sourceTree = "<group>"; };
+		CD36D6D620BCFF9C003E8840 /* TopStreamsSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStreamsSectionController.swift; sourceTree = "<group>"; };
+		CD36D6D820BCFFD3003E8840 /* TopGamesSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopGamesSectionController.swift; sourceTree = "<group>"; };
+		CD36D6DA20BCFFF3003E8840 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		CD39980920AFCDA200BFA58C /* Twitch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD39980C20AFCDA200BFA58C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD39981020AFCDA200BFA58C /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
@@ -245,6 +259,11 @@
 				CD98CBB120BB2F8B00F4098B /* HeaderSectionController.swift */,
 				CD98CBB320BB2FB200F4098B /* UIView+Autolayout.swift */,
 				CD98CBB520BB2FCD00F4098B /* StreamBindingSectionController.swift */,
+				CD36D6CE20BCAC24003E8840 /* UIScrollView+HasReachedEnd.swift */,
+				CD36D6D420BCFF74003E8840 /* FeaturedSectionController.swift */,
+				CD36D6D620BCFF9C003E8840 /* TopStreamsSectionController.swift */,
+				CD36D6D820BCFFD3003E8840 /* TopGamesSectionController.swift */,
+				CD36D6DA20BCFFF3003E8840 /* GameViewModel.swift */,
 			);
 			path = Twitch;
 			sourceTree = "<group>";
@@ -278,6 +297,8 @@
 				CD6429B420B0EE21007EBE79 /* M3U8Parser.swift */,
 				CD5AE08920BA359C0002CC95 /* Resources.swift */,
 				CD5AE08B20BA37610002CC95 /* Types.swift */,
+				CD36D6D020BCFF10003E8840 /* PaginatedRequestController.swift */,
+				CD36D6D220BCFF26003E8840 /* LegacyPaginatedRequestController.swift */,
 			);
 			path = TwitchKit;
 			sourceTree = "<group>";
@@ -523,20 +544,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD98CBB220BB2F8B00F4098B /* HeaderSectionController.swift in Sources */,
+				CD36D6D520BCFF74003E8840 /* FeaturedSectionController.swift in Sources */,
 				CD39981120AFCDA200BFA58C /* SecondViewController.swift in Sources */,
 				CD540B5020B3B190002044F6 /* EmbeddedCollectionViewCell.swift in Sources */,
 				CD39980D20AFCDA200BFA58C /* AppDelegate.swift in Sources */,
+				CD36D6CF20BCAC24003E8840 /* UIScrollView+HasReachedEnd.swift in Sources */,
 				CD98CBAF20BB2BC800F4098B /* HeaderCollectionViewCell.swift in Sources */,
 				CD5AE08E20BA38890002CC95 /* List.swift in Sources */,
 				CD5AE09220BA4AC70002CC95 /* GameSectionController.swift in Sources */,
+				CD36D6D920BCFFD3003E8840 /* TopGamesSectionController.swift in Sources */,
 				CD540B5B20B3C56A002044F6 /* FeaturedStreamCollectionViewCell.swift in Sources */,
 				CD5AE09020BA402B0002CC95 /* HomeViewController.swift in Sources */,
 				CD98CBB620BB2FCD00F4098B /* StreamBindingSectionController.swift in Sources */,
 				CD269CB920B9E7FA00CD795B /* StreamViewController.swift in Sources */,
+				CD36D6DB20BCFFF3003E8840 /* GameViewModel.swift in Sources */,
 				CD5AE09520BA4B6C0002CC95 /* GameCollectionViewCell.swift in Sources */,
 				CD64298B20AFDFDB007EBE79 /* Constants.swift in Sources */,
 				CD540B5420B3B5DE002044F6 /* FeaturedStreamSectionController.swift in Sources */,
 				CD98CBB420BB2FB200F4098B /* UIView+Autolayout.swift in Sources */,
+				CD36D6D720BCFF9C003E8840 /* TopStreamsSectionController.swift in Sources */,
 				CD98CBA820BA7FC600F4098B /* GameStreamsViewController.swift in Sources */,
 				CD540B5220B3B432002044F6 /* HorizontalSectionController.swift in Sources */,
 			);
@@ -562,9 +588,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD36D6D320BCFF26003E8840 /* LegacyPaginatedRequestController.swift in Sources */,
 				CD6429B220B0B938007EBE79 /* Twitch.swift in Sources */,
 				CD6429B520B0EE21007EBE79 /* M3U8Parser.swift in Sources */,
 				CD269CBC20B9EF8D00CD795B /* FetchStreamUrlController.swift in Sources */,
+				CD36D6D120BCFF10003E8840 /* PaginatedRequestController.swift in Sources */,
 				CD5AE08C20BA37610002CC95 /* Types.swift in Sources */,
 				CD5AE08A20BA359C0002CC95 /* Resources.swift in Sources */,
 				CD6429B320B0B9F2007EBE79 /* LegacyTypes.swift in Sources */,

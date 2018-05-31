@@ -25,8 +25,4 @@ final class EmbeddedCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
         collectionView.frame = contentView.frame
     }
-    
-    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
-        print("did update focus: \(isFocused) \(self)")
-    }
 }

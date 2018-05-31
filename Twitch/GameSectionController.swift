@@ -30,8 +30,8 @@ final class GameSectionController: ListSectionController {
         
 
         let url = URL(string: viewModel.boxArtUrl.replacingOccurrences(of: "{width}", with: "272").replacingOccurrences(of: "{height}", with: "380"))!
-        let processor = RoundCornerImageProcessor(cornerRadius: 8)
-        cell.imageView.kf.setImage(with: url, placeholder: nil, options: [.processor(processor), .transition(.fade(0.2))])
+        let processor = RoundCornerImageProcessor(cornerRadius: 8, backgroundColor: .clear) >> ResizingImageProcessor(referenceSize: cell.bounds.size, mode: .aspectFill)
+        cell.imageView.kf.setImage(with: url, placeholder: nil, options: [.processor(processor), .cacheSerializer(FormatIndicatedCacheSerializer.png), .transition(.fade(0.2))])
         return cell
     }
     

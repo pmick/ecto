@@ -4,9 +4,13 @@ public struct ApiError: Error, Codable {
     public let status: Int
 }
 
-public struct Welcome: Codable {
+public struct Welcome: Codable, NextPageContextProviding {
     public let links: WelcomeLinks
     public let featured: [Featured]
+    
+    public var hasMorePages: Bool {
+        return featured.count >= Twitch.Constants.legacyPageSize
+    }
     
     enum CodingKeys: String, CodingKey {
         case links = "_links"

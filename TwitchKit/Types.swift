@@ -8,9 +8,12 @@
 
 import Foundation
 
-public struct DataPayload<T>: Codable where T: Codable {
+public struct DataPayload<T>: Codable, PaginationCursorProviding where T: Codable {
     public let data: [T]
     public let pagination: Pagination
+    
+    public var cursor: String? { return pagination.cursor }
+    public var hasMorePages: Bool { return data.count >= Twitch.Constants.pageSize }
 }
 
 public struct Stream: Codable {

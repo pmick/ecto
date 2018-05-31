@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct M3UEntry: Equatable {
+public struct M3UEntry: Equatable, Codable {
     public let codecs: String
     public let quality: String
     public let url: URL
@@ -42,9 +42,7 @@ struct M3UParser {
                 
                 let dict = parse(info: info)
                 
-                let resolution = dict["RESOLUTION"]// else {
-//                    throw M3UError.valueMissing(key: "RESOLUTION")
-//                }
+                let resolution = dict["RESOLUTION"]
                 
                 guard let codecs = dict["CODECS"] else {
                     throw M3UError.valueMissing(key: "CODECS")

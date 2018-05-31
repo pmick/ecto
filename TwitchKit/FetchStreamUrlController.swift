@@ -16,7 +16,7 @@ public final class FetchStreamUrlController {
             switch result {
             case .success(let accessToken):
                 let resource = VideoUrlResource(name: name, token: accessToken.token, sig: accessToken.sig)
-                twitch.requestM3u(resource) { (result) in
+                twitch.request(resource) { (result) in
                     switch result {
                     case .success(let entries):
                         if let first = entries.first {

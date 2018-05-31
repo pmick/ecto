@@ -10,15 +10,71 @@ import Foundation
 
 public protocol Resource {
     associatedtype PayloadType: Decodable
+    
     var url: URL { get }
     var parameters: [String: String] { get }
+    func parse(_ data: Data) throws -> PayloadType
 }
 
-public struct FeaturedStreamsResource: Resource {
+public extension Resource {
+    public var parameters: [String: String] { return [:] }
+    
+    public func parse(_ data: Data) throws -> PayloadType {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return try decoder.decode(PayloadType.self, from: data)
+    }
+}
+
+public protocol PaginationCursorProviding {
+    var cursor: String? { get }
+    var hasMorePages: Bool { get }
+}
+
+public protocol NextPageContextProviding {
+    var hasMorePages: Bool { get }
+}
+
+public protocol Paginated {
+    associatedtype PayloadType: PaginationCursorProviding
+    var cursor: String? { get }
+    func copy(with cursor: String) -> Self
+}
+
+public protocol LegacyPaginated {
+    associatedtype PayloadType: NextPageContextProviding
+    
+    func copy(with offset: Int) -> Self
+}
+
+public struct DynamicResource<T>: Resource where T: Decodable {
+    public typealias PayloadType = T
+    public let url: URL
+    public init(url: URL) {
+        self.url = url
+    }
+}
+
+public struct FeaturedStreamsResource: Resource, LegacyPaginated {
     public typealias PayloadType = Welcome
     public let url = URL(string: "https://api.twitch.tv/kraken/streams/featured")!
-    public var parameters: [String : String] = [:]
-    public init() {}
+    var offset: Int
+    var limit: Int { return Twitch.Constants.legacyPageSize }
+    
+    public init(offset: Int = 0) {
+        self.offset = offset
+    }
+    
+    public var parameters: [String: String] {
+        return [
+            "limit": String(limit),
+            "offset": String(offset)
+        ]
+    }
+    
+    public func copy(with offset: Int) -> FeaturedStreamsResource {
+        return FeaturedStreamsResource(offset: offset)
+    }
 }
 
 public struct AuthenticateStreamResource: Resource {
@@ -28,18 +84,18 @@ public struct AuthenticateStreamResource: Resource {
     public var url: URL {
         return URL(string: "https://api.twitch.tv/api/channels/\(name)/access_token")!
     }
-    public var parameters: [String : String] = [:]
     public init(name: String) {
         self.name = name
     }
 }
 
 public struct VideoUrlResource: Resource {
+    public typealias PayloadType = [M3UEntry]
+    
     private let name: String
     private let token: String
     private let sig: String
     
-    public typealias PayloadType = Welcome
     public var url: URL {
         return URL(string: "https://usher.ttvnw.net/api/channel/hls/\(name).m3u8")!
     }
@@ -61,29 +117,65 @@ public struct VideoUrlResource: Resource {
         self.token = token
         self.sig = sig
     }
+    
+    public func parse(_ data: Data) throws -> [M3UEntry] {
+        guard let contentsOfFile = String(data: data, encoding: .utf8) else {
+            throw M3UError.payloadEncodingInvalid
+        }
+        let decoder = M3UParser()
+        return try decoder.parse(contentsOfFile)
+    }
 }
 
-public struct StreamsResource: Resource {    
+public struct StreamsResource: Resource, Paginated {
     public typealias PayloadType = DataPayload<Stream>
     public let url = URL(string: "https://api.twitch.tv/helix/streams")!
-    
+    public let cursor: String?
     private let gameId: String?
-    public init(gameId: String? = nil) {
+    public init(gameId: String? = nil, cursor: String? = nil) {
         self.gameId = gameId
+        self.cursor = cursor
+    }
+    
+    public var parameters: [String: String] {
+        var params: [String: String] = [:]
+        
+        if let gameId = gameId {
+            params["game_id"] = gameId
+        }
+        
+        if let cursor = cursor {
+            params["after"] = cursor
+        }
+        
+        return params
+    }
+    
+    public func copy(with cursor: String) -> StreamsResource {
+        return StreamsResource(gameId: gameId, cursor: cursor)
+    }
+}
+
+public struct GamesResource: Resource, Paginated {
+    public var cursor: String?
+    public typealias PayloadType = DataPayload<Game>
+    public let url = URL(string: "https://api.twitch.tv/helix/games/top")!
+    
+    public init(cursor: String? = nil) {
+        self.cursor = cursor
     }
     
     public var parameters: [String : String] {
-        if let gameId = gameId {
-            return ["game_id": gameId]
-        } else {
-            return [:]
-        }
-    }
-}
+        var params: [String: String] = [:]
 
-public struct GamesResource: Resource {
-    public typealias PayloadType = DataPayload<Game>
-    public let url = URL(string: "https://api.twitch.tv/helix/games/top")!
-    public var parameters: [String : String] = [:]
-    public init() { }
+        if let cursor = cursor {
+            params["after"] = cursor
+        }
+        
+        return params
+    }
+    
+    public func copy(with cursor: String) -> GamesResource {
+        return GamesResource(cursor: cursor)
+    }
 }
