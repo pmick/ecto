@@ -7,11 +7,11 @@
 //
 
 import UIKit
+import IGListKit
 
 final class EmbeddedCollectionViewCell: UICollectionViewCell {
     lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
+        let layout = ListCollectionViewLayout(stickyHeaders: false, scrollDirection: .horizontal, topContentInset: 0, stretchToEdge: true)
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.backgroundColor = .clear
         view.alwaysBounceVertical = false

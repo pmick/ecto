@@ -50,7 +50,7 @@ final class FeaturedStreamSectionController: ListSectionController {
     override func didSelectItem(at index: Int) {
         guard let viewModel = featuredViewModel,
             let viewController = viewController else { return }
-        let vc = StreamViewController(name: viewModel.stream.name)
+        let vc = StreamViewController(context: viewModel.stream.context)
         viewController.show(vc, sender: viewController)
     }
 }

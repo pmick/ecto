@@ -128,7 +128,7 @@ public struct VideoUrlResource: Resource {
 }
 
 public struct StreamsResource: Resource, Paginated {
-    public typealias PayloadType = DataPayload<Stream>
+    public typealias PayloadType = PaginatedDataPayload<Stream>
     public let url = URL(string: "https://api.twitch.tv/helix/streams")!
     public let cursor: String?
     private let gameId: String?
@@ -158,7 +158,7 @@ public struct StreamsResource: Resource, Paginated {
 
 public struct GamesResource: Resource, Paginated {
     public var cursor: String?
-    public typealias PayloadType = DataPayload<Game>
+    public typealias PayloadType = PaginatedDataPayload<Game>
     public let url = URL(string: "https://api.twitch.tv/helix/games/top")!
     
     public init(cursor: String? = nil) {
@@ -177,5 +177,19 @@ public struct GamesResource: Resource, Paginated {
     
     public func copy(with cursor: String) -> GamesResource {
         return GamesResource(cursor: cursor)
+    }
+}
+
+public struct UsersResource: Resource {
+    public typealias PayloadType = DataPayload<User>
+    public let url = URL(string: "https://api.twitch.tv/helix/users")!
+    private let userId: String
+    
+    public init(userId: String) {
+        self.userId = userId
+    }
+    
+    public var parameters: [String : String] {
+        return ["id": userId]
     }
 }

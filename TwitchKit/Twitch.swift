@@ -31,7 +31,8 @@ public struct Twitch {
         
         var request = URLRequest(url: urlComponents.url!)
         request.setValue("***REMOVED***", forHTTPHeaderField: "Client-ID")
-
+//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//        request.setValue("application/json", forHTTPHeaderField: "Accept")
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
@@ -46,6 +47,7 @@ public struct Twitch {
                         let error = try decoder.decode(ApiError.self, from: data)
                         completion(.failure(error))
                     } catch {
+                        print(">>> ERROR DECODING ERROR PAYLOAD: \(String(data: data, encoding: .utf8))")
                         completion(.failure(error))
                     }
                 }

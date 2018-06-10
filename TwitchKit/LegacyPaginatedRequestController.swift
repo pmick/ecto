@@ -13,7 +13,7 @@ public final class LegacyPaginatedRequestController<T> where T: Resource & Legac
     private var nextResource: T?
     private var isLoadingMore = false
     private var offset: Int = 0
-    private var hasMorePages = true
+    public private(set) var hasMorePages = true
     
     public init(resource: T) {
         self.resource = resource
@@ -33,6 +33,7 @@ public final class LegacyPaginatedRequestController<T> where T: Resource & Legac
     public func loadMoreData(completion: @escaping (Result<T.PayloadType>) -> Void) {
         guard let nextResource = nextResource, !isLoadingMore, hasMorePages else { return }
         isLoadingMore = true
+        return
         Twitch().request(nextResource) { result in
             if case .success(let payload) = result {
                 self.hasMorePages = payload.hasMorePages

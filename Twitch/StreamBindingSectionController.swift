@@ -65,4 +65,11 @@ extension StreamsBindingController: ListBindingSectionControllerDataSource {
             return CGSize(width: cellWidth, height: cellHeight+70)
         }
     }
+    
+    override func didSelectItem(at index: Int) {
+        guard let obj = object?.items[index] else { return }
+        let context = obj.stream.context
+        let vc = StreamViewController(context: context)
+        viewController?.show(vc, sender: self)
+    }
 }

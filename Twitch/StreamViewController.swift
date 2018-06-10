@@ -11,10 +11,10 @@ import UIKit
 import AVKit
 
 final class StreamViewController: UIViewController {
-    private let name: String?
+    private let context: ChannelNameContext
     
-    init(name: String?) {
-        self.name = name
+    init(context: ChannelNameContext) {
+        self.context = context
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -29,10 +29,15 @@ final class StreamViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let name = name else {
-            fatalError("Not implemented")
+        switch context {
+        case .lhs(let channelName):
+            loadStream(forChannelName: channelName)
+        case .rhs(let userId):
+            loadStream(forUserId: userId)
         }
-        
+    }
+    
+    func loadStream(forChannelName name: ChannelName) {
         let controller = FetchStreamUrlController()
         controller.fetchStreamUrl(forStreamNamed: name) { (result) in
             switch result {
@@ -49,6 +54,18 @@ final class StreamViewController: UIViewController {
                 }
             case .failure(let error):
                 print("error fetching stream url: \(error)")
+            }
+        }
+    }
+    
+    func loadStream(forUserId id: UserId) {
+        let resource = UsersResource(userId: id)
+        Twitch().request(resource) { result in
+            switch result {
+            case .success(let data):
+                self.loadStream(forChannelName: data.data.first!.login)
+            case .failure(let error):
+                Log.debug("error loading user: \(error)")
             }
         }
     }

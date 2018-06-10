@@ -36,6 +36,7 @@
 		CD5AE09220BA4AC70002CC95 /* GameSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5AE09120BA4AC70002CC95 /* GameSectionController.swift */; };
 		CD5AE09520BA4B6C0002CC95 /* GameCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5AE09320BA4B6C0002CC95 /* GameCollectionViewCell.swift */; };
 		CD5AE09620BA4B6C0002CC95 /* GameCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD5AE09420BA4B6C0002CC95 /* GameCollectionViewCell.xib */; };
+		CD60C39920CC953C007D0828 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD60C39820CC953C007D0828 /* Log.swift */; };
 		CD64298720AFDF8D007EBE79 /* Constants.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD64298620AFDF8D007EBE79 /* Constants.plist */; };
 		CD64298B20AFDFDB007EBE79 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD64298A20AFDFDB007EBE79 /* Constants.swift */; };
 		CD64299C20B0B92A007EBE79 /* TwitchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD64299320B0B929007EBE79 /* TwitchKit.framework */; };
@@ -47,6 +48,8 @@
 		CD6429B320B0B9F2007EBE79 /* LegacyTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD64298C20B0B2AB007EBE79 /* LegacyTypes.swift */; };
 		CD6429B520B0EE21007EBE79 /* M3U8Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6429B420B0EE21007EBE79 /* M3U8Parser.swift */; };
 		CD6429B720B10852007EBE79 /* M3UParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6429B620B10852007EBE79 /* M3UParserTests.swift */; };
+		CD677CA420C33CE500F9B1FD /* SpinnerSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD677CA320C33CE500F9B1FD /* SpinnerSectionController.swift */; };
+		CD677CA620C33D0500F9B1FD /* SpinnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD677CA520C33D0500F9B1FD /* SpinnerCell.swift */; };
 		CD98CBA820BA7FC600F4098B /* GameStreamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD98CBA720BA7FC600F4098B /* GameStreamsViewController.swift */; };
 		CD98CBAF20BB2BC800F4098B /* HeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD98CBAD20BB2BC800F4098B /* HeaderCollectionViewCell.swift */; };
 		CD98CBB020BB2BC800F4098B /* HeaderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD98CBAE20BB2BC800F4098B /* HeaderCollectionViewCell.xib */; };
@@ -143,6 +146,7 @@
 		CD5AE09120BA4AC70002CC95 /* GameSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSectionController.swift; sourceTree = "<group>"; };
 		CD5AE09320BA4B6C0002CC95 /* GameCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCollectionViewCell.swift; sourceTree = "<group>"; };
 		CD5AE09420BA4B6C0002CC95 /* GameCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameCollectionViewCell.xib; sourceTree = "<group>"; };
+		CD60C39820CC953C007D0828 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		CD64298620AFDF8D007EBE79 /* Constants.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Constants.plist; sourceTree = "<group>"; };
 		CD64298A20AFDFDB007EBE79 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CD64298C20B0B2AB007EBE79 /* LegacyTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyTypes.swift; sourceTree = "<group>"; };
@@ -155,6 +159,8 @@
 		CD6429B120B0B938007EBE79 /* Twitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Twitch.swift; sourceTree = "<group>"; };
 		CD6429B420B0EE21007EBE79 /* M3U8Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M3U8Parser.swift; sourceTree = "<group>"; };
 		CD6429B620B10852007EBE79 /* M3UParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M3UParserTests.swift; sourceTree = "<group>"; };
+		CD677CA320C33CE500F9B1FD /* SpinnerSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerSectionController.swift; sourceTree = "<group>"; };
+		CD677CA520C33D0500F9B1FD /* SpinnerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerCell.swift; sourceTree = "<group>"; };
 		CD98CBA720BA7FC600F4098B /* GameStreamsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStreamsViewController.swift; sourceTree = "<group>"; };
 		CD98CBAD20BB2BC800F4098B /* HeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		CD98CBAE20BB2BC800F4098B /* HeaderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -264,6 +270,9 @@
 				CD36D6D620BCFF9C003E8840 /* TopStreamsSectionController.swift */,
 				CD36D6D820BCFFD3003E8840 /* TopGamesSectionController.swift */,
 				CD36D6DA20BCFFF3003E8840 /* GameViewModel.swift */,
+				CD677CA320C33CE500F9B1FD /* SpinnerSectionController.swift */,
+				CD677CA520C33D0500F9B1FD /* SpinnerCell.swift */,
+				CD60C39820CC953C007D0828 /* Log.swift */,
 			);
 			path = Twitch;
 			sourceTree = "<group>";
@@ -546,8 +555,11 @@
 				CD98CBB220BB2F8B00F4098B /* HeaderSectionController.swift in Sources */,
 				CD36D6D520BCFF74003E8840 /* FeaturedSectionController.swift in Sources */,
 				CD39981120AFCDA200BFA58C /* SecondViewController.swift in Sources */,
+				CD677CA620C33D0500F9B1FD /* SpinnerCell.swift in Sources */,
 				CD540B5020B3B190002044F6 /* EmbeddedCollectionViewCell.swift in Sources */,
+				CD677CA420C33CE500F9B1FD /* SpinnerSectionController.swift in Sources */,
 				CD39980D20AFCDA200BFA58C /* AppDelegate.swift in Sources */,
+				CD60C39920CC953C007D0828 /* Log.swift in Sources */,
 				CD36D6CF20BCAC24003E8840 /* UIScrollView+HasReachedEnd.swift in Sources */,
 				CD98CBAF20BB2BC800F4098B /* HeaderCollectionViewCell.swift in Sources */,
 				CD5AE08E20BA38890002CC95 /* List.swift in Sources */,
@@ -769,6 +781,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F7FQWXZ93B;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/tvOS",
@@ -779,7 +792,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.patrickmick.Twitch;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patrickmick.TwitchTv;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -793,6 +806,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F7FQWXZ93B;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/tvOS",
@@ -803,7 +817,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.patrickmick.Twitch;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patrickmick.TwitchTv;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;

@@ -57,13 +57,33 @@ final class FeaturedSectionController: ListSectionController {
     }
 }
 
+final class SpinnerViewModel: ListDiffable {
+    func diffIdentifier() -> NSObjectProtocol {
+        let id = "spinner - " + UUID().uuidString
+        return id as NSObjectProtocol
+    }
+    
+    func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
+        return true
+    }
+}
+
 extension FeaturedSectionController: ListAdapterDataSource {
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
-        return [List(items:featured.map(StreamViewModel.init))]
+        var objects: [ListDiffable] = [List(items:featured.map(StreamViewModel.init))]
+        if paginationController.hasMorePages && !featured.isEmpty {
+            objects.append(SpinnerViewModel())
+        }
+        return objects
     }
     
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
-        return StreamsBindingController(scrollDirection: .horizontal)
+        switch object {
+        case is List<StreamViewModel>: return StreamsBindingController(scrollDirection: .horizontal)
+        case is SpinnerViewModel:
+            return SpinnerSectionController()
+        default: fatalError("Not implemented. \(object) not supported.")
+        }
     }
     
     func emptyView(for listAdapter: ListAdapter) -> UIView? {
@@ -73,20 +93,22 @@ extension FeaturedSectionController: ListAdapterDataSource {
 
 extension FeaturedSectionController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
+        let cell = collectionView.cellForItem(at: indexPath)
         return true
+        return !(cell is SpinnerCell)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard let context = collectionContext else { return }
         if scrollView.hasReachedTrailingEdge(withBuffer: context.containerSize.width * 2) {
             paginationController.loadMoreData { (result) in
-                switch result {
-                case .success(let welcome):
-                    self.featured.append(contentsOf: welcome.featured)
-                    print("Appending \(welcome.featured.count) more streams")
-                case .failure(let error):
-                    print(error)
-                }
+//                switch result {
+//                case .success(let welcome):
+//                    self.featured.append(contentsOf: welcome.featured)
+//                    print("Appending \(welcome.featured.count) more streams")
+//                case .failure(let error):
+//                    print(error)
+//                }
             }
         }
     }

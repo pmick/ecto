@@ -10,19 +10,28 @@ import TwitchKit
 import IGListKit
 import UIKit
 
+typealias ChannelName = String
+typealias UserId = String
+typealias ChannelNameContext = Either<ChannelName, UserId>
+
 protocol ChannelNameProviding {
-    var name: String? { get }
+    var context: ChannelNameContext { get }
+}
+
+enum Either<A, B> {
+    case lhs(A)
+    case rhs(B)
 }
 
 extension LegacyStream: ChannelNameProviding {
-    var name: String? {
-        return channel.name
+    var context: ChannelNameContext {
+        return .lhs(channel.name)
     }
 }
 
 extension TwitchKit.Stream: ChannelNameProviding {
-    var name: String? {
-        return nil
+    var context: ChannelNameContext {
+        return .rhs(userId)
     }
 }
 

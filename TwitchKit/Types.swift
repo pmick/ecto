@@ -8,12 +8,16 @@
 
 import Foundation
 
-public struct DataPayload<T>: Codable, PaginationCursorProviding where T: Codable {
+public struct PaginatedDataPayload<T>: Codable, PaginationCursorProviding where T: Codable {
     public let data: [T]
     public let pagination: Pagination
     
     public var cursor: String? { return pagination.cursor }
     public var hasMorePages: Bool { return data.count >= Twitch.Constants.pageSize }
+}
+
+public struct DataPayload<T>: Codable where T: Codable {
+    public let data: [T]
 }
 
 public struct Stream: Codable {
@@ -41,4 +45,9 @@ public enum TypeEnum: String, Codable {
 
 public struct Pagination: Codable {
     public let cursor: String
+}
+
+public struct User: Codable {
+    public let login: String
+    public let displayName: String
 }
