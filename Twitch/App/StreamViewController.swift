@@ -37,33 +37,37 @@ final class StreamViewController: UIViewController {
         }
     }
     
-    func loadStream(forChannelName name: ChannelName) {
+    private func loadStream(forChannelName name: ChannelName) {
         let controller = FetchStreamUrlController()
         controller.fetchStreamUrl(forStreamNamed: name) { (result) in
             switch result {
             case .success(let url):
-                DispatchQueue.main.async {
-                    let c = AVPlayerViewController()
-                    let player = AVPlayer(url: url)
-                    c.player = player
-                    self.addChildViewController(c)
-                    c.view.frame = self.view.bounds
-                    self.view.addSubview(c.view)
-                    c.didMove(toParentViewController: self)
-                    player.play()
-                }
+                self.embedPlayer(with: url)
             case .failure(let error):
                 print("error fetching stream url: \(error)")
             }
         }
     }
     
-    func loadStream(forUserId id: UserId) {
+    private func embedPlayer(with url: URL) {
+        let c = AVPlayerViewController()
+        let player = AVPlayer(url: url)
+        c.player = player
+        self.addChildViewController(c)
+        c.view.frame = self.view.bounds
+        self.view.addSubview(c.view)
+        c.didMove(toParentViewController: self)
+        player.play()
+    }
+    
+    private func loadStream(forUserId id: UserId) {
         let resource = UsersResource(userId: id)
         Twitch().request(resource) { result in
             switch result {
             case .success(let data):
-                self.loadStream(forChannelName: data.data.first!.login)
+                // TODO: Show an error message if we don't pass the guard
+                guard let channelName = data.data.first?.login else { return }
+                self.loadStream(forChannelName: channelName)
             case .failure(let error):
                 Log.debug("error loading user: \(error)")
             }

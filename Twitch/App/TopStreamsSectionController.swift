@@ -1,5 +1,5 @@
 //
-//  FeaturedSectionController.swift
+//  TopStreamsSectionController.swift
 //  Twitch
 //
 //  Created by Patrick Mick on 5/28/18.
@@ -9,8 +9,8 @@
 import IGListKit
 import TwitchKit
 
-final class FeaturedSectionController: ListSectionController {
-    private var featured: [Featured] = [] {
+final class TopStreamsSectionController: ListSectionController {
+    private var streams: [TwitchKit.Stream] = [] {
         didSet {
             adapter.performUpdates(animated: true, completion: nil)
         }
@@ -24,17 +24,17 @@ final class FeaturedSectionController: ListSectionController {
         adapter.scrollViewDelegate = self
         return adapter
     }()
-    
-    private let paginationController = LegacyPaginatedRequestController(resource: FeaturedStreamsResource())
+        
+    private let paginationController = PaginatedRequestController(resource: StreamsResource())
+    private var indexPathOfPreviousStream: IndexPath?
     
     override init() {
         super.init()
         inset = UIEdgeInsets(top: 0, left: 0, bottom: 64, right: 0)
-        
-        paginationController.loadData { result in
+        paginationController.loadData { (result) in
             switch result {
             case .success(let welcome):
-                self.featured = welcome.featured
+                self.streams = welcome.data
             case .failure(let error):
                 print(error)
             }
@@ -57,21 +57,10 @@ final class FeaturedSectionController: ListSectionController {
     }
 }
 
-final class SpinnerViewModel: ListDiffable {
-    func diffIdentifier() -> NSObjectProtocol {
-        let id = "spinner - " + UUID().uuidString
-        return id as NSObjectProtocol
-    }
-    
-    func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
-        return true
-    }
-}
-
-extension FeaturedSectionController: ListAdapterDataSource {
+extension TopStreamsSectionController: ListAdapterDataSource {
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
-        var objects: [ListDiffable] = [List(items:featured.map(StreamViewModel.init))]
-        if paginationController.hasMorePages && !featured.isEmpty {
+        var objects: [ListDiffable] = [List(items: streams.map(StreamViewModel.init))]
+        if paginationController.hasMorePages && !streams.isEmpty {
             objects.append(SpinnerViewModel())
         }
         return objects
@@ -91,24 +80,33 @@ extension FeaturedSectionController: ListAdapterDataSource {
     }
 }
 
-extension FeaturedSectionController: UICollectionViewDelegate {
+extension TopStreamsSectionController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
-        let cell = collectionView.cellForItem(at: indexPath)
         return true
-        return !(cell is SpinnerCell)
+    }
+    
+    func indexPathForPreferredFocusedView(in collectionView: UICollectionView) -> IndexPath? {
+        return indexPathOfPreviousStream
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didUpdateFocusIn context: UICollectionViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        guard let nextIndexPath = context.nextFocusedIndexPath else { return }
+        if !(adapter.sectionController(forSection: nextIndexPath.section) is SpinnerSectionController) {
+            indexPathOfPreviousStream = nextIndexPath
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard let context = collectionContext else { return }
         if scrollView.hasReachedTrailingEdge(withBuffer: context.containerSize.width * 2) {
             paginationController.loadMoreData { (result) in
-//                switch result {
-//                case .success(let welcome):
-//                    self.featured.append(contentsOf: welcome.featured)
-//                    print("Appending \(welcome.featured.count) more streams")
-//                case .failure(let error):
-//                    print(error)
-//                }
+                switch result {
+                case .success(let welcome):
+                    self.streams.append(contentsOf: welcome.data)
+                    print("Appending \(welcome.data.count) more streams")
+                case .failure(let error):
+                    print(error)
+                }
             }
         }
     }

@@ -1,5 +1,5 @@
 //
-//  TopStreamsSectionController.swift
+//  FeaturedSectionController.swift
 //  Twitch
 //
 //  Created by Patrick Mick on 5/28/18.
@@ -9,12 +9,14 @@
 import IGListKit
 import TwitchKit
 
-final class TopStreamsSectionController: ListSectionController {
-    private var streams: [TwitchKit.Stream] = [] {
+final class FeaturedSectionController: ListSectionController {
+    private var featured: [Featured] = [] {
         didSet {
             adapter.performUpdates(animated: true, completion: nil)
         }
     }
+    
+    private var indexPathOfPreviousStream: IndexPath?
     
     lazy var adapter: ListAdapter = {
         let adapter = ListAdapter(updater: ListAdapterUpdater(),
@@ -25,16 +27,16 @@ final class TopStreamsSectionController: ListSectionController {
         return adapter
     }()
     
-    private let paginationController = PaginatedRequestController(resource: StreamsResource())
-    
+    private let paginationController = LegacyPaginatedRequestController(resource: FeaturedStreamsResource())
     
     override init() {
         super.init()
         inset = UIEdgeInsets(top: 0, left: 0, bottom: 64, right: 0)
-        paginationController.loadData { (result) in
+        
+        paginationController.loadData { result in
             switch result {
             case .success(let welcome):
-                self.streams = welcome.data
+                self.featured = welcome.featured
             case .failure(let error):
                 print(error)
             }
@@ -55,15 +57,36 @@ final class TopStreamsSectionController: ListSectionController {
         adapter.collectionView = cell.collectionView
         return cell
     }
+    
 }
 
-extension TopStreamsSectionController: ListAdapterDataSource {
+final class SpinnerViewModel: ListDiffable {
+    let uuid = UUID()
+    
+    func diffIdentifier() -> NSObjectProtocol {
+        return uuid as NSObjectProtocol
+    }
+    
+    func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
+        return true
+    }
+}
+
+extension FeaturedSectionController: ListAdapterDataSource {
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
-        return [List(items: streams.map(StreamViewModel.init))]
+        var objects: [ListDiffable] = [List(items:featured.map(StreamViewModel.init))]
+        if paginationController.hasMorePages && !featured.isEmpty {
+            objects.append(SpinnerViewModel())
+        }
+        return objects
     }
     
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
-        return StreamsBindingController(scrollDirection: .horizontal)
+        switch object {
+        case is List<StreamViewModel>: return StreamsBindingController(scrollDirection: .horizontal)
+        case is SpinnerViewModel: return SpinnerSectionController()
+        default: fatalError("Not implemented. \(object) not supported.")
+        }
     }
     
     func emptyView(for listAdapter: ListAdapter) -> UIView? {
@@ -71,9 +94,20 @@ extension TopStreamsSectionController: ListAdapterDataSource {
     }
 }
 
-extension TopStreamsSectionController: UICollectionViewDelegate {
+extension FeaturedSectionController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
         return true
+    }
+    
+    func indexPathForPreferredFocusedView(in collectionView: UICollectionView) -> IndexPath? {
+        return indexPathOfPreviousStream
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didUpdateFocusIn context: UICollectionViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        guard let nextIndexPath = context.nextFocusedIndexPath else { return }
+        if !(adapter.sectionController(forSection: nextIndexPath.section) is SpinnerSectionController) {
+            indexPathOfPreviousStream = nextIndexPath
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -82,8 +116,8 @@ extension TopStreamsSectionController: UICollectionViewDelegate {
             paginationController.loadMoreData { (result) in
                 switch result {
                 case .success(let welcome):
-                    self.streams.append(contentsOf: welcome.data)
-                    print("Appending \(welcome.data.count) more streams")
+                    self.featured.append(contentsOf: welcome.featured)
+                    print("Appending \(welcome.featured.count) more streams")
                 case .failure(let error):
                     print(error)
                 }

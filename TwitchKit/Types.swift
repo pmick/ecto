@@ -13,7 +13,7 @@ public struct PaginatedDataPayload<T>: Codable, PaginationCursorProviding where 
     public let pagination: Pagination
     
     public var cursor: String? { return pagination.cursor }
-    public var hasMorePages: Bool { return data.count >= Twitch.Constants.pageSize }
+    public var hasMorePages: Bool { return !data.isEmpty }
 }
 
 public struct DataPayload<T>: Codable where T: Codable {

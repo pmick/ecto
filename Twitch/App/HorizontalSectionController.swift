@@ -65,7 +65,11 @@ final class StreamViewModel: ListDiffable {
     }
     
     func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
-        return true
+        guard self !== object else { return false }
+        guard let object = object as? StreamViewModel else { return false }
+        return object.id == id &&
+            object.title == title &&
+            object.imageUrl == imageUrl
     }
 }
 

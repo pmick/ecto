@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD0B750E20DF179D00C7F764 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD0B750C20DF179D00C7F764 /* Kingfisher.framework */; };
+		CD0B750F20DF179D00C7F764 /* IGListKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD0B750D20DF179D00C7F764 /* IGListKit.framework */; };
 		CD269CB920B9E7FA00CD795B /* StreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD269CB820B9E7FA00CD795B /* StreamViewController.swift */; };
 		CD269CBC20B9EF8D00CD795B /* FetchStreamUrlController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD269CBA20B9EAAC00CD795B /* FetchStreamUrlController.swift */; };
 		CD36D6CF20BCAC24003E8840 /* UIScrollView+HasReachedEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD36D6CE20BCAC24003E8840 /* UIScrollView+HasReachedEnd.swift */; };
@@ -17,18 +19,15 @@
 		CD36D6D920BCFFD3003E8840 /* TopGamesSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD36D6D820BCFFD3003E8840 /* TopGamesSectionController.swift */; };
 		CD36D6DB20BCFFF3003E8840 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD36D6DA20BCFFF3003E8840 /* GameViewModel.swift */; };
 		CD39980D20AFCDA200BFA58C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD39980C20AFCDA200BFA58C /* AppDelegate.swift */; };
-		CD39981120AFCDA200BFA58C /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD39981020AFCDA200BFA58C /* SecondViewController.swift */; };
 		CD39981420AFCDA300BFA58C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD39981220AFCDA300BFA58C /* Main.storyboard */; };
 		CD39981620AFCDA400BFA58C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD39981520AFCDA400BFA58C /* Assets.xcassets */; };
 		CD39982120AFCDA400BFA58C /* TwitchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD39982020AFCDA400BFA58C /* TwitchTests.swift */; };
 		CD39982C20AFCDA400BFA58C /* TwitchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD39982B20AFCDA400BFA58C /* TwitchUITests.swift */; };
-		CD540B4D20B3AF53002044F6 /* IGListKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD540B4C20B3AF53002044F6 /* IGListKit.framework */; };
 		CD540B5020B3B190002044F6 /* EmbeddedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD540B4F20B3B190002044F6 /* EmbeddedCollectionViewCell.swift */; };
 		CD540B5220B3B432002044F6 /* HorizontalSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD540B5120B3B432002044F6 /* HorizontalSectionController.swift */; };
 		CD540B5420B3B5DE002044F6 /* FeaturedStreamSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD540B5320B3B5DE002044F6 /* FeaturedStreamSectionController.swift */; };
 		CD540B5B20B3C56A002044F6 /* FeaturedStreamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD540B5920B3C56A002044F6 /* FeaturedStreamCollectionViewCell.swift */; };
 		CD540B5C20B3C56A002044F6 /* FeaturedStreamCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD540B5A20B3C56A002044F6 /* FeaturedStreamCollectionViewCell.xib */; };
-		CD540B6220B50013002044F6 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD540B6120B50013002044F6 /* Kingfisher.framework */; };
 		CD5AE08A20BA359C0002CC95 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5AE08920BA359C0002CC95 /* Resources.swift */; };
 		CD5AE08C20BA37610002CC95 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5AE08B20BA37610002CC95 /* Types.swift */; };
 		CD5AE08E20BA38890002CC95 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5AE08D20BA38890002CC95 /* List.swift */; };
@@ -111,6 +110,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CD0B750C20DF179D00C7F764 /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/tvOS/Kingfisher.framework; sourceTree = SOURCE_ROOT; };
+		CD0B750D20DF179D00C7F764 /* IGListKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IGListKit.framework; path = Carthage/Build/tvOS/IGListKit.framework; sourceTree = SOURCE_ROOT; };
 		CD269CB820B9E7FA00CD795B /* StreamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamViewController.swift; sourceTree = "<group>"; };
 		CD269CBA20B9EAAC00CD795B /* FetchStreamUrlController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchStreamUrlController.swift; sourceTree = "<group>"; };
 		CD36D6CE20BCAC24003E8840 /* UIScrollView+HasReachedEnd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+HasReachedEnd.swift"; sourceTree = "<group>"; };
@@ -122,7 +123,6 @@
 		CD36D6DA20BCFFF3003E8840 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		CD39980920AFCDA200BFA58C /* Twitch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD39980C20AFCDA200BFA58C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CD39981020AFCDA200BFA58C /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		CD39981320AFCDA300BFA58C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CD39981520AFCDA400BFA58C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CD39981720AFCDA400BFA58C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -132,13 +132,11 @@
 		CD39982720AFCDA400BFA58C /* TwitchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwitchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD39982B20AFCDA400BFA58C /* TwitchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitchUITests.swift; sourceTree = "<group>"; };
 		CD39982D20AFCDA400BFA58C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CD540B4C20B3AF53002044F6 /* IGListKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IGListKit.framework; path = Carthage/Build/tvOS/IGListKit.framework; sourceTree = SOURCE_ROOT; };
 		CD540B4F20B3B190002044F6 /* EmbeddedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedCollectionViewCell.swift; sourceTree = "<group>"; };
 		CD540B5120B3B432002044F6 /* HorizontalSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSectionController.swift; sourceTree = "<group>"; };
 		CD540B5320B3B5DE002044F6 /* FeaturedStreamSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedStreamSectionController.swift; sourceTree = "<group>"; };
 		CD540B5920B3C56A002044F6 /* FeaturedStreamCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedStreamCollectionViewCell.swift; sourceTree = "<group>"; };
 		CD540B5A20B3C56A002044F6 /* FeaturedStreamCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeaturedStreamCollectionViewCell.xib; sourceTree = "<group>"; };
-		CD540B6120B50013002044F6 /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/tvOS/Kingfisher.framework; sourceTree = SOURCE_ROOT; };
 		CD5AE08920BA359C0002CC95 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		CD5AE08B20BA37610002CC95 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		CD5AE08D20BA38890002CC95 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
@@ -174,9 +172,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD0B750F20DF179D00C7F764 /* IGListKit.framework in Frameworks */,
+				CD0B750E20DF179D00C7F764 /* Kingfisher.framework in Frameworks */,
 				CD6429A820B0B92A007EBE79 /* TwitchKit.framework in Frameworks */,
-				CD540B6220B50013002044F6 /* Kingfisher.framework in Frameworks */,
-				CD540B4D20B3AF53002044F6 /* IGListKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,6 +210,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD0B750820DF142600C7F764 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				CD64298A20AFDFDB007EBE79 /* Constants.swift */,
+				CD64298620AFDF8D007EBE79 /* Constants.plist */,
+				CD540B4F20B3B190002044F6 /* EmbeddedCollectionViewCell.swift */,
+				CD60C39820CC953C007D0828 /* Log.swift */,
+				CD98CBB320BB2FB200F4098B /* UIView+Autolayout.swift */,
+				CD5AE08D20BA38890002CC95 /* List.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		CD0B750920DF143C00C7F764 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				CD5AE08F20BA402B0002CC95 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		CD0B750A20DF165900C7F764 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CD0B750D20DF179D00C7F764 /* IGListKit.framework */,
+				CD0B750C20DF179D00C7F764 /* Kingfisher.framework */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		CD0B750B20DF166500C7F764 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				CD39981220AFCDA300BFA58C /* Main.storyboard */,
+				CD39981520AFCDA400BFA58C /* Assets.xcassets */,
+				CD39980C20AFCDA200BFA58C /* AppDelegate.swift */,
+				CD540B5120B3B432002044F6 /* HorizontalSectionController.swift */,
+				CD540B5320B3B5DE002044F6 /* FeaturedStreamSectionController.swift */,
+				CD540B5920B3C56A002044F6 /* FeaturedStreamCollectionViewCell.swift */,
+				CD540B5A20B3C56A002044F6 /* FeaturedStreamCollectionViewCell.xib */,
+				CD269CB820B9E7FA00CD795B /* StreamViewController.swift */,
+				CD5AE09120BA4AC70002CC95 /* GameSectionController.swift */,
+				CD5AE09320BA4B6C0002CC95 /* GameCollectionViewCell.swift */,
+				CD5AE09420BA4B6C0002CC95 /* GameCollectionViewCell.xib */,
+				CD98CBA720BA7FC600F4098B /* GameStreamsViewController.swift */,
+				CD98CBAD20BB2BC800F4098B /* HeaderCollectionViewCell.swift */,
+				CD98CBAE20BB2BC800F4098B /* HeaderCollectionViewCell.xib */,
+				CD98CBB120BB2F8B00F4098B /* HeaderSectionController.swift */,
+				CD98CBB520BB2FCD00F4098B /* StreamBindingSectionController.swift */,
+				CD36D6CE20BCAC24003E8840 /* UIScrollView+HasReachedEnd.swift */,
+				CD36D6D420BCFF74003E8840 /* FeaturedSectionController.swift */,
+				CD36D6D620BCFF9C003E8840 /* TopStreamsSectionController.swift */,
+				CD36D6D820BCFFD3003E8840 /* TopGamesSectionController.swift */,
+				CD36D6DA20BCFFF3003E8840 /* GameViewModel.swift */,
+				CD677CA320C33CE500F9B1FD /* SpinnerSectionController.swift */,
+				CD677CA520C33D0500F9B1FD /* SpinnerCell.swift */,
+				CD0B750920DF143C00C7F764 /* Home */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		CD39980020AFCDA200BFA58C = {
 			isa = PBXGroup;
 			children = (
@@ -239,40 +298,10 @@
 		CD39980B20AFCDA200BFA58C /* Twitch */ = {
 			isa = PBXGroup;
 			children = (
-				CD5AE08F20BA402B0002CC95 /* HomeViewController.swift */,
-				CD540B6120B50013002044F6 /* Kingfisher.framework */,
-				CD540B4C20B3AF53002044F6 /* IGListKit.framework */,
-				CD39980C20AFCDA200BFA58C /* AppDelegate.swift */,
-				CD39981020AFCDA200BFA58C /* SecondViewController.swift */,
-				CD39981220AFCDA300BFA58C /* Main.storyboard */,
-				CD39981520AFCDA400BFA58C /* Assets.xcassets */,
+				CD0B750B20DF166500C7F764 /* App */,
+				CD0B750A20DF165900C7F764 /* Frameworks */,
+				CD0B750820DF142600C7F764 /* Support */,
 				CD39981720AFCDA400BFA58C /* Info.plist */,
-				CD64298620AFDF8D007EBE79 /* Constants.plist */,
-				CD64298A20AFDFDB007EBE79 /* Constants.swift */,
-				CD540B4F20B3B190002044F6 /* EmbeddedCollectionViewCell.swift */,
-				CD540B5120B3B432002044F6 /* HorizontalSectionController.swift */,
-				CD540B5320B3B5DE002044F6 /* FeaturedStreamSectionController.swift */,
-				CD540B5920B3C56A002044F6 /* FeaturedStreamCollectionViewCell.swift */,
-				CD540B5A20B3C56A002044F6 /* FeaturedStreamCollectionViewCell.xib */,
-				CD269CB820B9E7FA00CD795B /* StreamViewController.swift */,
-				CD5AE08D20BA38890002CC95 /* List.swift */,
-				CD5AE09120BA4AC70002CC95 /* GameSectionController.swift */,
-				CD5AE09320BA4B6C0002CC95 /* GameCollectionViewCell.swift */,
-				CD5AE09420BA4B6C0002CC95 /* GameCollectionViewCell.xib */,
-				CD98CBA720BA7FC600F4098B /* GameStreamsViewController.swift */,
-				CD98CBAD20BB2BC800F4098B /* HeaderCollectionViewCell.swift */,
-				CD98CBAE20BB2BC800F4098B /* HeaderCollectionViewCell.xib */,
-				CD98CBB120BB2F8B00F4098B /* HeaderSectionController.swift */,
-				CD98CBB320BB2FB200F4098B /* UIView+Autolayout.swift */,
-				CD98CBB520BB2FCD00F4098B /* StreamBindingSectionController.swift */,
-				CD36D6CE20BCAC24003E8840 /* UIScrollView+HasReachedEnd.swift */,
-				CD36D6D420BCFF74003E8840 /* FeaturedSectionController.swift */,
-				CD36D6D620BCFF9C003E8840 /* TopStreamsSectionController.swift */,
-				CD36D6D820BCFFD3003E8840 /* TopGamesSectionController.swift */,
-				CD36D6DA20BCFFF3003E8840 /* GameViewModel.swift */,
-				CD677CA320C33CE500F9B1FD /* SpinnerSectionController.swift */,
-				CD677CA520C33D0500F9B1FD /* SpinnerCell.swift */,
-				CD60C39820CC953C007D0828 /* Log.swift */,
 			);
 			path = Twitch;
 			sourceTree = "<group>";
@@ -554,7 +583,6 @@
 			files = (
 				CD98CBB220BB2F8B00F4098B /* HeaderSectionController.swift in Sources */,
 				CD36D6D520BCFF74003E8840 /* FeaturedSectionController.swift in Sources */,
-				CD39981120AFCDA200BFA58C /* SecondViewController.swift in Sources */,
 				CD677CA620C33D0500F9B1FD /* SpinnerCell.swift in Sources */,
 				CD540B5020B3B190002044F6 /* EmbeddedCollectionViewCell.swift in Sources */,
 				CD677CA420C33CE500F9B1FD /* SpinnerSectionController.swift in Sources */,

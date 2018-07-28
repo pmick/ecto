@@ -33,15 +33,17 @@ public final class LegacyPaginatedRequestController<T> where T: Resource & Legac
     public func loadMoreData(completion: @escaping (Result<T.PayloadType>) -> Void) {
         guard let nextResource = nextResource, !isLoadingMore, hasMorePages else { return }
         isLoadingMore = true
-        return
-        Twitch().request(nextResource) { result in
-            if case .success(let payload) = result {
-                self.hasMorePages = payload.hasMorePages
-                self.offset += Twitch.Constants.legacyPageSize
-                self.nextResource = self.resource.copy(with: self.offset)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+            Twitch().request(nextResource) { result in
+                if case .success(let payload) = result {
+                    self.hasMorePages = payload.hasMorePages
+                    self.offset += Twitch.Constants.legacyPageSize
+                    self.nextResource = self.resource.copy(with: self.offset)
+                }
+                completion(result)
+                self.isLoadingMore = false
             }
-            completion(result)
-            self.isLoadingMore = false
-        }
+        })
+        
     }
 }

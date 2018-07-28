@@ -12,6 +12,7 @@ import IGListKit
 
 final class GameStreamsViewController: UIViewController {
     private let game: Game
+    private let paginationController: PaginatedRequestController<StreamsResource>
     
     private var streams: [TwitchKit.Stream] = [] {
         didSet {
@@ -23,8 +24,9 @@ final class GameStreamsViewController: UIViewController {
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let c = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
+        c.layer.masksToBounds = false
         view.addSubview(c)
-        c.constrainFillingSuperview()
+        c.constrainFillingSuperviewSafeArea()
         return c
     }()
     
@@ -34,20 +36,19 @@ final class GameStreamsViewController: UIViewController {
     
     init(game: Game) {
         self.game = game
+        paginationController = PaginatedRequestController(resource: StreamsResource(gameId: game.id))
+
         super.init(nibName: nil, bundle: nil)
-        
-        Twitch().request(StreamsResource(gameId: game.id)) { (result) in
-            switch result {
-            case .success(let dataPayload):
-                self.streams = dataPayload.data
-            case .failure(let error):
-                print("error fetching games for game id: \(game.id), error: \(error)")
-            }
-        }
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func loadView() {
+        super.loadView()
+        
+        _ = collectionView
     }
     
     override func viewDidLoad() {
@@ -56,6 +57,16 @@ final class GameStreamsViewController: UIViewController {
         adapter.collectionView = collectionView
         adapter.dataSource = self
         adapter.collectionViewDelegate = self
+        adapter.scrollViewDelegate = self
+        
+        paginationController.loadData { (result) in
+            switch result {
+            case .success(let welcome):
+                self.streams.append(contentsOf: welcome.data)
+            case .failure(let error):
+                Log.debug("Error: \(error)")
+            }
+        }
     }
 }
 
@@ -84,5 +95,19 @@ extension GameStreamsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
         if indexPath.section == 0 { return false }
         return true
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.hasReachedBottom(withBuffer: view.bounds.height * 2) {
+            paginationController.loadMoreData { (result) in
+                switch result {
+                case .success(let welcome):
+                    self.streams.append(contentsOf: welcome.data)
+                    print("Appending \(welcome.data.count) more streams")
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
     }
 }

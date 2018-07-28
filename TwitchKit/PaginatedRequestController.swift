@@ -12,7 +12,7 @@ public final class PaginatedRequestController<T> where T: Resource & Paginated {
     let resource: T
     private var nextResource: T?
     private var isLoadingMore = false
-    private var hasMorePages = true
+    public private(set) var hasMorePages = true
     
     public init(resource: T) {
         self.resource = resource
@@ -33,7 +33,7 @@ public final class PaginatedRequestController<T> where T: Resource & Paginated {
         isLoadingMore = true
         Twitch().request(nextResource) { result in
             if case .success(let payload) = result {
-//                self.hasMorePages = payload.hasMorePages
+                self.hasMorePages = payload.hasMorePages
                 self.nextResource = payload.cursor.map(self.resource.copy)
             }
             completion(result)

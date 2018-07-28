@@ -9,10 +9,6 @@
 import IGListKit
 
 final class SpinnerSectionController: ListSectionController {
-    override func numberOfItems() -> Int {
-        return 1
-    }
-    
     override func sizeForItem(at index: Int) -> CGSize {
         guard let height = collectionContext?.containerSize.height else { fatalError("Missing context") }
         return CGSize(width: 300, height: height)
