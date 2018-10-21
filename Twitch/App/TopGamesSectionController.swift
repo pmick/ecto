@@ -8,6 +8,7 @@
 
 import IGListKit
 import TwitchKit
+import os.log
 
 final class TopGamesSectionController: ListSectionController {
     private var games: [Game] = [] {
@@ -35,7 +36,7 @@ final class TopGamesSectionController: ListSectionController {
             case .success(let welcome):
                 self.games = welcome.data
             case .failure(let error):
-                print(error)
+                os_log("Error decoding top games: %s", log: .network, type: .error, error.localizedDescription)
             }
         }
     }
@@ -82,9 +83,11 @@ extension TopGamesSectionController: UICollectionViewDelegate {
                 switch result {
                 case .success(let welcome):
                     self.games.append(contentsOf: welcome.data)
-                    print("Appending \(welcome.data.count) more streams")
+                    os_log("Appending more top games %d", log: .network, type: .info, welcome.data.count)
+
                 case .failure(let error):
-                    print(error)
+                    os_log("Error loading more top games: %@", log: .network, type: .error, error.localizedDescription)
+
                 }
             }
         }

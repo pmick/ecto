@@ -8,6 +8,7 @@
 
 import IGListKit
 import TwitchKit
+import os.log
 
 final class FeaturedSectionController: ListSectionController {
     private var featured: [Featured] = [] {
@@ -38,7 +39,7 @@ final class FeaturedSectionController: ListSectionController {
             case .success(let welcome):
                 self.featured = welcome.featured
             case .failure(let error):
-                print(error)
+                os_log("Error loading featured streans: %s", log: .network, type: .error, error.localizedDescription)
             }
         }
     }
@@ -117,9 +118,10 @@ extension FeaturedSectionController: UICollectionViewDelegate {
                 switch result {
                 case .success(let welcome):
                     self.featured.append(contentsOf: welcome.featured)
-                    print("Appending \(welcome.featured.count) more streams")
+                    os_log("Loaded more featured streams: %d", log: .network, type: .info, welcome.featured.count)
+
                 case .failure(let error):
-                    print(error)
+                    os_log("Error loading more featured streams: %s", log: .network, type: .error, error.localizedDescription)
                 }
             }
         }
