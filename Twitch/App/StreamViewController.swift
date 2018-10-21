@@ -6,6 +6,7 @@
 //  Copyright © 2018 Patrick Mick. All rights reserved.
 //
 
+import os.log
 import TwitchKit
 import UIKit
 import AVKit
@@ -44,7 +45,7 @@ final class StreamViewController: UIViewController {
             case .success(let url):
                 self.embedPlayer(with: url)
             case .failure(let error):
-                print("error fetching stream url: \(error)")
+                os_log("Error fetching stream url: %s", log: .network, type: .error, error.localizedDescription)
             }
         }
     }
@@ -69,7 +70,7 @@ final class StreamViewController: UIViewController {
                 guard let channelName = data.data.first?.login else { return }
                 self.loadStream(forChannelName: channelName)
             case .failure(let error):
-                Log.debug("error loading user: \(error)")
+                os_log("Error loading user: %s", log: .network, type: .error, error.localizedDescription)
             }
         }
     }

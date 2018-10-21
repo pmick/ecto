@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import os.log
 
 public enum Result<T> {
     case success(T)
@@ -47,7 +48,10 @@ public struct Twitch {
                         let error = try decoder.decode(ApiError.self, from: data)
                         completion(.failure(error))
                     } catch {
-                        print(">>> ERROR DECODING ERROR PAYLOAD: \(String(data: data, encoding: .utf8))")
+                        if let dataString = String(data: data, encoding: .utf8) {
+                            os_log("Error decoding error payload: %s", log: .network, type: .error, dataString)
+
+                        }
                         completion(.failure(error))
                     }
                 }

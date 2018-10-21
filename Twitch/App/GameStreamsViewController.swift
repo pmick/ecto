@@ -9,6 +9,7 @@
 import UIKit
 import TwitchKit
 import IGListKit
+import os.log
 
 final class GameStreamsViewController: UIViewController {
     private let game: Game
@@ -64,7 +65,7 @@ final class GameStreamsViewController: UIViewController {
             case .success(let welcome):
                 self.streams.append(contentsOf: welcome.data)
             case .failure(let error):
-                Log.debug("Error: \(error)")
+                os_log("Error loading game streams: %s", log: .network, type: .error, error.localizedDescription)
             }
         }
     }
@@ -103,9 +104,9 @@ extension GameStreamsViewController: UICollectionViewDelegate {
                 switch result {
                 case .success(let welcome):
                     self.streams.append(contentsOf: welcome.data)
-                    print("Appending \(welcome.data.count) more streams")
+                    os_log("Appending game more streams: %d", log: .network, type: .info, welcome.data.count)
                 case .failure(let error):
-                    print(error)
+                    os_log("Error paginating game streams: %s", log: .network, type: .error, error.localizedDescription)
                 }
             }
         }

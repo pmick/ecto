@@ -8,6 +8,7 @@
 
 import IGListKit
 import TwitchKit
+import os.log
 
 final class TopStreamsSectionController: ListSectionController {
     private var streams: [TwitchKit.Stream] = [] {
@@ -36,7 +37,8 @@ final class TopStreamsSectionController: ListSectionController {
             case .success(let welcome):
                 self.streams = welcome.data
             case .failure(let error):
-                print(error)
+                os_log("Error loading more top streams: %s", log: .network, type: .error, error.localizedDescription)
+
             }
         }
     }
@@ -103,9 +105,9 @@ extension TopStreamsSectionController: UICollectionViewDelegate {
                 switch result {
                 case .success(let welcome):
                     self.streams.append(contentsOf: welcome.data)
-                    print("Appending \(welcome.data.count) more streams")
+                    os_log("Appending more top streams %d", log: .network, type: .info, welcome.data.count)
                 case .failure(let error):
-                    print(error)
+                    os_log("Error loading more top streams: %s", log: .network, type: .error, error.localizedDescription)
                 }
             }
         }
