@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Twitch.xcscheme</key>
+		<key>Twitch.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -28,6 +28,11 @@
 			<true/>
 		</dict>
 		<key>CD39982620AFCDA400BFA58C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CD64299220B0B929007EBE79</key>
 		<dict>
 			<key>primary</key>
 			<true/>
