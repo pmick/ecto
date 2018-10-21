@@ -108,7 +108,7 @@ public struct VideoUrlResource: Resource {
             "allow_source": String(true),
             "type": "any",
             "p": "123456",
-            "Client-ID": "***REMOVED***"
+            "Client-ID": ProcessInfo.processInfo.environment["API_CLIENT_ID"]!
         ]
     }
     
