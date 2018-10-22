@@ -14,12 +14,17 @@ final class HeaderSectionController: ListSectionController {
     override init() {
         super.init()
         
-        inset = UIEdgeInsets(top: 0, left: 90, bottom: 64, right: 90)
+        inset = UIEdgeInsets(top: 0, left: 0, bottom: Constants.headerVerticalOffset, right: 0)
+    }
+    
+    convenience init(title: String) {
+        self.init()
+        self.title = title
     }
     
     override func sizeForItem(at index: Int) -> CGSize {
         guard let context = collectionContext else { return .zero }
-        return CGSize(width: context.containerSize.width - (90 * 2), height: 90)
+        return CGSize(width: context.containerSize.width, height: Constants.headerHeight)
     }
     
     override func cellForItem(at index: Int) -> UICollectionViewCell {

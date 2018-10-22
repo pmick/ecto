@@ -7,13 +7,10 @@
 //
 
 import Foundation
+import UIKit
 
-struct Constants {
-    let clientId: String
-    
-    init() {
-        let path = Bundle.main.path(forResource: "Constants", ofType: "plist")!
-        let dict = NSDictionary(contentsOfFile: path) as! [String: Any]
-        clientId = dict["clientId"] as! String
-    }
+enum Constants {
+    static let headerVerticalOffset: CGFloat = 44
+    static let headerHeight: CGFloat = 50
+    static let sectionContentVerticalOffset: CGFloat = 44
 }

@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1Sf-6W-ccp">
+                            <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1Sf-6W-ccp">
                                 <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Qkt-zc-8uu">
@@ -34,10 +34,10 @@
                             </collectionView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="1Sf-6W-ccp" secondAttribute="bottom" id="IKQ-hU-gTx"/>
-                            <constraint firstAttribute="trailing" secondItem="1Sf-6W-ccp" secondAttribute="trailing" id="MqO-ZN-QNV"/>
-                            <constraint firstItem="1Sf-6W-ccp" firstAttribute="leading" secondItem="RmK-Ae-S6R" secondAttribute="leading" id="RER-U3-d4l"/>
-                            <constraint firstItem="1Sf-6W-ccp" firstAttribute="top" secondItem="RmK-Ae-S6R" secondAttribute="top" id="WYX-Ad-LMy"/>
+                            <constraint firstAttribute="trailing" secondItem="1Sf-6W-ccp" secondAttribute="trailing" id="57L-Ng-M46"/>
+                            <constraint firstItem="1Sf-6W-ccp" firstAttribute="leading" secondItem="RmK-Ae-S6R" secondAttribute="leading" id="5l0-RW-oQb"/>
+                            <constraint firstAttribute="bottom" secondItem="1Sf-6W-ccp" secondAttribute="bottom" id="PCD-dp-1Il"/>
+                            <constraint firstItem="1Sf-6W-ccp" firstAttribute="top" secondItem="RmK-Ae-S6R" secondAttribute="top" id="Z6v-YM-qS5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Goe-r2-EtV"/>
                     </view>
