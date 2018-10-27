@@ -89,44 +89,6 @@ public struct AuthenticateStreamResource: Resource {
     }
 }
 
-public struct VideoUrlResource: Resource {
-    public typealias PayloadType = [M3UEntry]
-    
-    private let name: String
-    private let token: String
-    private let sig: String
-    
-    public var url: URL {
-        return URL(string: "https://usher.ttvnw.net/api/channel/hls/\(name).m3u8")!
-    }
-    public var parameters: [String : String] {
-        return [
-            "player": "twitchweb",
-            "token": token,
-            "sig": sig,
-            "allow_audio_only": String(true),
-            "allow_source": String(true),
-            "type": "any",
-            "p": "123456",
-            "Client-ID": ProcessInfo.processInfo.environment["API_CLIENT_ID"]!
-        ]
-    }
-    
-    public init(name: String, token: String, sig: String) {
-        self.name = name
-        self.token = token
-        self.sig = sig
-    }
-    
-    public func parse(_ data: Data) throws -> [M3UEntry] {
-        guard let contentsOfFile = String(data: data, encoding: .utf8) else {
-            throw M3UError.payloadEncodingInvalid
-        }
-        let decoder = M3UParser()
-        return try decoder.parse(contentsOfFile)
-    }
-}
-
 public struct StreamsResource: Resource, Paginated {
     public typealias PayloadType = PaginatedDataPayload<Stream>
     public let url = URL(string: "https://api.twitch.tv/helix/streams")!

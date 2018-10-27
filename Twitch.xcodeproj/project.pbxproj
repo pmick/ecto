@@ -42,8 +42,6 @@
 		CD6429A920B0B92A007EBE79 /* TwitchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD64299320B0B929007EBE79 /* TwitchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CD6429B220B0B938007EBE79 /* Twitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6429B120B0B938007EBE79 /* Twitch.swift */; };
 		CD6429B320B0B9F2007EBE79 /* LegacyTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD64298C20B0B2AB007EBE79 /* LegacyTypes.swift */; };
-		CD6429B520B0EE21007EBE79 /* M3U8Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6429B420B0EE21007EBE79 /* M3U8Parser.swift */; };
-		CD6429B720B10852007EBE79 /* M3UParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6429B620B10852007EBE79 /* M3UParserTests.swift */; };
 		CD677CA420C33CE500F9B1FD /* SpinnerSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD677CA320C33CE500F9B1FD /* SpinnerSectionController.swift */; };
 		CD677CA620C33D0500F9B1FD /* SpinnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD677CA520C33D0500F9B1FD /* SpinnerCell.swift */; };
 		CD875294217D415800ABB05F /* Either.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD875293217D415800ABB05F /* Either.swift */; };
@@ -152,8 +150,6 @@
 		CD6429A220B0B92A007EBE79 /* TwitchKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitchKitTests.swift; sourceTree = "<group>"; };
 		CD6429A420B0B92A007EBE79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD6429B120B0B938007EBE79 /* Twitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Twitch.swift; sourceTree = "<group>"; };
-		CD6429B420B0EE21007EBE79 /* M3U8Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M3U8Parser.swift; sourceTree = "<group>"; };
-		CD6429B620B10852007EBE79 /* M3UParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M3UParserTests.swift; sourceTree = "<group>"; };
 		CD677CA320C33CE500F9B1FD /* SpinnerSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerSectionController.swift; sourceTree = "<group>"; };
 		CD677CA520C33D0500F9B1FD /* SpinnerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerCell.swift; sourceTree = "<group>"; };
 		CD875293217D415800ABB05F /* Either.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Either.swift; sourceTree = "<group>"; };
@@ -317,7 +313,6 @@
 				CD64299620B0B929007EBE79 /* Info.plist */,
 				CD6429B120B0B938007EBE79 /* Twitch.swift */,
 				CD64298C20B0B2AB007EBE79 /* LegacyTypes.swift */,
-				CD6429B420B0EE21007EBE79 /* M3U8Parser.swift */,
 				CD5AE08920BA359C0002CC95 /* Resources.swift */,
 				CD5AE08B20BA37610002CC95 /* Types.swift */,
 				CD36D6D020BCFF10003E8840 /* PaginatedRequestController.swift */,
@@ -331,7 +326,6 @@
 			children = (
 				CD6429A220B0B92A007EBE79 /* TwitchKitTests.swift */,
 				CD6429A420B0B92A007EBE79 /* Info.plist */,
-				CD6429B620B10852007EBE79 /* M3UParserTests.swift */,
 			);
 			path = TwitchKitTests;
 			sourceTree = "<group>";
@@ -674,7 +668,6 @@
 				CD36D6D320BCFF26003E8840 /* LegacyPaginatedRequestController.swift in Sources */,
 				CD6429B220B0B938007EBE79 /* Twitch.swift in Sources */,
 				CD08214E217C05350049F047 /* Log.swift in Sources */,
-				CD6429B520B0EE21007EBE79 /* M3U8Parser.swift in Sources */,
 				CD269CBC20B9EF8D00CD795B /* FetchStreamUrlController.swift in Sources */,
 				CD36D6D120BCFF10003E8840 /* PaginatedRequestController.swift in Sources */,
 				CD5AE08C20BA37610002CC95 /* Types.swift in Sources */,
@@ -687,7 +680,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD6429B720B10852007EBE79 /* M3UParserTests.swift in Sources */,
 				CD6429A320B0B92A007EBE79 /* TwitchKitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
