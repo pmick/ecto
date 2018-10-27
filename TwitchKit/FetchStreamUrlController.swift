@@ -9,29 +9,31 @@
 public final class FetchStreamUrlController {
     public init() { }
     
-    // TODO return more metadata than just url
     public func fetchStreamUrl(forStreamNamed name: String, completion: @escaping (Result<URL>) -> Void) {
-        let twitch = Twitch()
-        twitch.request(AuthenticateStreamResource(name: name)) { result in
+        Twitch().request(AuthenticateStreamResource(name: name)) { result in
             switch result {
             case .success(let accessToken):
-                let resource = VideoUrlResource(name: name, token: accessToken.token, sig: accessToken.sig)
-                twitch.request(resource) { (result) in
-                    switch result {
-                    case .success(let entries):
-                        if let first = entries.first {
-                            let url = first.url
-                            completion(.success(url))
-                        } else {
-                            completion(.failure(M3UError.noEntries))
-                        }
-                    case .failure(let error):
-                        completion(.failure(error))
-                    }
-                }
+                completion(.success(self.makeHLSUrl(forStreamNamed: name, accessToken: accessToken)))
             case .failure(let error):
                 completion(.failure(error))
             }
         }
+    }
+    
+    private func makeHLSUrl(forStreamNamed name: String, accessToken: StreamAccessToken) -> URL {
+        let parameters: [String : String] = [
+            "player": "twitchweb",
+            "token": accessToken.token,
+            "sig": accessToken.sig,
+            "allow_audio_only": String(true),
+            "allow_source": String(true),
+            "type": "any",
+            "p": "123456",
+            "Client-ID": ProcessInfo.processInfo.environment["API_CLIENT_ID"]!
+        ]
+        
+        var urlComponents = URLComponents(url: URL(string: "https://usher.ttvnw.net/api/channel/hls/\(name).m3u8")!, resolvingAgainstBaseURL: false)!
+        urlComponents.queryItems = parameters.map(URLQueryItem.init)
+        return urlComponents.url!
     }
 }
