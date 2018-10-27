@@ -25,9 +25,7 @@
 		CD39982120AFCDA400BFA58C /* TwitchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD39982020AFCDA400BFA58C /* TwitchTests.swift */; };
 		CD39982C20AFCDA400BFA58C /* TwitchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD39982B20AFCDA400BFA58C /* TwitchUITests.swift */; };
 		CD540B5020B3B190002044F6 /* EmbeddedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD540B4F20B3B190002044F6 /* EmbeddedCollectionViewCell.swift */; };
-		CD540B5220B3B432002044F6 /* HorizontalSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD540B5120B3B432002044F6 /* HorizontalSectionController.swift */; };
-		CD540B5420B3B5DE002044F6 /* FeaturedStreamSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD540B5320B3B5DE002044F6 /* FeaturedStreamSectionController.swift */; };
-		CD540B5B20B3C56A002044F6 /* FeaturedStreamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD540B5920B3C56A002044F6 /* FeaturedStreamCollectionViewCell.swift */; };
+		CD540B5220B3B432002044F6 /* StreamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD540B5120B3B432002044F6 /* StreamViewModel.swift */; };
 		CD540B5C20B3C56A002044F6 /* FeaturedStreamCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD540B5A20B3C56A002044F6 /* FeaturedStreamCollectionViewCell.xib */; };
 		CD5AE08A20BA359C0002CC95 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5AE08920BA359C0002CC95 /* Resources.swift */; };
 		CD5AE08C20BA37610002CC95 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5AE08B20BA37610002CC95 /* Types.swift */; };
@@ -49,6 +47,8 @@
 		CD6429B720B10852007EBE79 /* M3UParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6429B620B10852007EBE79 /* M3UParserTests.swift */; };
 		CD677CA420C33CE500F9B1FD /* SpinnerSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD677CA320C33CE500F9B1FD /* SpinnerSectionController.swift */; };
 		CD677CA620C33D0500F9B1FD /* SpinnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD677CA520C33D0500F9B1FD /* SpinnerCell.swift */; };
+		CD875294217D415800ABB05F /* Either.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD875293217D415800ABB05F /* Either.swift */; };
+		CD875297217D426B00ABB05F /* FeaturedStreamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD540B5920B3C56A002044F6 /* FeaturedStreamCollectionViewCell.swift */; };
 		CD98CBA820BA7FC600F4098B /* GameStreamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD98CBA720BA7FC600F4098B /* GameStreamsViewController.swift */; };
 		CD98CBAF20BB2BC800F4098B /* HeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD98CBAD20BB2BC800F4098B /* HeaderCollectionViewCell.swift */; };
 		CD98CBB020BB2BC800F4098B /* HeaderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD98CBAE20BB2BC800F4098B /* HeaderCollectionViewCell.xib */; };
@@ -133,8 +133,7 @@
 		CD39982B20AFCDA400BFA58C /* TwitchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitchUITests.swift; sourceTree = "<group>"; };
 		CD39982D20AFCDA400BFA58C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD540B4F20B3B190002044F6 /* EmbeddedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedCollectionViewCell.swift; sourceTree = "<group>"; };
-		CD540B5120B3B432002044F6 /* HorizontalSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSectionController.swift; sourceTree = "<group>"; };
-		CD540B5320B3B5DE002044F6 /* FeaturedStreamSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedStreamSectionController.swift; sourceTree = "<group>"; };
+		CD540B5120B3B432002044F6 /* StreamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamViewModel.swift; sourceTree = "<group>"; };
 		CD540B5920B3C56A002044F6 /* FeaturedStreamCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedStreamCollectionViewCell.swift; sourceTree = "<group>"; };
 		CD540B5A20B3C56A002044F6 /* FeaturedStreamCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeaturedStreamCollectionViewCell.xib; sourceTree = "<group>"; };
 		CD5AE08920BA359C0002CC95 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
@@ -159,6 +158,7 @@
 		CD6429B620B10852007EBE79 /* M3UParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M3UParserTests.swift; sourceTree = "<group>"; };
 		CD677CA320C33CE500F9B1FD /* SpinnerSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerSectionController.swift; sourceTree = "<group>"; };
 		CD677CA520C33D0500F9B1FD /* SpinnerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerCell.swift; sourceTree = "<group>"; };
+		CD875293217D415800ABB05F /* Either.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Either.swift; sourceTree = "<group>"; };
 		CD98CBA720BA7FC600F4098B /* GameStreamsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStreamsViewController.swift; sourceTree = "<group>"; };
 		CD98CBAD20BB2BC800F4098B /* HeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		CD98CBAE20BB2BC800F4098B /* HeaderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -213,6 +213,11 @@
 		CD0B750820DF142600C7F764 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				CD39981520AFCDA400BFA58C /* Assets.xcassets */,
+				CD39980C20AFCDA200BFA58C /* AppDelegate.swift */,
+				CD540B5120B3B432002044F6 /* StreamViewModel.swift */,
+				CD36D6CE20BCAC24003E8840 /* UIScrollView+HasReachedEnd.swift */,
+				CD875293217D415800ABB05F /* Either.swift */,
 				CD64298A20AFDFDB007EBE79 /* Constants.swift */,
 				CD64298620AFDF8D007EBE79 /* Constants.plist */,
 				CD540B4F20B3B190002044F6 /* EmbeddedCollectionViewCell.swift */,
@@ -226,7 +231,10 @@
 		CD0B750920DF143C00C7F764 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				CD875296217D420700ABB05F /* Views */,
+				CD875295217D41F000ABB05F /* Section Controllers */,
 				CD5AE08F20BA402B0002CC95 /* HomeViewController.swift */,
+				CD36D6DA20BCFFF3003E8840 /* GameViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -244,29 +252,9 @@
 			isa = PBXGroup;
 			children = (
 				CD39981220AFCDA300BFA58C /* Main.storyboard */,
-				CD39981520AFCDA400BFA58C /* Assets.xcassets */,
-				CD39980C20AFCDA200BFA58C /* AppDelegate.swift */,
-				CD540B5120B3B432002044F6 /* HorizontalSectionController.swift */,
-				CD540B5320B3B5DE002044F6 /* FeaturedStreamSectionController.swift */,
-				CD540B5920B3C56A002044F6 /* FeaturedStreamCollectionViewCell.swift */,
-				CD540B5A20B3C56A002044F6 /* FeaturedStreamCollectionViewCell.xib */,
-				CD269CB820B9E7FA00CD795B /* StreamViewController.swift */,
-				CD5AE09120BA4AC70002CC95 /* GameSectionController.swift */,
-				CD5AE09320BA4B6C0002CC95 /* GameCollectionViewCell.swift */,
-				CD5AE09420BA4B6C0002CC95 /* GameCollectionViewCell.xib */,
-				CD98CBA720BA7FC600F4098B /* GameStreamsViewController.swift */,
-				CD98CBAD20BB2BC800F4098B /* HeaderCollectionViewCell.swift */,
-				CD98CBAE20BB2BC800F4098B /* HeaderCollectionViewCell.xib */,
-				CD98CBB120BB2F8B00F4098B /* HeaderSectionController.swift */,
-				CD98CBB520BB2FCD00F4098B /* StreamBindingSectionController.swift */,
-				CD36D6CE20BCAC24003E8840 /* UIScrollView+HasReachedEnd.swift */,
-				CD36D6D420BCFF74003E8840 /* FeaturedSectionController.swift */,
-				CD36D6D620BCFF9C003E8840 /* TopStreamsSectionController.swift */,
-				CD36D6D820BCFFD3003E8840 /* TopGamesSectionController.swift */,
-				CD36D6DA20BCFFF3003E8840 /* GameViewModel.swift */,
-				CD677CA320C33CE500F9B1FD /* SpinnerSectionController.swift */,
-				CD677CA520C33D0500F9B1FD /* SpinnerCell.swift */,
 				CD0B750920DF143C00C7F764 /* Home */,
+				CD875291217D40DA00ABB05F /* Stream View */,
+				CD875292217D40F800ABB05F /* Game Details */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -349,6 +337,66 @@
 				CD6429B620B10852007EBE79 /* M3UParserTests.swift */,
 			);
 			path = TwitchKitTests;
+			sourceTree = "<group>";
+		};
+		CD875291217D40DA00ABB05F /* Stream View */ = {
+			isa = PBXGroup;
+			children = (
+				CD269CB820B9E7FA00CD795B /* StreamViewController.swift */,
+			);
+			path = "Stream View";
+			sourceTree = "<group>";
+		};
+		CD875292217D40F800ABB05F /* Game Details */ = {
+			isa = PBXGroup;
+			children = (
+				CD875299217D42BE00ABB05F /* Views */,
+				CD875298217D428800ABB05F /* Section Controllers */,
+				CD98CBA720BA7FC600F4098B /* GameStreamsViewController.swift */,
+			);
+			path = "Game Details";
+			sourceTree = "<group>";
+		};
+		CD875295217D41F000ABB05F /* Section Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CD36D6D420BCFF74003E8840 /* FeaturedSectionController.swift */,
+				CD36D6D620BCFF9C003E8840 /* TopStreamsSectionController.swift */,
+				CD36D6D820BCFFD3003E8840 /* TopGamesSectionController.swift */,
+				CD5AE09120BA4AC70002CC95 /* GameSectionController.swift */,
+				CD677CA320C33CE500F9B1FD /* SpinnerSectionController.swift */,
+			);
+			path = "Section Controllers";
+			sourceTree = "<group>";
+		};
+		CD875296217D420700ABB05F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CD677CA520C33D0500F9B1FD /* SpinnerCell.swift */,
+				CD540B5920B3C56A002044F6 /* FeaturedStreamCollectionViewCell.swift */,
+				CD540B5A20B3C56A002044F6 /* FeaturedStreamCollectionViewCell.xib */,
+				CD5AE09320BA4B6C0002CC95 /* GameCollectionViewCell.swift */,
+				CD5AE09420BA4B6C0002CC95 /* GameCollectionViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CD875298217D428800ABB05F /* Section Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CD98CBB120BB2F8B00F4098B /* HeaderSectionController.swift */,
+				CD98CBB520BB2FCD00F4098B /* StreamBindingSectionController.swift */,
+			);
+			path = "Section Controllers";
+			sourceTree = "<group>";
+		};
+		CD875299217D42BE00ABB05F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CD98CBAD20BB2BC800F4098B /* HeaderCollectionViewCell.swift */,
+				CD98CBAE20BB2BC800F4098B /* HeaderCollectionViewCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -581,6 +629,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD875297217D426B00ABB05F /* FeaturedStreamCollectionViewCell.swift in Sources */,
 				CD98CBB220BB2F8B00F4098B /* HeaderSectionController.swift in Sources */,
 				CD36D6D520BCFF74003E8840 /* FeaturedSectionController.swift in Sources */,
 				CD677CA620C33D0500F9B1FD /* SpinnerCell.swift in Sources */,
@@ -592,18 +641,17 @@
 				CD5AE08E20BA38890002CC95 /* List.swift in Sources */,
 				CD5AE09220BA4AC70002CC95 /* GameSectionController.swift in Sources */,
 				CD36D6D920BCFFD3003E8840 /* TopGamesSectionController.swift in Sources */,
-				CD540B5B20B3C56A002044F6 /* FeaturedStreamCollectionViewCell.swift in Sources */,
 				CD5AE09020BA402B0002CC95 /* HomeViewController.swift in Sources */,
 				CD98CBB620BB2FCD00F4098B /* StreamBindingSectionController.swift in Sources */,
 				CD269CB920B9E7FA00CD795B /* StreamViewController.swift in Sources */,
 				CD36D6DB20BCFFF3003E8840 /* GameViewModel.swift in Sources */,
+				CD875294217D415800ABB05F /* Either.swift in Sources */,
 				CD5AE09520BA4B6C0002CC95 /* GameCollectionViewCell.swift in Sources */,
 				CD64298B20AFDFDB007EBE79 /* Constants.swift in Sources */,
-				CD540B5420B3B5DE002044F6 /* FeaturedStreamSectionController.swift in Sources */,
 				CD98CBB420BB2FB200F4098B /* UIView+Autolayout.swift in Sources */,
 				CD36D6D720BCFF9C003E8840 /* TopStreamsSectionController.swift in Sources */,
 				CD98CBA820BA7FC600F4098B /* GameStreamsViewController.swift in Sources */,
-				CD540B5220B3B432002044F6 /* HorizontalSectionController.swift in Sources */,
+				CD540B5220B3B432002044F6 /* StreamViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
