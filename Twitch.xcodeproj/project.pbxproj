@@ -34,7 +34,6 @@
 		CD5AE09220BA4AC70002CC95 /* GameSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5AE09120BA4AC70002CC95 /* GameSectionController.swift */; };
 		CD5AE09520BA4B6C0002CC95 /* GameCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5AE09320BA4B6C0002CC95 /* GameCollectionViewCell.swift */; };
 		CD5AE09620BA4B6C0002CC95 /* GameCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD5AE09420BA4B6C0002CC95 /* GameCollectionViewCell.xib */; };
-		CD64298720AFDF8D007EBE79 /* Constants.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD64298620AFDF8D007EBE79 /* Constants.plist */; };
 		CD64298B20AFDFDB007EBE79 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD64298A20AFDFDB007EBE79 /* Constants.swift */; };
 		CD64299C20B0B92A007EBE79 /* TwitchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD64299320B0B929007EBE79 /* TwitchKit.framework */; };
 		CD6429A320B0B92A007EBE79 /* TwitchKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6429A220B0B92A007EBE79 /* TwitchKitTests.swift */; };
@@ -144,7 +143,6 @@
 		CD5AE09320BA4B6C0002CC95 /* GameCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCollectionViewCell.swift; sourceTree = "<group>"; };
 		CD5AE09420BA4B6C0002CC95 /* GameCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameCollectionViewCell.xib; sourceTree = "<group>"; };
 		CD60C39820CC953C007D0828 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
-		CD64298620AFDF8D007EBE79 /* Constants.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Constants.plist; sourceTree = "<group>"; };
 		CD64298A20AFDFDB007EBE79 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CD64298C20B0B2AB007EBE79 /* LegacyTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyTypes.swift; sourceTree = "<group>"; };
 		CD64299320B0B929007EBE79 /* TwitchKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TwitchKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,7 +217,6 @@
 				CD36D6CE20BCAC24003E8840 /* UIScrollView+HasReachedEnd.swift */,
 				CD875293217D415800ABB05F /* Either.swift */,
 				CD64298A20AFDFDB007EBE79 /* Constants.swift */,
-				CD64298620AFDF8D007EBE79 /* Constants.plist */,
 				CD540B4F20B3B190002044F6 /* EmbeddedCollectionViewCell.swift */,
 				CD60C39820CC953C007D0828 /* Log.swift */,
 				CD98CBB320BB2FB200F4098B /* UIView+Autolayout.swift */,
@@ -568,7 +565,6 @@
 				CD5AE09620BA4B6C0002CC95 /* GameCollectionViewCell.xib in Resources */,
 				CD39981620AFCDA400BFA58C /* Assets.xcassets in Resources */,
 				CD39981420AFCDA300BFA58C /* Main.storyboard in Resources */,
-				CD64298720AFDF8D007EBE79 /* Constants.plist in Resources */,
 				CD98CBB020BB2BC800F4098B /* HeaderCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -25,9 +25,13 @@ final class GameStreamsViewController: UIViewController {
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let c = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
-        c.layer.masksToBounds = false
         view.addSubview(c)
-        c.constrainFillingSuperviewSafeArea()
+        c.clipsToBounds = false
+        c.translatesAutoresizingMaskIntoConstraints = false
+        c.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        c.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: c.trailingAnchor).isActive = true
+        view.bottomAnchor.constraint(equalTo: c.bottomAnchor).isActive = true
         return c
     }()
     

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.XIB" version="3.0" toolsVersion="14109" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder.AppleTV.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="appleTV" orientation="landscape">
         <adaptation id="light"/>
     </device>
     <dependencies>
         <deployment identifier="tvOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,15 +20,15 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75K-Ft-Luw">
-                        <rect key="frame" x="0.0" y="0.0" width="378" height="156"/>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                        <nil key="textColor"/>
+                        <rect key="frame" x="106" y="0.0" width="272" height="156"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
+                        <color key="textColor" white="0.46000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="75K-Ft-Luw" firstAttribute="leading" secondItem="Rz2-K0-ksD" secondAttribute="leading" id="L0H-Jn-9n8"/>
+                <constraint firstItem="75K-Ft-Luw" firstAttribute="leading" secondItem="Rz2-K0-ksD" secondAttribute="leadingMargin" id="L0H-Jn-9n8"/>
                 <constraint firstItem="75K-Ft-Luw" firstAttribute="top" secondItem="Rz2-K0-ksD" secondAttribute="top" id="OTF-pd-V0o"/>
                 <constraint firstAttribute="trailing" secondItem="75K-Ft-Luw" secondAttribute="trailing" id="UJN-7r-wzQ"/>
                 <constraint firstAttribute="bottom" secondItem="75K-Ft-Luw" secondAttribute="bottom" id="x0q-13-K1T"/>

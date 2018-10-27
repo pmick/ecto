@@ -30,7 +30,7 @@ final class TopGamesSectionController: ListSectionController {
     
     override init() {
         super.init()
-        inset = UIEdgeInsets(top: 0, left: 0, bottom: 64, right: 0)
+        inset = UIEdgeInsets(top: 0, left: 0, bottom: Constants.sectionContentVerticalOffset, right: 0)
         paginationController.loadData { result in
             switch result {
             case .success(let welcome):
