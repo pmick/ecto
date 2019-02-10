@@ -31,7 +31,7 @@ public struct Twitch {
         })
         
         var request = URLRequest(url: urlComponents.url!)
-        request.setValue(ProcessInfo.processInfo.environment["API_CLIENT_ID"], forHTTPHeaderField: "Client-ID")
+        request.setValue(Environment.clientId, forHTTPHeaderField: "Client-ID")
 //        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 //        request.setValue("application/json", forHTTPHeaderField: "Accept")
         

@@ -12,6 +12,7 @@
 		CD0B750F20DF179D00C7F764 /* IGListKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD0B750D20DF179D00C7F764 /* IGListKit.framework */; };
 		CD269CB920B9E7FA00CD795B /* StreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD269CB820B9E7FA00CD795B /* StreamViewController.swift */; };
 		CD269CBC20B9EF8D00CD795B /* FetchStreamUrlController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD269CBA20B9EAAC00CD795B /* FetchStreamUrlController.swift */; };
+		CD2CA6032210A8E700CEB15F /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2CA6022210A8E700CEB15F /* Environment.swift */; };
 		CD36D6CF20BCAC24003E8840 /* UIScrollView+HasReachedEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD36D6CE20BCAC24003E8840 /* UIScrollView+HasReachedEnd.swift */; };
 		CD36D6D120BCFF10003E8840 /* PaginatedRequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD36D6D020BCFF10003E8840 /* PaginatedRequestController.swift */; };
 		CD36D6D320BCFF26003E8840 /* LegacyPaginatedRequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD36D6D220BCFF26003E8840 /* LegacyPaginatedRequestController.swift */; };
@@ -111,6 +112,7 @@
 		CD0B750D20DF179D00C7F764 /* IGListKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IGListKit.framework; path = Carthage/Build/tvOS/IGListKit.framework; sourceTree = SOURCE_ROOT; };
 		CD269CB820B9E7FA00CD795B /* StreamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamViewController.swift; sourceTree = "<group>"; };
 		CD269CBA20B9EAAC00CD795B /* FetchStreamUrlController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchStreamUrlController.swift; sourceTree = "<group>"; };
+		CD2CA6022210A8E700CEB15F /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		CD36D6CE20BCAC24003E8840 /* UIScrollView+HasReachedEnd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+HasReachedEnd.swift"; sourceTree = "<group>"; };
 		CD36D6D020BCFF10003E8840 /* PaginatedRequestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedRequestController.swift; sourceTree = "<group>"; };
 		CD36D6D220BCFF26003E8840 /* LegacyPaginatedRequestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyPaginatedRequestController.swift; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				CD5AE08B20BA37610002CC95 /* Types.swift */,
 				CD36D6D020BCFF10003E8840 /* PaginatedRequestController.swift */,
 				CD36D6D220BCFF26003E8840 /* LegacyPaginatedRequestController.swift */,
+				CD2CA6022210A8E700CEB15F /* Environment.swift */,
 			);
 			path = TwitchKit;
 			sourceTree = "<group>";
@@ -670,6 +673,7 @@
 				CD6429B220B0B938007EBE79 /* Twitch.swift in Sources */,
 				CD08214E217C05350049F047 /* Log.swift in Sources */,
 				CD269CBC20B9EF8D00CD795B /* FetchStreamUrlController.swift in Sources */,
+				CD2CA6032210A8E700CEB15F /* Environment.swift in Sources */,
 				CD36D6D120BCFF10003E8840 /* PaginatedRequestController.swift in Sources */,
 				CD5AE08C20BA37610002CC95 /* Types.swift in Sources */,
 				CD5AE08A20BA359C0002CC95 /* Resources.swift in Sources */,

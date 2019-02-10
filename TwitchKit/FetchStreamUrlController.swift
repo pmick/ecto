@@ -29,7 +29,7 @@ public final class FetchStreamUrlController {
             "allow_source": String(true),
             "type": "any",
             "p": "123456",
-            "Client-ID": ProcessInfo.processInfo.environment["API_CLIENT_ID"]!
+            "Client-ID": Environment.clientId
         ]
         
         var urlComponents = URLComponents(url: URL(string: "https://usher.ttvnw.net/api/channel/hls/\(name).m3u8")!, resolvingAgainstBaseURL: false)!
