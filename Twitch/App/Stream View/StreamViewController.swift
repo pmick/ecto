@@ -54,10 +54,10 @@ final class StreamViewController: UIViewController {
         let c = AVPlayerViewController()
         let player = AVPlayer(url: url)
         c.player = player
-        self.addChildViewController(c)
+        self.addChild(c)
         c.view.frame = self.view.bounds
         self.view.addSubview(c.view)
-        c.didMove(toParentViewController: self)
+        c.didMove(toParent: self)
         player.play()
     }
     

@@ -9,7 +9,7 @@
 import UIKit
 
 final class SpinnerCell: UICollectionViewCell {
-    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+    let activityIndicator = UIActivityIndicatorView(style: .white)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
