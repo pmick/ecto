@@ -7,7 +7,7 @@
 //
 
 import os.log
-import TwitchKit
+import EctoKit
 import UIKit
 import AVKit
 

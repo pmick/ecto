@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import TwitchKit
+import EctoKit
 import AVKit
 import IGListKit
 

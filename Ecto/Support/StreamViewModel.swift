@@ -6,7 +6,7 @@
 //  Copyright © 2018 Patrick Mick. All rights reserved.
 //
 
-import TwitchKit
+import EctoKit
 import IGListKit
 import UIKit
 
@@ -24,7 +24,7 @@ extension LegacyStream: ChannelNameProviding {
     }
 }
 
-extension TwitchKit.Stream: ChannelNameProviding {
+extension EctoKit.Stream: ChannelNameProviding {
     var context: ChannelNameContext {
         return .rhs(userId)
     }
@@ -45,7 +45,7 @@ final class StreamViewModel: ListDiffable {
         self.stream = featured.stream
     }
     
-    init(stream: TwitchKit.Stream) {
+    init(stream: EctoKit.Stream) {
         self.id = stream.id
         self.title = stream.title
         // 640x360

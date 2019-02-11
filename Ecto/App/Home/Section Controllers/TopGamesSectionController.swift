@@ -7,7 +7,7 @@
 //
 
 import IGListKit
-import TwitchKit
+import EctoKit
 import os.log
 
 final class TopGamesSectionController: ListSectionController {
