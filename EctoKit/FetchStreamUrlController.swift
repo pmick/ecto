@@ -6,6 +6,8 @@
 //  Copyright © 2018 Patrick Mick. All rights reserved.
 //
 
+import Foundation
+
 public final class FetchStreamUrlController {
     public init() { }
     

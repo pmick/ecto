@@ -1,5 +1,5 @@
 //
-//  TopStreamsSectionController.swift
+//  FeaturedSectionController.swift
 //  Twitch
 //
 //  Created by Patrick Mick on 5/28/18.
@@ -7,15 +7,17 @@
 //
 
 import IGListKit
-import TwitchKit
+import EctoKit
 import os.log
 
-final class TopStreamsSectionController: ListSectionController {
-    private var streams: [TwitchKit.Stream] = [] {
+final class FeaturedSectionController: ListSectionController {
+    private var featured: [Featured] = [] {
         didSet {
             adapter.performUpdates(animated: true, completion: nil)
         }
     }
+    
+    private var indexPathOfPreviousStream: IndexPath?
     
     lazy var adapter: ListAdapter = {
         let adapter = ListAdapter(updater: ListAdapterUpdater(),
@@ -25,20 +27,19 @@ final class TopStreamsSectionController: ListSectionController {
         adapter.scrollViewDelegate = self
         return adapter
     }()
-        
-    private let paginationController = PaginatedRequestController(resource: StreamsResource())
-    private var indexPathOfPreviousStream: IndexPath?
+    
+    private let paginationController = LegacyPaginatedRequestController(resource: FeaturedStreamsResource())
     
     override init() {
         super.init()
         inset = UIEdgeInsets(top: 0, left: 0, bottom: Constants.sectionContentVerticalOffset, right: 0)
-        paginationController.loadData { (result) in
+        
+        paginationController.loadData { result in
             switch result {
             case .success(let welcome):
-                self.streams = welcome.data
+                self.featured = welcome.featured
             case .failure(let error):
-                os_log("Error loading more top streams: %s", log: .network, type: .error, error.localizedDescription)
-
+                os_log("Error loading featured streans: %s", log: .network, type: .error, error.localizedDescription)
             }
         }
     }
@@ -57,12 +58,25 @@ final class TopStreamsSectionController: ListSectionController {
         adapter.collectionView = cell.collectionView
         return cell
     }
+    
 }
 
-extension TopStreamsSectionController: ListAdapterDataSource {
+final class SpinnerViewModel: ListDiffable {
+    let uuid = UUID()
+    
+    func diffIdentifier() -> NSObjectProtocol {
+        return uuid as NSObjectProtocol
+    }
+    
+    func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
+        return true
+    }
+}
+
+extension FeaturedSectionController: ListAdapterDataSource {
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
-        var objects: [ListDiffable] = [List(items: streams.map(StreamViewModel.init))]
-        if paginationController.hasMorePages && !streams.isEmpty {
+        var objects: [ListDiffable] = [List(items:featured.map(StreamViewModel.init))]
+        if paginationController.hasMorePages && !featured.isEmpty {
             objects.append(SpinnerViewModel())
         }
         return objects
@@ -71,8 +85,7 @@ extension TopStreamsSectionController: ListAdapterDataSource {
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
         switch object {
         case is List<StreamViewModel>: return StreamsBindingController(scrollDirection: .horizontal)
-        case is SpinnerViewModel:
-            return SpinnerSectionController()
+        case is SpinnerViewModel: return SpinnerSectionController()
         default: fatalError("Not implemented. \(object) not supported.")
         }
     }
@@ -82,7 +95,7 @@ extension TopStreamsSectionController: ListAdapterDataSource {
     }
 }
 
-extension TopStreamsSectionController: UICollectionViewDelegate {
+extension FeaturedSectionController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -104,10 +117,11 @@ extension TopStreamsSectionController: UICollectionViewDelegate {
             paginationController.loadMoreData { (result) in
                 switch result {
                 case .success(let welcome):
-                    self.streams.append(contentsOf: welcome.data)
-                    os_log("Appending more top streams %d", log: .network, type: .info, welcome.data.count)
+                    self.featured.append(contentsOf: welcome.featured)
+                    os_log("Loaded more featured streams: %d", log: .network, type: .info, welcome.featured.count)
+
                 case .failure(let error):
-                    os_log("Error loading more top streams: %s", log: .network, type: .error, error.localizedDescription)
+                    os_log("Error loading more featured streams: %s", log: .network, type: .error, error.localizedDescription)
                 }
             }
         }

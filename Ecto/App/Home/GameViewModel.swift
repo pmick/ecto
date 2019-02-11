@@ -7,7 +7,7 @@
 //
 
 import IGListKit
-import TwitchKit
+import EctoKit
 
 final class GameViewModel {
     let id: String

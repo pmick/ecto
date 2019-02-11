@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import TwitchKit
+import EctoKit
 import IGListKit
 import os.log
 
@@ -15,7 +15,7 @@ final class GameStreamsViewController: UIViewController {
     private let game: Game
     private let paginationController: PaginatedRequestController<StreamsResource>
     
-    private var streams: [TwitchKit.Stream] = [] {
+    private var streams: [EctoKit.Stream] = [] {
         didSet {
             guard isViewLoaded else { return }
             adapter.performUpdates(animated: true, completion: nil)

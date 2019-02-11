@@ -36,11 +36,11 @@
 		CD5AE09520BA4B6C0002CC95 /* GameCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5AE09320BA4B6C0002CC95 /* GameCollectionViewCell.swift */; };
 		CD5AE09620BA4B6C0002CC95 /* GameCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD5AE09420BA4B6C0002CC95 /* GameCollectionViewCell.xib */; };
 		CD64298B20AFDFDB007EBE79 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD64298A20AFDFDB007EBE79 /* Constants.swift */; };
-		CD64299C20B0B92A007EBE79 /* TwitchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD64299320B0B929007EBE79 /* TwitchKit.framework */; };
+		CD64299C20B0B92A007EBE79 /* EctoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD64299320B0B929007EBE79 /* EctoKit.framework */; };
 		CD6429A320B0B92A007EBE79 /* TwitchKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6429A220B0B92A007EBE79 /* TwitchKitTests.swift */; };
 		CD6429A520B0B92A007EBE79 /* TwitchKit.h in Headers */ = {isa = PBXBuildFile; fileRef = CD64299520B0B929007EBE79 /* TwitchKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CD6429A820B0B92A007EBE79 /* TwitchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD64299320B0B929007EBE79 /* TwitchKit.framework */; };
-		CD6429A920B0B92A007EBE79 /* TwitchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD64299320B0B929007EBE79 /* TwitchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CD6429A820B0B92A007EBE79 /* EctoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD64299320B0B929007EBE79 /* EctoKit.framework */; };
+		CD6429A920B0B92A007EBE79 /* EctoKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD64299320B0B929007EBE79 /* EctoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CD6429B220B0B938007EBE79 /* Twitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6429B120B0B938007EBE79 /* Twitch.swift */; };
 		CD6429B320B0B9F2007EBE79 /* LegacyTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD64298C20B0B2AB007EBE79 /* LegacyTypes.swift */; };
 		CD677CA420C33CE500F9B1FD /* SpinnerSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD677CA320C33CE500F9B1FD /* SpinnerSectionController.swift */; };
@@ -100,7 +100,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CD6429A920B0B92A007EBE79 /* TwitchKit.framework in Embed Frameworks */,
+				CD6429A920B0B92A007EBE79 /* EctoKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -120,15 +120,15 @@
 		CD36D6D620BCFF9C003E8840 /* TopStreamsSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStreamsSectionController.swift; sourceTree = "<group>"; };
 		CD36D6D820BCFFD3003E8840 /* TopGamesSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopGamesSectionController.swift; sourceTree = "<group>"; };
 		CD36D6DA20BCFFF3003E8840 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
-		CD39980920AFCDA200BFA58C /* Twitch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD39980920AFCDA200BFA58C /* Ecto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ecto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD39980C20AFCDA200BFA58C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD39981320AFCDA300BFA58C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CD39981520AFCDA400BFA58C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CD39981720AFCDA400BFA58C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CD39981C20AFCDA400BFA58C /* TwitchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwitchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD39981C20AFCDA400BFA58C /* EctoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EctoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD39982020AFCDA400BFA58C /* TwitchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitchTests.swift; sourceTree = "<group>"; };
 		CD39982220AFCDA400BFA58C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CD39982720AFCDA400BFA58C /* TwitchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwitchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD39982720AFCDA400BFA58C /* EctoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EctoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD39982B20AFCDA400BFA58C /* TwitchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitchUITests.swift; sourceTree = "<group>"; };
 		CD39982D20AFCDA400BFA58C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD540B4F20B3B190002044F6 /* EmbeddedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -145,10 +145,10 @@
 		CD60C39820CC953C007D0828 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		CD64298A20AFDFDB007EBE79 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CD64298C20B0B2AB007EBE79 /* LegacyTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyTypes.swift; sourceTree = "<group>"; };
-		CD64299320B0B929007EBE79 /* TwitchKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TwitchKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD64299320B0B929007EBE79 /* EctoKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EctoKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD64299520B0B929007EBE79 /* TwitchKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwitchKit.h; sourceTree = "<group>"; };
 		CD64299620B0B929007EBE79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CD64299B20B0B929007EBE79 /* TwitchKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwitchKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD64299B20B0B929007EBE79 /* EctoKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EctoKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD6429A220B0B92A007EBE79 /* TwitchKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitchKitTests.swift; sourceTree = "<group>"; };
 		CD6429A420B0B92A007EBE79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD6429B120B0B938007EBE79 /* Twitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Twitch.swift; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 			files = (
 				CD0B750F20DF179D00C7F764 /* IGListKit.framework in Frameworks */,
 				CD0B750E20DF179D00C7F764 /* Kingfisher.framework in Frameworks */,
-				CD6429A820B0B92A007EBE79 /* TwitchKit.framework in Frameworks */,
+				CD6429A820B0B92A007EBE79 /* EctoKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,7 +199,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD64299C20B0B92A007EBE79 /* TwitchKit.framework in Frameworks */,
+				CD64299C20B0B92A007EBE79 /* EctoKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,7 +240,7 @@
 				CD0B750D20DF179D00C7F764 /* IGListKit.framework */,
 				CD0B750C20DF179D00C7F764 /* Kingfisher.framework */,
 			);
-			path = Frameworks;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		CD0B750B20DF166500C7F764 /* App */ = {
@@ -257,11 +257,11 @@
 		CD39980020AFCDA200BFA58C = {
 			isa = PBXGroup;
 			children = (
-				CD39980B20AFCDA200BFA58C /* Twitch */,
-				CD39981F20AFCDA400BFA58C /* TwitchTests */,
-				CD39982A20AFCDA400BFA58C /* TwitchUITests */,
-				CD64299420B0B929007EBE79 /* TwitchKit */,
-				CD6429A120B0B92A007EBE79 /* TwitchKitTests */,
+				CD39980B20AFCDA200BFA58C /* Ecto */,
+				CD39981F20AFCDA400BFA58C /* EctoTests */,
+				CD39982A20AFCDA400BFA58C /* EctoUITests */,
+				CD64299420B0B929007EBE79 /* EctoKit */,
+				CD6429A120B0B92A007EBE79 /* EctoKitTests */,
 				CD39980A20AFCDA200BFA58C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -269,16 +269,16 @@
 		CD39980A20AFCDA200BFA58C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CD39980920AFCDA200BFA58C /* Twitch.app */,
-				CD39981C20AFCDA400BFA58C /* TwitchTests.xctest */,
-				CD39982720AFCDA400BFA58C /* TwitchUITests.xctest */,
-				CD64299320B0B929007EBE79 /* TwitchKit.framework */,
-				CD64299B20B0B929007EBE79 /* TwitchKitTests.xctest */,
+				CD39980920AFCDA200BFA58C /* Ecto.app */,
+				CD39981C20AFCDA400BFA58C /* EctoTests.xctest */,
+				CD39982720AFCDA400BFA58C /* EctoUITests.xctest */,
+				CD64299320B0B929007EBE79 /* EctoKit.framework */,
+				CD64299B20B0B929007EBE79 /* EctoKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CD39980B20AFCDA200BFA58C /* Twitch */ = {
+		CD39980B20AFCDA200BFA58C /* Ecto */ = {
 			isa = PBXGroup;
 			children = (
 				CD0B750B20DF166500C7F764 /* App */,
@@ -286,28 +286,28 @@
 				CD0B750820DF142600C7F764 /* Support */,
 				CD39981720AFCDA400BFA58C /* Info.plist */,
 			);
-			path = Twitch;
+			path = Ecto;
 			sourceTree = "<group>";
 		};
-		CD39981F20AFCDA400BFA58C /* TwitchTests */ = {
+		CD39981F20AFCDA400BFA58C /* EctoTests */ = {
 			isa = PBXGroup;
 			children = (
 				CD39982020AFCDA400BFA58C /* TwitchTests.swift */,
 				CD39982220AFCDA400BFA58C /* Info.plist */,
 			);
-			path = TwitchTests;
+			path = EctoTests;
 			sourceTree = "<group>";
 		};
-		CD39982A20AFCDA400BFA58C /* TwitchUITests */ = {
+		CD39982A20AFCDA400BFA58C /* EctoUITests */ = {
 			isa = PBXGroup;
 			children = (
 				CD39982B20AFCDA400BFA58C /* TwitchUITests.swift */,
 				CD39982D20AFCDA400BFA58C /* Info.plist */,
 			);
-			path = TwitchUITests;
+			path = EctoUITests;
 			sourceTree = "<group>";
 		};
-		CD64299420B0B929007EBE79 /* TwitchKit */ = {
+		CD64299420B0B929007EBE79 /* EctoKit */ = {
 			isa = PBXGroup;
 			children = (
 				CD269CBA20B9EAAC00CD795B /* FetchStreamUrlController.swift */,
@@ -321,16 +321,16 @@
 				CD36D6D220BCFF26003E8840 /* LegacyPaginatedRequestController.swift */,
 				CD2CA6022210A8E700CEB15F /* Environment.swift */,
 			);
-			path = TwitchKit;
+			path = EctoKit;
 			sourceTree = "<group>";
 		};
-		CD6429A120B0B92A007EBE79 /* TwitchKitTests */ = {
+		CD6429A120B0B92A007EBE79 /* EctoKitTests */ = {
 			isa = PBXGroup;
 			children = (
 				CD6429A220B0B92A007EBE79 /* TwitchKitTests.swift */,
 				CD6429A420B0B92A007EBE79 /* Info.plist */,
 			);
-			path = TwitchKitTests;
+			path = EctoKitTests;
 			sourceTree = "<group>";
 		};
 		CD875291217D40DA00ABB05F /* Stream View */ = {
@@ -407,9 +407,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		CD39980820AFCDA200BFA58C /* Twitch */ = {
+		CD39980820AFCDA200BFA58C /* Ecto */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CD39983020AFCDA400BFA58C /* Build configuration list for PBXNativeTarget "Twitch" */;
+			buildConfigurationList = CD39983020AFCDA400BFA58C /* Build configuration list for PBXNativeTarget "Ecto" */;
 			buildPhases = (
 				CD39980520AFCDA200BFA58C /* Sources */,
 				CD39980620AFCDA200BFA58C /* Frameworks */,
@@ -422,14 +422,14 @@
 			dependencies = (
 				CD6429A720B0B92A007EBE79 /* PBXTargetDependency */,
 			);
-			name = Twitch;
+			name = Ecto;
 			productName = Twitch;
-			productReference = CD39980920AFCDA200BFA58C /* Twitch.app */;
+			productReference = CD39980920AFCDA200BFA58C /* Ecto.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CD39981B20AFCDA400BFA58C /* TwitchTests */ = {
+		CD39981B20AFCDA400BFA58C /* EctoTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CD39983320AFCDA400BFA58C /* Build configuration list for PBXNativeTarget "TwitchTests" */;
+			buildConfigurationList = CD39983320AFCDA400BFA58C /* Build configuration list for PBXNativeTarget "EctoTests" */;
 			buildPhases = (
 				CD39981820AFCDA400BFA58C /* Sources */,
 				CD39981920AFCDA400BFA58C /* Frameworks */,
@@ -440,14 +440,14 @@
 			dependencies = (
 				CD39981E20AFCDA400BFA58C /* PBXTargetDependency */,
 			);
-			name = TwitchTests;
+			name = EctoTests;
 			productName = TwitchTests;
-			productReference = CD39981C20AFCDA400BFA58C /* TwitchTests.xctest */;
+			productReference = CD39981C20AFCDA400BFA58C /* EctoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		CD39982620AFCDA400BFA58C /* TwitchUITests */ = {
+		CD39982620AFCDA400BFA58C /* EctoUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CD39983620AFCDA400BFA58C /* Build configuration list for PBXNativeTarget "TwitchUITests" */;
+			buildConfigurationList = CD39983620AFCDA400BFA58C /* Build configuration list for PBXNativeTarget "EctoUITests" */;
 			buildPhases = (
 				CD39982320AFCDA400BFA58C /* Sources */,
 				CD39982420AFCDA400BFA58C /* Frameworks */,
@@ -458,14 +458,14 @@
 			dependencies = (
 				CD39982920AFCDA400BFA58C /* PBXTargetDependency */,
 			);
-			name = TwitchUITests;
+			name = EctoUITests;
 			productName = TwitchUITests;
-			productReference = CD39982720AFCDA400BFA58C /* TwitchUITests.xctest */;
+			productReference = CD39982720AFCDA400BFA58C /* EctoUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		CD64299220B0B929007EBE79 /* TwitchKit */ = {
+		CD64299220B0B929007EBE79 /* EctoKit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CD6429AA20B0B92A007EBE79 /* Build configuration list for PBXNativeTarget "TwitchKit" */;
+			buildConfigurationList = CD6429AA20B0B92A007EBE79 /* Build configuration list for PBXNativeTarget "EctoKit" */;
 			buildPhases = (
 				CD64298E20B0B929007EBE79 /* Sources */,
 				CD64298F20B0B929007EBE79 /* Frameworks */,
@@ -476,14 +476,14 @@
 			);
 			dependencies = (
 			);
-			name = TwitchKit;
+			name = EctoKit;
 			productName = TwitchKit;
-			productReference = CD64299320B0B929007EBE79 /* TwitchKit.framework */;
+			productReference = CD64299320B0B929007EBE79 /* EctoKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		CD64299A20B0B929007EBE79 /* TwitchKitTests */ = {
+		CD64299A20B0B929007EBE79 /* EctoKitTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CD6429AE20B0B92A007EBE79 /* Build configuration list for PBXNativeTarget "TwitchKitTests" */;
+			buildConfigurationList = CD6429AE20B0B92A007EBE79 /* Build configuration list for PBXNativeTarget "EctoKitTests" */;
 			buildPhases = (
 				CD64299720B0B929007EBE79 /* Sources */,
 				CD64299820B0B929007EBE79 /* Frameworks */,
@@ -495,9 +495,9 @@
 				CD64299E20B0B92A007EBE79 /* PBXTargetDependency */,
 				CD6429A020B0B92A007EBE79 /* PBXTargetDependency */,
 			);
-			name = TwitchKitTests;
+			name = EctoKitTests;
 			productName = TwitchKitTests;
-			productReference = CD64299B20B0B929007EBE79 /* TwitchKitTests.xctest */;
+			productReference = CD64299B20B0B929007EBE79 /* EctoKitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -532,7 +532,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CD39980420AFCDA200BFA58C /* Build configuration list for PBXProject "Twitch" */;
+			buildConfigurationList = CD39980420AFCDA200BFA58C /* Build configuration list for PBXProject "Ecto" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -545,11 +545,11 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CD39980820AFCDA200BFA58C /* Twitch */,
-				CD39981B20AFCDA400BFA58C /* TwitchTests */,
-				CD39982620AFCDA400BFA58C /* TwitchUITests */,
-				CD64299220B0B929007EBE79 /* TwitchKit */,
-				CD64299A20B0B929007EBE79 /* TwitchKitTests */,
+				CD39980820AFCDA200BFA58C /* Ecto */,
+				CD39981B20AFCDA400BFA58C /* EctoTests */,
+				CD39982620AFCDA400BFA58C /* EctoUITests */,
+				CD64299220B0B929007EBE79 /* EctoKit */,
+				CD64299A20B0B929007EBE79 /* EctoKitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -614,7 +614,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -694,27 +694,27 @@
 /* Begin PBXTargetDependency section */
 		CD39981E20AFCDA400BFA58C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CD39980820AFCDA200BFA58C /* Twitch */;
+			target = CD39980820AFCDA200BFA58C /* Ecto */;
 			targetProxy = CD39981D20AFCDA400BFA58C /* PBXContainerItemProxy */;
 		};
 		CD39982920AFCDA400BFA58C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CD39980820AFCDA200BFA58C /* Twitch */;
+			target = CD39980820AFCDA200BFA58C /* Ecto */;
 			targetProxy = CD39982820AFCDA400BFA58C /* PBXContainerItemProxy */;
 		};
 		CD64299E20B0B92A007EBE79 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CD64299220B0B929007EBE79 /* TwitchKit */;
+			target = CD64299220B0B929007EBE79 /* EctoKit */;
 			targetProxy = CD64299D20B0B92A007EBE79 /* PBXContainerItemProxy */;
 		};
 		CD6429A020B0B92A007EBE79 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CD39980820AFCDA200BFA58C /* Twitch */;
+			target = CD39980820AFCDA200BFA58C /* Ecto */;
 			targetProxy = CD64299F20B0B92A007EBE79 /* PBXContainerItemProxy */;
 		};
 		CD6429A720B0B92A007EBE79 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CD64299220B0B929007EBE79 /* TwitchKit */;
+			target = CD64299220B0B929007EBE79 /* EctoKit */;
 			targetProxy = CD6429A620B0B92A007EBE79 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -855,7 +855,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/tvOS",
 				);
-				INFOPLIST_FILE = Twitch/Info.plist;
+				INFOPLIST_FILE = Ecto/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -879,7 +879,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/tvOS",
 				);
-				INFOPLIST_FILE = Twitch/Info.plist;
+				INFOPLIST_FILE = Ecto/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -897,17 +897,17 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = TwitchTests/Info.plist;
+				INFOPLIST_FILE = EctoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.patrickmick.TwitchTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patrickmick.EctoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Twitch.app/Twitch";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ecto.app/Ecto";
 			};
 			name = Debug;
 		};
@@ -917,17 +917,17 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = TwitchTests/Info.plist;
+				INFOPLIST_FILE = EctoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.patrickmick.TwitchTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patrickmick.EctoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Twitch.app/Twitch";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ecto.app/Ecto";
 			};
 			name = Release;
 		};
@@ -936,13 +936,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = TwitchUITests/Info.plist;
+				INFOPLIST_FILE = EctoUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.patrickmick.TwitchUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patrickmick.EctoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -955,13 +955,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = TwitchUITests/Info.plist;
+				INFOPLIST_FILE = EctoUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.patrickmick.TwitchUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patrickmick.EctoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -980,14 +980,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = TwitchKit/Info.plist;
+				INFOPLIST_FILE = EctoKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.patrickmick.TwitchKit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patrickmick.EctoKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1009,14 +1009,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = TwitchKit/Info.plist;
+				INFOPLIST_FILE = EctoKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.patrickmick.TwitchKit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patrickmick.EctoKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
@@ -1031,17 +1031,17 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = TwitchKitTests/Info.plist;
+				INFOPLIST_FILE = EctoKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.patrickmick.TwitchKitTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patrickmick.EctoKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Twitch.app/Twitch";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ecto.app/Ecto";
 			};
 			name = Debug;
 		};
@@ -1050,24 +1050,24 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = TwitchKitTests/Info.plist;
+				INFOPLIST_FILE = EctoKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.patrickmick.TwitchKitTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patrickmick.EctoKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Twitch.app/Twitch";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ecto.app/Ecto";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CD39980420AFCDA200BFA58C /* Build configuration list for PBXProject "Twitch" */ = {
+		CD39980420AFCDA200BFA58C /* Build configuration list for PBXProject "Ecto" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CD39982E20AFCDA400BFA58C /* Debug */,
@@ -1076,7 +1076,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CD39983020AFCDA400BFA58C /* Build configuration list for PBXNativeTarget "Twitch" */ = {
+		CD39983020AFCDA400BFA58C /* Build configuration list for PBXNativeTarget "Ecto" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CD39983120AFCDA400BFA58C /* Debug */,
@@ -1085,7 +1085,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CD39983320AFCDA400BFA58C /* Build configuration list for PBXNativeTarget "TwitchTests" */ = {
+		CD39983320AFCDA400BFA58C /* Build configuration list for PBXNativeTarget "EctoTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CD39983420AFCDA400BFA58C /* Debug */,
@@ -1094,7 +1094,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CD39983620AFCDA400BFA58C /* Build configuration list for PBXNativeTarget "TwitchUITests" */ = {
+		CD39983620AFCDA400BFA58C /* Build configuration list for PBXNativeTarget "EctoUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CD39983720AFCDA400BFA58C /* Debug */,
@@ -1103,7 +1103,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CD6429AA20B0B92A007EBE79 /* Build configuration list for PBXNativeTarget "TwitchKit" */ = {
+		CD6429AA20B0B92A007EBE79 /* Build configuration list for PBXNativeTarget "EctoKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CD6429AB20B0B92A007EBE79 /* Debug */,
@@ -1112,7 +1112,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CD6429AE20B0B92A007EBE79 /* Build configuration list for PBXNativeTarget "TwitchKitTests" */ = {
+		CD6429AE20B0B92A007EBE79 /* Build configuration list for PBXNativeTarget "EctoKitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CD6429AF20B0B92A007EBE79 /* Debug */,
