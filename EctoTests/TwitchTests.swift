@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Twitch
+@testable import Ecto
 
 class TwitchTests: XCTestCase {
     
