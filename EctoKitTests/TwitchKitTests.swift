@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import TwitchKit
+@testable import EctoKit
 
 class TwitchKitTests: XCTestCase {
     
