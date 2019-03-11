@@ -13,8 +13,6 @@ jobs:
       - restore_cache:
           keys:
             - carthage
-      - restore_cache:
-          keys:
             - homebrew
       - run: sh bootstrap-if-needed.sh
       - run: brew install xcodegen
