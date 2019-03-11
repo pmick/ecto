@@ -1,0 +1,35 @@
+name: Ecto 
+options:
+  bundleIdPrefix: com.patrickmick
+targets:
+  Ecto:
+    scheme:
+      testTargets:
+        - EctoTests 
+        - EctoKitTests
+      gatherCoverageData: true
+    type: application
+    platform: tvOS 
+    deploymentTarget: "12.0"
+    sources: [Ecto]
+    dependencies:
+      - target: EctoKit 
+      - carthage: IGListKit
+      - carthage: Kingfisher
+  EctoTests:
+    type: bundle.unit-test
+    platform: tvOS
+    sources: [EctoTests]
+    settings:
+      - TEST_HOST: Ecto
+  EctoKit:
+    type: framework
+    platform: tvOS 
+    deploymentTarget: "12.0"
+    sources: [EctoKit]
+  EctoKitTests:
+    type: bundle.unit-test
+    platform: tvOS
+    sources: [EctoKitTests]
+    settings:
+      - TEST_HOST: EctoKit
