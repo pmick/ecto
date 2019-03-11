@@ -7,6 +7,7 @@ targets:
       testTargets:
         - EctoTests 
         - EctoKitTests
+        - EctoUITests
       gatherCoverageData: true
     type: application
     platform: tvOS 
@@ -33,3 +34,9 @@ targets:
     sources: [EctoKitTests]
     settings:
       - TEST_HOST: EctoKit
+  EctoUITests:
+    type: bundle.ui-testing
+    platform: tvOS
+    sources: [EctoUITests]
+    settings:
+      - TEST_TARGET_NAME: Ecto
