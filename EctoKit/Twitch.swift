@@ -49,7 +49,7 @@ public struct Twitch {
                         completion(.failure(error))
                     } catch {
                         if let dataString = String(data: data, encoding: .utf8) {
-                            os_log("Error decoding error payload: %s", log: .network, type: .error, dataString)
+//                            os_log("Error decoding error payload: %s", log: .network, type: .error, dataString)
 
                         }
                         completion(.failure(error))
