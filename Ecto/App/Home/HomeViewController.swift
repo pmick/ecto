@@ -30,11 +30,8 @@ final class HomeSectionModel: ListDiffable {
 }
 
 final class HomeViewController: UIViewController {
-    @IBOutlet var collectionView: UICollectionView!
-    
-    lazy var adapter: ListAdapter = {
-        return ListAdapter(updater: ListAdapterUpdater(), viewController: self)
-    }()
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    lazy var adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self)
     
     let model: [ListDiffable] = [
         NSLocalizedString("Featured", comment: "") as ListDiffable,
@@ -47,6 +44,9 @@ final class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.addSubview(collectionView)
+        collectionView.constrainFillingSuperview()
         
         adapter.collectionView = collectionView
         adapter.dataSource = self
