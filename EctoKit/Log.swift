@@ -1,9 +1,8 @@
 //
 //  Log.swift
-//  Twitch
+//  EctoKit
 //
-//  Created by Patrick Mick on 6/9/18.
-//  Copyright © 2018 Patrick Mick. All rights reserved.
+//  Created by Patrick Mick on 3/21/19.
 //
 
 import Foundation
@@ -15,5 +14,9 @@ import os.log
 extension OSLog {
     public static var network: OSLog {
         return OSLog(subsystem: "com.pmick.ecto", category: "networking")
+    }
+    
+    public static var irc: OSLog {
+        return OSLog(subsystem: "com.pmick.ecto", category: "irc")
     }
 }
