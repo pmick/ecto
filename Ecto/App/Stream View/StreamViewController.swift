@@ -66,7 +66,6 @@ final class StreamViewController: UIViewController {
         Twitch().request(resource) { result in
             switch result {
             case .success(let data):
-                // TODO: Show an error message if we don't pass the guard
                 guard let channelName = data.data.first?.login else { return }
                 self.loadStream(forChannelName: channelName)
             case .failure(let error):

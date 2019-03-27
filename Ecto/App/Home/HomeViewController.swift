@@ -61,10 +61,14 @@ extension HomeViewController: ListAdapterDataSource {
 
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
         switch object {
-        case let headerTitle as String: return HeaderSectionController(title: headerTitle)
-        case let sectionModel as HomeSectionModel where sectionModel.identifier == "featured": return FeaturedSectionController()
-        case let sectionModel as HomeSectionModel where sectionModel.identifier == "top_streams": return TopStreamsSectionController()
-        case let sectionModel as HomeSectionModel where sectionModel.identifier == "top_games": return TopGamesSectionController()
+        case let headerTitle as String:
+            return HeaderSectionController(title: headerTitle)
+        case let sectionModel as HomeSectionModel where sectionModel.identifier == "featured":
+            return FeaturedSectionController()
+        case let sectionModel as HomeSectionModel where sectionModel.identifier == "top_streams":
+            return TopStreamsSectionController()
+        case let sectionModel as HomeSectionModel where sectionModel.identifier == "top_games":
+            return TopGamesSectionController()
         default: assertionFailure("section of key \(object) not supported")
         }
 

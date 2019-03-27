@@ -37,21 +37,24 @@ final class StreamsBindingController: ListBindingSectionController<List<StreamVi
 }
 
 extension StreamsBindingController: ListBindingSectionControllerDataSource {
-    func sectionController(_ sectionController: ListBindingSectionController<ListDiffable>, viewModelsFor object: Any) -> [ListDiffable] {
+    func sectionController(_ sectionController: ListBindingSectionController<ListDiffable>,
+                           viewModelsFor object: Any) -> [ListDiffable] {
         guard let object = object as? List<StreamViewModel> else { return [] }
         return object.items
     }
 
-    func sectionController(_ sectionController: ListBindingSectionController<ListDiffable>, cellForViewModel viewModel: Any, at index: Int) -> UICollectionViewCell & ListBindable {
+    func sectionController(_ sectionController: ListBindingSectionController<ListDiffable>,
+                           cellForViewModel viewModel: Any, at index: Int) -> UICollectionViewCell & ListBindable {
         guard let cell = sectionController.collectionContext?
-            .dequeueReusableCell(withNibName: "FeaturedStreamCollectionViewCell", bundle: nil, for: self, at: index) as? FeaturedStreamCollectionViewCell else {
+            .dequeueCellFromNib(FeaturedStreamCollectionViewCell.self, for: sectionController, at: index) else {
             fatalError()
         }
 
         return cell
     }
 
-    func sectionController(_ sectionController: ListBindingSectionController<ListDiffable>, sizeForViewModel viewModel: Any, at index: Int) -> CGSize {
+    func sectionController(_ sectionController: ListBindingSectionController<ListDiffable>,
+                           sizeForViewModel viewModel: Any, at index: Int) -> CGSize {
         if scrollDirection == .horizontal {
             let height = collectionContext?.containerSize.height ?? 0
             let availableHeight = height - 70
@@ -70,7 +73,7 @@ extension StreamsBindingController: ListBindingSectionControllerDataSource {
     override func didSelectItem(at index: Int) {
         guard let obj = object?.items[index] else { return }
         let context = obj.stream.context
-        let vc = StreamViewController(context: context)
-        viewController?.show(vc, sender: self)
+        let streamViewController = StreamViewController(context: context)
+        viewController?.show(streamViewController, sender: self)
     }
 }

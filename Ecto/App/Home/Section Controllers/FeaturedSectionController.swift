@@ -104,7 +104,9 @@ extension FeaturedSectionController: UICollectionViewDelegate {
         return indexPathOfPreviousStream
     }
 
-    func collectionView(_ collectionView: UICollectionView, didUpdateFocusIn context: UICollectionViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+    func collectionView(_ collectionView: UICollectionView,
+                        didUpdateFocusIn context: UICollectionViewFocusUpdateContext,
+                        with coordinator: UIFocusAnimationCoordinator) {
         guard let nextIndexPath = context.nextFocusedIndexPath else { return }
         if !(adapter.sectionController(forSection: nextIndexPath.section) is SpinnerSectionController) {
             indexPathOfPreviousStream = nextIndexPath
@@ -121,7 +123,8 @@ extension FeaturedSectionController: UICollectionViewDelegate {
                     os_log("Loaded more featured streams: %d", log: .network, type: .info, welcome.featured.count)
 
                 case .failure(let error):
-                    os_log("Error loading more featured streams: %s", log: .network, type: .error, error.localizedDescription)
+                    os_log("Error loading more featured streams: %s",
+                           log: .network, type: .error, error.localizedDescription)
                 }
             }
         }

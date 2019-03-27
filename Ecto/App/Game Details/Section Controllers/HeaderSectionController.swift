@@ -28,7 +28,7 @@ final class HeaderSectionController: ListSectionController {
     }
 
     override func cellForItem(at index: Int) -> UICollectionViewCell {
-        guard let cell = collectionContext?.dequeueReusableCell(withNibName: "HeaderCollectionViewCell", bundle: nil, for: self, at: index) as? HeaderCollectionViewCell,
+        guard let cell = collectionContext?.dequeueCellFromNib(HeaderCollectionViewCell.self, for: self, at: index),
             let title = title else {
                 fatalError()
         }

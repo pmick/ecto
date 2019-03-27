@@ -33,7 +33,13 @@ extension FeaturedStreamCollectionViewCell: ListBindable {
         guard let viewModel = viewModel as? StreamViewModel else { return }
 
         titleLabel.text = viewModel.title
-        let processor = RoundCornerImageProcessor(cornerRadius: 16, backgroundColor: .clear) >> ResizingImageProcessor(referenceSize: bounds.size, mode: .aspectFill)
-        imageView.kf.setImage(with: viewModel.imageUrl, placeholder: nil, options: [.processor(processor), .cacheSerializer(FormatIndicatedCacheSerializer.png), .transition(.fade(0.2))])
+        let processor = RoundCornerImageProcessor(cornerRadius: 16, backgroundColor: .clear)
+            >> ResizingImageProcessor(referenceSize: bounds.size, mode: .aspectFill)
+        let options: KingfisherOptionsInfo = [
+            .processor(processor),
+            .cacheSerializer(FormatIndicatedCacheSerializer.png),
+            .transition(.fade(0.2))
+        ]
+        imageView.kf.setImage(with: viewModel.imageUrl, placeholder: nil, options: options)
     }
 }

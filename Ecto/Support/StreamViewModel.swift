@@ -48,8 +48,9 @@ final class StreamViewModel: ListDiffable {
     init(stream: EctoKit.Stream) {
         self.id = stream.id
         self.title = stream.title
-        // 640x360
-        let largePath = stream.thumbnailUrl.replacingOccurrences(of: "{width}", with: "640").replacingOccurrences(of: "{height}", with: "360")
+        let largePath = stream.thumbnailUrl
+            .replacingOccurrences(of: "{width}", with: "640")
+            .replacingOccurrences(of: "{height}", with: "360")
         self.imageUrl = URL(string: largePath)!
 
         self.stream = stream

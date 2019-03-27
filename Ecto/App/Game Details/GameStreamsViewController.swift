@@ -85,7 +85,10 @@ extension GameStreamsViewController: ListAdapterDataSource {
         case is String: return HeaderSectionController()
         default:
             let sectionController = StreamsBindingController(scrollDirection: .vertical)
-            sectionController.inset = UIEdgeInsets(top: 0, left: view.safeAreaInsets.left, bottom: 0, right: view.safeAreaInsets.right)
+            sectionController.inset = UIEdgeInsets(top: 0,
+                                                   left: view.safeAreaInsets.left,
+                                                   bottom: 0,
+                                                   right: view.safeAreaInsets.right)
             return sectionController
 
         }

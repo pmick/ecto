@@ -91,7 +91,9 @@ extension TopStreamsSectionController: UICollectionViewDelegate {
         return indexPathOfPreviousStream
     }
 
-    func collectionView(_ collectionView: UICollectionView, didUpdateFocusIn context: UICollectionViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+    func collectionView(_ collectionView: UICollectionView,
+                        didUpdateFocusIn context: UICollectionViewFocusUpdateContext,
+                        with coordinator: UIFocusAnimationCoordinator) {
         guard let nextIndexPath = context.nextFocusedIndexPath else { return }
         if !(adapter.sectionController(forSection: nextIndexPath.section) is SpinnerSectionController) {
             indexPathOfPreviousStream = nextIndexPath
@@ -107,7 +109,8 @@ extension TopStreamsSectionController: UICollectionViewDelegate {
                     self.streams.append(contentsOf: welcome.data)
                     os_log("Appending more top streams %d", log: .network, type: .info, welcome.data.count)
                 case .failure(let error):
-                    os_log("Error loading more top streams: %s", log: .network, type: .error, error.localizedDescription)
+                    os_log("Error loading more top streams: %s",
+                           log: .network, type: .error, error.localizedDescription)
                 }
             }
         }

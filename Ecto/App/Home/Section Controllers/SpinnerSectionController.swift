@@ -15,7 +15,8 @@ final class SpinnerSectionController: ListSectionController {
     }
 
     override func cellForItem(at index: Int) -> UICollectionViewCell {
-        guard let cell = collectionContext?.dequeueReusableCell(of: SpinnerCell.self, for: self, at: index) as? SpinnerCell
+        guard let cell = collectionContext?
+            .dequeueReusableCell(of: SpinnerCell.self, for: self, at: index) as? SpinnerCell
             else { fatalError("Missing context or cell wrong type") }
         return cell
     }

@@ -34,7 +34,8 @@ public final class FetchStreamUrlController {
             "Client-ID": Environment.clientId
         ]
 
-        var urlComponents = URLComponents(url: URL(string: "https://usher.ttvnw.net/api/channel/hls/\(name).m3u8")!, resolvingAgainstBaseURL: false)!
+        let url = URL(string: "https://usher.ttvnw.net/api/channel/hls/\(name).m3u8")!
+        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)!
         urlComponents.queryItems = parameters.map(URLQueryItem.init)
         return urlComponents.url!
     }

@@ -118,7 +118,7 @@ public struct Preview: Codable {
 }
 
 public enum StreamType: String, Codable {
-    case live = "live"
+    case live
 }
 
 public struct WelcomeLinks: Codable {
