@@ -51,13 +51,13 @@ final class StreamViewController: UIViewController {
     }
 
     private func embedPlayer(with url: URL) {
-        let c = AVPlayerViewController()
+        let playerViewController = AVPlayerViewController()
         let player = AVPlayer(url: url)
-        c.player = player
-        self.addChild(c)
-        c.view.frame = self.view.bounds
-        self.view.addSubview(c.view)
-        c.didMove(toParent: self)
+        playerViewController.player = player
+        self.addChild(playerViewController)
+        playerViewController.view.frame = self.view.bounds
+        self.view.addSubview(playerViewController.view)
+        playerViewController.didMove(toParent: self)
         player.play()
     }
 

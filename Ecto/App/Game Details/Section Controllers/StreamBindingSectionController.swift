@@ -43,7 +43,8 @@ extension StreamsBindingController: ListBindingSectionControllerDataSource {
     }
 
     func sectionController(_ sectionController: ListBindingSectionController<ListDiffable>, cellForViewModel viewModel: Any, at index: Int) -> UICollectionViewCell & ListBindable {
-        guard let cell = sectionController.collectionContext?.dequeueReusableCell(withNibName: "FeaturedStreamCollectionViewCell", bundle: nil, for: self, at: index) as? FeaturedStreamCollectionViewCell else {
+        guard let cell = sectionController.collectionContext?
+            .dequeueReusableCell(withNibName: "FeaturedStreamCollectionViewCell", bundle: nil, for: self, at: index) as? FeaturedStreamCollectionViewCell else {
             fatalError()
         }
 

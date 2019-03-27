@@ -24,15 +24,15 @@ final class GameStreamsViewController: UIViewController {
 
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        let c = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
-        view.addSubview(c)
-        c.clipsToBounds = false
-        c.translatesAutoresizingMaskIntoConstraints = false
-        c.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        c.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: c.trailingAnchor).isActive = true
-        view.bottomAnchor.constraint(equalTo: c.bottomAnchor).isActive = true
-        return c
+        let collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
+        view.addSubview(collectionView)
+        collectionView.clipsToBounds = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor).isActive = true
+        view.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor).isActive = true
+        return collectionView
     }()
 
     private lazy var adapter: ListAdapter = {
@@ -84,9 +84,9 @@ extension GameStreamsViewController: ListAdapterDataSource {
         switch object {
         case is String: return HeaderSectionController()
         default:
-            let c = StreamsBindingController(scrollDirection: .vertical)
-            c.inset = UIEdgeInsets(top: 0, left: view.safeAreaInsets.left, bottom: 0, right: view.safeAreaInsets.right)
-            return c
+            let sectionController = StreamsBindingController(scrollDirection: .vertical)
+            sectionController.inset = UIEdgeInsets(top: 0, left: view.safeAreaInsets.left, bottom: 0, right: view.safeAreaInsets.right)
+            return sectionController
 
         }
     }
