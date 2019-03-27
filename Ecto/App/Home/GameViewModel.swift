@@ -13,14 +13,14 @@ final class GameViewModel {
     let id: String
     let name: String
     let boxArtUrl: String
-    
+
     let game: Game
-    
+
     init(game: Game) {
         self.id = game.id
         self.name = game.name
         self.boxArtUrl = game.boxArtUrl
-        
+
         self.game = game
     }
 }
@@ -29,7 +29,7 @@ extension GameViewModel: ListDiffable {
     func diffIdentifier() -> NSObjectProtocol {
         return id as NSObjectProtocol
     }
-    
+
     func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
         guard self !== object else { return true }
         guard let object = object as? GameViewModel else { return false }

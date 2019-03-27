@@ -16,7 +16,7 @@ final class TopGamesSectionController: ListSectionController {
             adapter.performUpdates(animated: true, completion: nil)
         }
     }
-    
+
     lazy var adapter: ListAdapter = {
         let adapter = ListAdapter(updater: ListAdapterUpdater(),
                                   viewController: self.viewController)
@@ -25,9 +25,9 @@ final class TopGamesSectionController: ListSectionController {
         adapter.scrollViewDelegate = self
         return adapter
     }()
-    
+
     private let paginationController = PaginatedRequestController(resource: GamesResource())
-    
+
     override init() {
         super.init()
         inset = UIEdgeInsets(top: 0, left: 0, bottom: Constants.sectionContentVerticalOffset, right: 0)
@@ -40,11 +40,11 @@ final class TopGamesSectionController: ListSectionController {
             }
         }
     }
-    
+
     override func sizeForItem(at index: Int) -> CGSize {
         return CGSize(width: collectionContext!.containerSize.width, height: 350)
     }
-    
+
     override func cellForItem(at index: Int) -> UICollectionViewCell {
         guard let cell = collectionContext?.dequeueReusableCell(
             of: EmbeddedCollectionViewCell.self,
@@ -61,11 +61,11 @@ extension TopGamesSectionController: ListAdapterDataSource {
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
         return games.map(GameViewModel.init)
     }
-    
+
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
         return GameSectionController()
     }
-    
+
     func emptyView(for listAdapter: ListAdapter) -> UIView? {
         return nil
     }
@@ -75,7 +75,7 @@ extension TopGamesSectionController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard let context = collectionContext else { return }
         if scrollView.hasReachedTrailingEdge(withBuffer: context.containerSize.width * 2) {

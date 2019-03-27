@@ -7,11 +7,11 @@ public struct ApiError: Error, Codable {
 public struct Welcome: Codable, NextPageContextProviding {
     public let links: WelcomeLinks
     public let featured: [Featured]
-    
+
     public var hasMorePages: Bool {
         return featured.count >= Twitch.Constants.legacyPageSize
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case links = "_links"
         case featured
@@ -39,7 +39,7 @@ public struct LegacyStream: Codable {
     public let preview: Preview
     public let channel: Channel
     public let links: StreamLinks
-    
+
     enum CodingKeys: String, CodingKey {
         case id = "_id"
         case game, viewers
@@ -72,7 +72,7 @@ public struct Channel: Codable {
     public let url: String
     public let views, followers: Int
     public let links: ChannelLinks
-    
+
     enum CodingKeys: String, CodingKey {
         case mature, partner, status
         case broadcasterLanguage = "broadcaster_language"
@@ -96,7 +96,7 @@ public struct ChannelLinks: Codable {
     public let streamKey: String?
     public let chat, features, subscriptions, editors: String
     public let teams, videos: String
-    
+
     enum CodingKeys: String, CodingKey {
         case linksSelf = "self"
         case follows, commercial
@@ -107,7 +107,7 @@ public struct ChannelLinks: Codable {
 
 public struct StreamLinks: Codable {
     public let linksSelf: String
-    
+
     enum CodingKeys: String, CodingKey {
         case linksSelf = "self"
     }
@@ -123,7 +123,7 @@ public enum StreamType: String, Codable {
 
 public struct WelcomeLinks: Codable {
     public let linksSelf, next: String
-    
+
     enum CodingKeys: String, CodingKey {
         case linksSelf = "self"
         case next

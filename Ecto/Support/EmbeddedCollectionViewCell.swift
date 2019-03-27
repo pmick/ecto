@@ -20,7 +20,7 @@ final class EmbeddedCollectionViewCell: UICollectionViewCell {
         self.contentView.addSubview(view)
         return view
     }()
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         collectionView.frame = contentView.frame

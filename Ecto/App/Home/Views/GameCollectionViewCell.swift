@@ -10,11 +10,11 @@ import UIKit
 
 final class GameCollectionViewCell: UICollectionViewCell {
     @IBOutlet var imageView: UIImageView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
         imageView.adjustsImageWhenAncestorFocused = true
     }
-    
+
 }

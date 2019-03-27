@@ -10,7 +10,7 @@ import Foundation
 
 public final class FetchStreamUrlController {
     public init() { }
-    
+
     public func fetchStreamUrl(forStreamNamed name: String, completion: @escaping (Result<URL>) -> Void) {
         Twitch().request(AuthenticateStreamResource(name: name)) { result in
             switch result {
@@ -21,9 +21,9 @@ public final class FetchStreamUrlController {
             }
         }
     }
-    
+
     private func makeHLSUrl(forStreamNamed name: String, accessToken: StreamAccessToken) -> URL {
-        let parameters: [String : String] = [
+        let parameters: [String: String] = [
             "player": "twitchweb",
             "token": accessToken.token,
             "sig": accessToken.sig,
@@ -33,7 +33,7 @@ public final class FetchStreamUrlController {
             "p": "123456",
             "Client-ID": Environment.clientId
         ]
-        
+
         var urlComponents = URLComponents(url: URL(string: "https://usher.ttvnw.net/api/channel/hls/\(name).m3u8")!, resolvingAgainstBaseURL: false)!
         urlComponents.queryItems = parameters.map(URLQueryItem.init)
         return urlComponents.url!

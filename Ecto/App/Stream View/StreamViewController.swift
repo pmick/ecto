@@ -13,23 +13,23 @@ import AVKit
 
 final class StreamViewController: UIViewController {
     private let context: ChannelNameContext
-    
+
     init(context: ChannelNameContext) {
         self.context = context
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         fatalError("NOT IMPLEMENTED")
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("NOT IMPLEMENTED")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         switch context {
         case .lhs(let channelName):
             loadStream(forChannelName: channelName)
@@ -37,7 +37,7 @@ final class StreamViewController: UIViewController {
             loadStream(forUserId: userId)
         }
     }
-    
+
     private func loadStream(forChannelName name: ChannelName) {
         let controller = FetchStreamUrlController()
         controller.fetchStreamUrl(forStreamNamed: name) { (result) in
@@ -49,7 +49,7 @@ final class StreamViewController: UIViewController {
             }
         }
     }
-    
+
     private func embedPlayer(with url: URL) {
         let c = AVPlayerViewController()
         let player = AVPlayer(url: url)
@@ -60,7 +60,7 @@ final class StreamViewController: UIViewController {
         c.didMove(toParent: self)
         player.play()
     }
-    
+
     private func loadStream(forUserId id: UserId) {
         let resource = UsersResource(userId: id)
         Twitch().request(resource) { result in

@@ -11,7 +11,7 @@ import Foundation
 public struct PaginatedDataPayload<T>: Codable, PaginationCursorProviding where T: Codable {
     public let data: [T]
     public let pagination: Pagination
-    
+
     public var cursor: String? { return pagination.cursor }
     public var hasMorePages: Bool { return !data.isEmpty }
 }

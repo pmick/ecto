@@ -16,9 +16,9 @@ final class FeaturedSectionController: ListSectionController {
             adapter.performUpdates(animated: true, completion: nil)
         }
     }
-    
+
     private var indexPathOfPreviousStream: IndexPath?
-    
+
     lazy var adapter: ListAdapter = {
         let adapter = ListAdapter(updater: ListAdapterUpdater(),
                                   viewController: self.viewController)
@@ -27,13 +27,13 @@ final class FeaturedSectionController: ListSectionController {
         adapter.scrollViewDelegate = self
         return adapter
     }()
-    
+
     private let paginationController = LegacyPaginatedRequestController(resource: FeaturedStreamsResource())
-    
+
     override init() {
         super.init()
         inset = UIEdgeInsets(top: 0, left: 0, bottom: Constants.sectionContentVerticalOffset, right: 0)
-        
+
         paginationController.loadData { result in
             switch result {
             case .success(let welcome):
@@ -43,11 +43,11 @@ final class FeaturedSectionController: ListSectionController {
             }
         }
     }
-    
+
     override func sizeForItem(at index: Int) -> CGSize {
         return CGSize(width: collectionContext!.containerSize.width, height: 350)
     }
-    
+
     override func cellForItem(at index: Int) -> UICollectionViewCell {
         guard let cell = collectionContext?.dequeueReusableCell(
             of: EmbeddedCollectionViewCell.self,
@@ -58,16 +58,16 @@ final class FeaturedSectionController: ListSectionController {
         adapter.collectionView = cell.collectionView
         return cell
     }
-    
+
 }
 
 final class SpinnerViewModel: ListDiffable {
     let uuid = UUID()
-    
+
     func diffIdentifier() -> NSObjectProtocol {
         return uuid as NSObjectProtocol
     }
-    
+
     func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
         return true
     }
@@ -75,13 +75,13 @@ final class SpinnerViewModel: ListDiffable {
 
 extension FeaturedSectionController: ListAdapterDataSource {
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
-        var objects: [ListDiffable] = [List(items:featured.map(StreamViewModel.init))]
+        var objects: [ListDiffable] = [List(items: featured.map(StreamViewModel.init))]
         if paginationController.hasMorePages && !featured.isEmpty {
             objects.append(SpinnerViewModel())
         }
         return objects
     }
-    
+
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
         switch object {
         case is List<StreamViewModel>: return StreamsBindingController(scrollDirection: .horizontal)
@@ -89,7 +89,7 @@ extension FeaturedSectionController: ListAdapterDataSource {
         default: fatalError("Not implemented. \(object) not supported.")
         }
     }
-    
+
     func emptyView(for listAdapter: ListAdapter) -> UIView? {
         return nil
     }
@@ -99,18 +99,18 @@ extension FeaturedSectionController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
+
     func indexPathForPreferredFocusedView(in collectionView: UICollectionView) -> IndexPath? {
         return indexPathOfPreviousStream
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didUpdateFocusIn context: UICollectionViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         guard let nextIndexPath = context.nextFocusedIndexPath else { return }
         if !(adapter.sectionController(forSection: nextIndexPath.section) is SpinnerSectionController) {
             indexPathOfPreviousStream = nextIndexPath
         }
     }
-    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard let context = collectionContext else { return }
         if scrollView.hasReachedTrailingEdge(withBuffer: context.containerSize.width * 2) {

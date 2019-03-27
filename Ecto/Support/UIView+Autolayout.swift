@@ -18,7 +18,7 @@ extension UIView {
         view.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         view.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
-    
+
     func constrainFillingSuperviewSafeArea() {
         assert(superview != nil, "Attempting to constrain view to fill superview, but superview is nil.")
         let view = superview!
@@ -28,7 +28,7 @@ extension UIView {
         view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
-    
+
     func constrainCenteringInSuperview() {
         assert(superview != nil, "Attempting to constrain view to fill superview, but superview is nil.")
         let view = superview!

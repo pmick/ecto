@@ -13,15 +13,15 @@ import IGListKit
 
 final class HomeSectionModel: ListDiffable {
     let identifier: String
-    
+
     init(_ identifier: String) {
         self.identifier = identifier
     }
-    
+
     func diffIdentifier() -> NSObjectProtocol {
         return identifier as NSObjectProtocol
     }
-    
+
     func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
         guard self !== object else { return true }
         guard let object = object as? HomeSectionModel else { return false }
@@ -32,7 +32,7 @@ final class HomeSectionModel: ListDiffable {
 final class HomeViewController: UIViewController {
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     lazy var adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self)
-    
+
     let model: [ListDiffable] = [
         NSLocalizedString("Featured", comment: "") as ListDiffable,
         HomeSectionModel("featured"),
@@ -41,13 +41,13 @@ final class HomeViewController: UIViewController {
         NSLocalizedString("Top Games", comment: "") as ListDiffable,
         HomeSectionModel("top_games")
     ]
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         view.addSubview(collectionView)
         collectionView.constrainFillingSuperview()
-        
+
         adapter.collectionView = collectionView
         adapter.dataSource = self
         adapter.collectionViewDelegate = self
@@ -58,7 +58,7 @@ extension HomeViewController: ListAdapterDataSource {
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
         return model as [ListDiffable]
     }
-    
+
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
         switch object {
         case let headerTitle as String: return HeaderSectionController(title: headerTitle)
@@ -67,11 +67,11 @@ extension HomeViewController: ListAdapterDataSource {
         case let sectionModel as HomeSectionModel where sectionModel.identifier == "top_games": return TopGamesSectionController()
         default: assertionFailure("section of key \(object) not supported")
         }
-        
+
         assertionFailure("section of key \(object) not supported")
         return FeaturedSectionController()
     }
-    
+
     func emptyView(for listAdapter: ListAdapter) -> UIView? {
         return nil
     }

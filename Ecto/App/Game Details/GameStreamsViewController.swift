@@ -14,14 +14,14 @@ import os.log
 final class GameStreamsViewController: UIViewController {
     private let game: Game
     private let paginationController: PaginatedRequestController<StreamsResource>
-    
+
     private var streams: [EctoKit.Stream] = [] {
         didSet {
             guard isViewLoaded else { return }
             adapter.performUpdates(animated: true, completion: nil)
         }
     }
-    
+
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let c = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
@@ -34,36 +34,36 @@ final class GameStreamsViewController: UIViewController {
         view.bottomAnchor.constraint(equalTo: c.bottomAnchor).isActive = true
         return c
     }()
-    
+
     private lazy var adapter: ListAdapter = {
         return ListAdapter(updater: ListAdapterUpdater(), viewController: self)
     }()
-    
+
     init(game: Game) {
         self.game = game
         paginationController = PaginatedRequestController(resource: StreamsResource(gameId: game.id))
 
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func loadView() {
         super.loadView()
-        
+
         _ = collectionView
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         adapter.collectionView = collectionView
         adapter.dataSource = self
         adapter.collectionViewDelegate = self
         adapter.scrollViewDelegate = self
-        
+
         paginationController.loadData { (result) in
             switch result {
             case .success(let welcome):
@@ -79,7 +79,7 @@ extension GameStreamsViewController: ListAdapterDataSource {
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
         return [game.name as ListDiffable, List(items: streams.map(StreamViewModel.init))]
     }
-    
+
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
         switch object {
         case is String: return HeaderSectionController()
@@ -90,7 +90,7 @@ extension GameStreamsViewController: ListAdapterDataSource {
 
         }
     }
-    
+
     func emptyView(for listAdapter: ListAdapter) -> UIView? {
         return nil
     }
@@ -101,7 +101,7 @@ extension GameStreamsViewController: UICollectionViewDelegate {
         if indexPath.section == 0 { return false }
         return true
     }
-    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.hasReachedBottom(withBuffer: view.bounds.height * 2) {
             paginationController.loadMoreData { (result) in
