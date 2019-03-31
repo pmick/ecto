@@ -32,7 +32,6 @@ final class HomeSectionModel: ListDiffable {
 final class HomeViewController: UIViewController {
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     lazy var adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self)
-    let irc = TwitchIRCController(oauthToken: Environment.oauthToken, nickname: "tree2110", channelName: "tsm_daequan")
 
     let model: [ListDiffable] = [
         NSLocalizedString("Featured", comment: "") as ListDiffable,

@@ -13,7 +13,7 @@ import AVKit
 
 final class StreamViewController: UIViewController {
     private let context: ChannelNameContext
-    
+
     init(context: ChannelNameContext) {
         self.context = context
         super.init(nibName: nil, bundle: nil)
@@ -44,6 +44,7 @@ final class StreamViewController: UIViewController {
             switch result {
             case .success(let url):
                 self.embedPlayer(with: url)
+                self.embedChat(forChannelName: name)
             case .failure(let error):
                 os_log("Error fetching stream url: %s", log: .network, type: .error, error.localizedDescription)
             }
@@ -59,6 +60,15 @@ final class StreamViewController: UIViewController {
         self.view.addSubview(c.view)
         c.didMove(toParent: self)
         player.play()
+    }
+    
+    private func embedChat(forChannelName name: ChannelName) {
+        let chatViewController = ChatViewController(channelName: name)
+        self.addChild(chatViewController)
+        let width = ceil(view.bounds.width * 0.2)
+        chatViewController.view.frame = CGRect(x: view.bounds.maxX - width, y: 0, width: width, height: view.bounds.height)
+        self.view.addSubview(chatViewController.view)
+        chatViewController.didMove(toParent: self)
     }
     
     private func loadStream(forUserId id: UserId) {

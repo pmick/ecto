@@ -9,18 +9,19 @@ import Foundation
 import UIKit
 
 public struct IRCPrivateMessage {
-    let username: String
-    let userColor: UIColor
-    let body: String
+    public let username: String
+    public let userColor: UIColor?
+    public let body: String
 }
 
 public struct IRCPrivateMessageParser {
     public func parse(_ input: String) -> IRCPrivateMessage? {
         guard input.hasPrefix("@") else { return nil }
         let components = input.components(separatedBy: " :")
-        assert(components.count == 3)
+        guard components.count == 3 else { return nil }
+        guard components[1].components(separatedBy: .whitespaces).contains("PRIVMSG") else { return nil }
         let tags = parseTags(String(components[0].dropFirst()))
-        let color = UIColor(hex: tags["color"]!)!
+        let color = tags["color"].flatMap(UIColor.init(hex:))
         return IRCPrivateMessage(username: tags["display-name"]!, userColor: color, body: components[2])
     }
     

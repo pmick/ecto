@@ -15,8 +15,11 @@ public final class TwitchIRCController: IRCControllerDelegate {
     
     let ircController = IRCController(hostname: Constants.hostname, port: Constants.port)
     private let privateMessageParser = IRCPrivateMessageParser()
+    private let messagesReceivedHandler: ([IRCPrivateMessage]) -> Void
     
-    public init(oauthToken: String, nickname: String, channelName: String) {
+    public init(oauthToken: String, nickname: String, channelName: String, messagesReceivedHandler: @escaping ([IRCPrivateMessage]) -> Void) {
+        self.messagesReceivedHandler = messagesReceivedHandler
+        
         ircController.delegate = self
         
         ircController.connect()
@@ -29,5 +32,6 @@ public final class TwitchIRCController: IRCControllerDelegate {
     func controllerDidReceiveMessages(_ controller: IRCController, messages: [String]) {
         // if messages contains a ping we send back a pong
         let privateMessages = messages.compactMap(privateMessageParser.parse)
+        messagesReceivedHandler(privateMessages)
     }
 }
