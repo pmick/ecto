@@ -42,4 +42,10 @@ class MessageParserTests: XCTestCase {
         let result = parse(input)
         
     }
+    
+    func testParsingMultipleEmotes() {
+        let input = """
+        @badge-info=;badges=;color=#FF0000;display-name=brandon894200;emote-only=1;emotes=86:0-9,18-27/36:11-16;flags=;id=c7aecdcb-f8ce-4cc9-8724-9764d1c99ac2;mod=0;room-id=149747285;subscriber=0;tmi-sent-ts=1554081591081;turbo=0;user-id=417284793;user-type= :brandon894200!brandon894200@brandon894200.tmi.twitch.tv PRIVMSG #twitchpresents :BibleThump PJSalt BibleThump
+        """
+    }
 }

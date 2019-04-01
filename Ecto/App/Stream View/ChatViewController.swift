@@ -67,14 +67,22 @@ final class ChatViewController: UIViewController {
         listAdapter.collectionView = collectionView
     }
     
+    lazy var image = UIImage(data: try! Data(contentsOf: URL(string: "https://static-cdn.jtvnw.net/emoticons/v1/\("425618")/\(UIScreen.main.scale)")!))!
+    
     private func handleNewMessages(_ messages: [IRCPrivateMessage]) {
         let newViewModels = messages.map { message -> ChatMessageViewModel in
             // last component seems to be screen scale -- get it from tv screen. twitch web on my mbp uses 2.0
             // https://static-cdn.jtvnw.net/emoticons/v1/<emote_id>/3.0
+//            let emoteId = "425618"
+            let scale = UIScreen.main.scale
             let attributedMessage = NSMutableAttributedString(string: "")
             attributedMessage.append(NSAttributedString(string: message.username, attributes: [.font: Constants.chatMessageAuthorFont,
                                                                                                .foregroundColor: message.userColor ?? UIColor.randomUserColor]))
             attributedMessage.append(NSAttributedString(string: ": \(message.body)", attributes: [.font: Constants.chatMessageFont]))
+            let attachment = NSTextAttachment()
+            attachment.image = image
+            attachment.bounds = CGRect(origin: .zero, size: CGSize(width: Constants.chatMessageFont.lineHeight, height: Constants.chatMessageFont.lineHeight))
+            attributedMessage.append(NSAttributedString(attachment: attachment))
             return ChatMessageViewModel(message: attributedMessage)
         }
         DispatchQueue.main.async {
