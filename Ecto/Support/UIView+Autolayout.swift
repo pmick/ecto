@@ -9,14 +9,14 @@
 import UIKit
 
 extension UIView {
-    func constrainFillingSuperview() {
+    func constrainFillingSuperview(margins: UIEdgeInsets = .zero) {
         assert(superview != nil, "Attempting to constrain view to fill superview, but superview is nil.")
         let view = superview!
         translatesAutoresizingMaskIntoConstraints = false
-        leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        view.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        view.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: margins.left).isActive = true
+        topAnchor.constraint(equalTo: view.topAnchor, constant: margins.top).isActive = true
+        view.trailingAnchor.constraint(equalTo: trailingAnchor, constant: margins.right).isActive = true
+        view.bottomAnchor.constraint(equalTo: bottomAnchor, constant: margins.bottom).isActive = true
     }
     
     func constrainFillingSuperviewSafeArea() {

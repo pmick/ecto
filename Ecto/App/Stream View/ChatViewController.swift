@@ -9,8 +9,21 @@ import EctoKit
 import IGListKit
 import UIKit
 
+extension UIColor {
+    static var randomUserColor: UIColor {
+        let colors: [UIColor] = [.red, .green, .yellow, .orange, .purple, .magenta, .cyan, .brown].shuffled()
+        return colors[0]
+    }
+}
+
 final class ChatViewController: UIViewController {
+    private enum Constants {
+        static let chatMessageFont = UIFont.systemFont(ofSize: 20)
+        static let chatMessageAuthorFont = UIFont.systemFont(ofSize: 20, weight: .semibold)
+    }
+    
     private var chatController: TwitchIRCController!
+    private lazy var backgroundBlurView = UIVisualEffectView(effect: UIBlurEffect(style: .extraDark))
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private lazy var listAdapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self)
     private var chatMessages: [ChatMessageViewModel] = [] {
@@ -35,8 +48,6 @@ final class ChatViewController: UIViewController {
                                              messagesReceivedHandler: { [unowned self] messages in
                                                 self.handleNewMessages(messages)
         })
-        
-        self.view.backgroundColor = UIColor(white: 0, alpha: 0.5)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -45,6 +56,9 @@ final class ChatViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.addSubview(backgroundBlurView)
+        backgroundBlurView.constrainFillingSuperview()
         
         view.addSubview(collectionView)
         collectionView.constrainFillingSuperview()
@@ -55,10 +69,12 @@ final class ChatViewController: UIViewController {
     
     private func handleNewMessages(_ messages: [IRCPrivateMessage]) {
         let newViewModels = messages.map { message -> ChatMessageViewModel in
+            // last component seems to be screen scale -- get it from tv screen. twitch web on my mbp uses 2.0
+            // https://static-cdn.jtvnw.net/emoticons/v1/<emote_id>/3.0
             let attributedMessage = NSMutableAttributedString(string: "")
-            attributedMessage.append(NSAttributedString(string: message.username, attributes: [.font: UIFont.systemFont(ofSize: 18, weight: .semibold),
-                                                                                               .foregroundColor: message.userColor ?? UIColor.white]))
-            attributedMessage.append(NSAttributedString(string: ": \(message.body)", attributes: [.font: UIFont.systemFont(ofSize: 18)]))
+            attributedMessage.append(NSAttributedString(string: message.username, attributes: [.font: Constants.chatMessageAuthorFont,
+                                                                                               .foregroundColor: message.userColor ?? UIColor.randomUserColor]))
+            attributedMessage.append(NSAttributedString(string: ": \(message.body)", attributes: [.font: Constants.chatMessageFont]))
             return ChatMessageViewModel(message: attributedMessage)
         }
         DispatchQueue.main.async {
@@ -73,9 +89,8 @@ final class ChatMessageCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        addSubview(label)
-        label.constrainFillingSuperview()
-        label.font = UIFont.systemFont(ofSize: 18)
+        contentView.addSubview(label)
+        label.constrainFillingSuperview(margins: UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8))
         label.textColor = .white
         label.numberOfLines = 0
     }
@@ -106,6 +121,8 @@ final class ChatMessageViewModel: ListDiffable {
 }
 
 final class ChatMessageSectionController: ListGenericSectionController<ChatMessageViewModel> {
+    private static let measurementCell = ChatMessageCollectionViewCell(frame: .zero)
+    
     override init() {
         super.init()
         inset = UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0)
@@ -124,8 +141,13 @@ final class ChatMessageSectionController: ListGenericSectionController<ChatMessa
         guard let context = collectionContext,
             let object = object else { return .zero }
         let width = context.containerSize.width
-        let rect = object.message.boundingRect(with: CGSize(width: width, height: .greatestFiniteMagnitude), options: [], context: nil)
-        return CGSize(width: context.containerSize.width, height: ceil(rect.height))
+        let measurementCell = ChatMessageSectionController.measurementCell
+        measurementCell.bindViewModel(object)
+        let size = measurementCell.contentView.systemLayoutSizeFitting(CGSize(width: width, height: 10_000),
+                                                                       withHorizontalFittingPriority: .required,
+                                                                       verticalFittingPriority: .fittingSizeLevel)
+        
+        return CGSize(width: width, height: ceil(size.height))
     }
 }
 
