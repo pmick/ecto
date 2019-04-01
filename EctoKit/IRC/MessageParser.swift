@@ -8,10 +8,32 @@
 import Foundation
 import UIKit
 
+public struct EmoteUsageDescriptor: Equatable {
+    let emoteId: String
+    let ranges: [ClosedRange<Int>]
+}
+
+public struct EmoteMetadata: Equatable {
+    let emoteDescriptors: [EmoteUsageDescriptor]
+}
+
 public struct IRCPrivateMessage {
     public let username: String
     public let userColor: UIColor?
     public let body: String
+    public let emoteMetadata: EmoteMetadata
+}
+
+extension ClosedRange where Bound == Int {
+    init?(rawRange: String) {
+        let bounds = rawRange.components(separatedBy: "-")
+        assert(bounds.count == 2)
+        guard bounds.count == 2,
+            let lowerBound = Int(bounds[0]),
+            let upperBound = Int(bounds[1]),
+            upperBound > lowerBound else { return nil }
+        self.init(uncheckedBounds: (lowerBound, upperBound))
+    }
 }
 
 public struct IRCPrivateMessageParser {
@@ -22,7 +44,23 @@ public struct IRCPrivateMessageParser {
         guard components[1].components(separatedBy: .whitespaces).contains("PRIVMSG") else { return nil }
         let tags = parseTags(String(components[0].dropFirst()))
         let color = tags["color"].flatMap(UIColor.init(hex:))
-        return IRCPrivateMessage(username: tags["display-name"]!, userColor: color, body: components[2])
+        let rawEmotes = tags["emotes"]!
+        
+        let emoteUsageDescriptors: [EmoteUsageDescriptor]
+        if rawEmotes.isEmpty {
+            emoteUsageDescriptors = []
+        } else {
+            emoteUsageDescriptors = tags["emotes"]!.components(separatedBy: "/").compactMap { r -> EmoteUsageDescriptor? in
+                let c = r.components(separatedBy: ":")
+                assert(c.count == 2)
+                let emoteId = c.first!
+                let rawRanges = c.last!
+                let individualRawRanges = rawRanges.components(separatedBy: ",").compactMap(ClosedRange<Int>.init)
+                return EmoteUsageDescriptor(emoteId: emoteId, ranges: individualRawRanges)
+            }
+        }
+        
+        return IRCPrivateMessage(username: tags["display-name"]!, userColor: color, body: components[2], emoteMetadata: EmoteMetadata(emoteDescriptors: emoteUsageDescriptors))
     }
     
     private func parseTags(_ input: String) -> [String: String] {

@@ -33,7 +33,7 @@ final class MockURLSession: URLSession {
 final class IRCControllerTests: XCTestCase {
     func testConnectionFailure() {
         let session = MockURLSession()
-        let sut = IRCController(urlSession: session)
+        let sut = IRCController(hostname: "", port: 1, urlSession: session)
         // Need to mock both URLSession and URLSessionStreamTask
         sut.connect()
     }
