@@ -90,12 +90,14 @@ final class ChatViewController: UIViewController {
                 
                 var offset = 0
                 for emote in emoteViewModels {
+                    // TODO: This should be async
                     let attachment = NSTextAttachment()
                     let image = UIImage(data: try! Data(contentsOf: URL(string: "https://static-cdn.jtvnw.net/emoticons/v1/\(emote.1)/\(UIScreen.main.scale)")!))!
                     attachment.image = image
                     attachment.bounds = CGRect(origin: .zero, size: CGSize(width: image.size.width / 2, height: image.size.height / 2))
-                    let normalizedRange = emote.0
-                    attributedBody.replaceCharacters(in: NSRange(location: normalizedRange.location - offset, length: normalizedRange.length), with: NSAttributedString(attachment: attachment))
+                    let denormalizedRange = emote.0
+                    let normalizedRange = NSRange(location: denormalizedRange.location - offset, length: denormalizedRange.length)
+                    attributedBody.replaceCharacters(in: normalizedRange, with: NSAttributedString(attachment: attachment))
                     offset += (emote.0.length - 1)
                 }
                 
