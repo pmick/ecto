@@ -9,12 +9,12 @@ import Foundation
 import UIKit
 
 public struct EmoteUsageDescriptor: Equatable {
-    let emoteId: String
-    let ranges: [ClosedRange<Int>]
+    public let emoteId: String
+    public let ranges: [ClosedRange<Int>]
 }
 
 public struct EmoteMetadata: Equatable {
-    let emoteDescriptors: [EmoteUsageDescriptor]
+    public let emoteDescriptors: [EmoteUsageDescriptor]
 }
 
 public struct IRCPrivateMessage {
@@ -40,8 +40,8 @@ public struct IRCPrivateMessageParser {
     public func parse(_ input: String) -> IRCPrivateMessage? {
         guard input.hasPrefix("@") else { return nil }
         let components = input.components(separatedBy: " :")
-        guard components.count == 3 else { return nil }
-        guard components[1].components(separatedBy: .whitespaces).contains("PRIVMSG") else { return nil }
+        guard components.count == 3,
+            components[1].components(separatedBy: .whitespaces).contains("PRIVMSG") else { return nil }
         let tags = parseTags(String(components[0].dropFirst()))
         let color = tags["color"].flatMap(UIColor.init(hex:))
         let rawEmotes = tags["emotes"]!
@@ -50,11 +50,11 @@ public struct IRCPrivateMessageParser {
         if rawEmotes.isEmpty {
             emoteUsageDescriptors = []
         } else {
-            emoteUsageDescriptors = tags["emotes"]!.components(separatedBy: "/").compactMap { r -> EmoteUsageDescriptor? in
-                let c = r.components(separatedBy: ":")
-                assert(c.count == 2)
-                let emoteId = c.first!
-                let rawRanges = c.last!
+            emoteUsageDescriptors = tags["emotes"]!.components(separatedBy: "/").compactMap { rawKeyValuePair -> EmoteUsageDescriptor? in
+                let keyValuePairComponents = rawKeyValuePair.components(separatedBy: ":")
+                assert(keyValuePairComponents.count == 2)
+                let emoteId = keyValuePairComponents.first!
+                let rawRanges = keyValuePairComponents.last!
                 let individualRawRanges = rawRanges.components(separatedBy: ",").compactMap(ClosedRange<Int>.init)
                 return EmoteUsageDescriptor(emoteId: emoteId, ranges: individualRawRanges)
             }

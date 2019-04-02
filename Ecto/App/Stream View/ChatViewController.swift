@@ -26,6 +26,7 @@ final class ChatViewController: UIViewController {
     private lazy var backgroundBlurView = UIVisualEffectView(effect: UIBlurEffect(style: .extraDark))
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private lazy var listAdapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self)
+    private let emoteCache = NSCache<NSString, UIImage>()
     private var chatMessages: [ChatMessageViewModel] = [] {
         didSet {
             listAdapter.performUpdates(animated: true) { (finished) in
@@ -67,22 +68,42 @@ final class ChatViewController: UIViewController {
         listAdapter.collectionView = collectionView
     }
     
-    lazy var image = UIImage(data: try! Data(contentsOf: URL(string: "https://static-cdn.jtvnw.net/emoticons/v1/\("425618")/\(UIScreen.main.scale)")!))!
-    
     private func handleNewMessages(_ messages: [IRCPrivateMessage]) {
         let newViewModels = messages.map { message -> ChatMessageViewModel in
             // last component seems to be screen scale -- get it from tv screen. twitch web on my mbp uses 2.0
             // https://static-cdn.jtvnw.net/emoticons/v1/<emote_id>/3.0
-//            let emoteId = "425618"
-            let scale = UIScreen.main.scale
             let attributedMessage = NSMutableAttributedString(string: "")
             attributedMessage.append(NSAttributedString(string: message.username, attributes: [.font: Constants.chatMessageAuthorFont,
                                                                                                .foregroundColor: message.userColor ?? UIColor.randomUserColor]))
-            attributedMessage.append(NSAttributedString(string: ": \(message.body)", attributes: [.font: Constants.chatMessageFont]))
-            let attachment = NSTextAttachment()
-            attachment.image = image
-            attachment.bounds = CGRect(origin: .zero, size: CGSize(width: Constants.chatMessageFont.lineHeight, height: Constants.chatMessageFont.lineHeight))
-            attributedMessage.append(NSAttributedString(attachment: attachment))
+            attributedMessage.append(NSAttributedString(string: ": ", attributes: [.font: Constants.chatMessageFont]))
+            // flatten emote descriptors into a single array of range/emoteId
+            // sort the ranges by start index because we know they don't overlap
+            // once a range is applied we append the ranges length to some var that is applied to future ranges "offset"
+            let emoteViewModels = message.emoteMetadata.emoteDescriptors
+                .map { descriptor in return descriptor.ranges.map { (NSRange($0), descriptor.emoteId) } }
+                .flatMap { $0 }
+                .sorted(by: { $0.0.location < $1.0.location }) // sort by where the ranges start. It's not possible for them to overlap
+            
+            let emoteDescriptors = message.emoteMetadata.emoteDescriptors
+            if emoteDescriptors.count > 0 {
+                let attributedBody = NSMutableAttributedString(string: message.body, attributes: [.font: Constants.chatMessageFont])
+                
+                var offset = 0
+                for emote in emoteViewModels {
+                    let attachment = NSTextAttachment()
+                    let image = UIImage(data: try! Data(contentsOf: URL(string: "https://static-cdn.jtvnw.net/emoticons/v1/\(emote.1)/\(UIScreen.main.scale)")!))!
+                    attachment.image = image
+                    attachment.bounds = CGRect(origin: .zero, size: CGSize(width: image.size.width / 2, height: image.size.height / 2))
+                    let normalizedRange = emote.0
+                    attributedBody.replaceCharacters(in: NSRange(location: normalizedRange.location - offset, length: normalizedRange.length), with: NSAttributedString(attachment: attachment))
+                    offset += (emote.0.length - 1)
+                }
+                
+                attributedMessage.append(attributedBody)
+            } else {
+                attributedMessage.append(NSAttributedString(string: message.body, attributes: [.font: Constants.chatMessageFont]))
+            }
+            
             return ChatMessageViewModel(message: attributedMessage)
         }
         DispatchQueue.main.async {
