@@ -26,7 +26,8 @@ final class ChatViewController: UIViewController {
     private lazy var backgroundBlurView = UIVisualEffectView(effect: UIBlurEffect(style: .extraDark))
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private lazy var listAdapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self)
-    private let emoteCache = NSCache<NSString, UIImage>()
+    private let chatMessageQueue = DispatchQueue(label: "com.patrickmick.ecto.emotes")
+    private let chatMessageViewModelFactory = ChatMessageViewModelFactory()
     private var chatMessages: [ChatMessageViewModel] = [] {
         didSet {
             listAdapter.performUpdates(animated: true) { (finished) in
@@ -62,6 +63,7 @@ final class ChatViewController: UIViewController {
         backgroundBlurView.constrainFillingSuperview()
         
         view.addSubview(collectionView)
+        collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.constrainFillingSuperview()
         
         listAdapter.dataSource = self
@@ -69,47 +71,18 @@ final class ChatViewController: UIViewController {
     }
     
     private func handleNewMessages(_ messages: [IRCPrivateMessage]) {
-        let newViewModels = messages.map { message -> ChatMessageViewModel in
-            // last component seems to be screen scale -- get it from tv screen. twitch web on my mbp uses 2.0
-            // https://static-cdn.jtvnw.net/emoticons/v1/<emote_id>/3.0
-            let attributedMessage = NSMutableAttributedString(string: "")
-            attributedMessage.append(NSAttributedString(string: message.username, attributes: [.font: Constants.chatMessageAuthorFont,
-                                                                                               .foregroundColor: message.userColor ?? UIColor.randomUserColor]))
-            attributedMessage.append(NSAttributedString(string: ": ", attributes: [.font: Constants.chatMessageFont]))
-            // flatten emote descriptors into a single array of range/emoteId
-            // sort the ranges by start index because we know they don't overlap
-            // once a range is applied we append the ranges length to some var that is applied to future ranges "offset"
-            let emoteViewModels = message.emoteMetadata.emoteDescriptors
-                .map { descriptor in return descriptor.ranges.map { (NSRange($0), descriptor.emoteId) } }
-                .flatMap { $0 }
-                .sorted(by: { $0.0.location < $1.0.location }) // sort by where the ranges start. It's not possible for them to overlap
+        chatMessageQueue.async {
+            let newViewModels = messages.map { return self.chatMessageViewModelFactory.makeChatMessageViewModel(from: $0) }
             
-            let emoteDescriptors = message.emoteMetadata.emoteDescriptors
-            if emoteDescriptors.count > 0 {
-                let attributedBody = NSMutableAttributedString(string: message.body, attributes: [.font: Constants.chatMessageFont])
-                
-                var offset = 0
-                for emote in emoteViewModels {
-                    // TODO: This should be async
-                    let attachment = NSTextAttachment()
-                    let image = UIImage(data: try! Data(contentsOf: URL(string: "https://static-cdn.jtvnw.net/emoticons/v1/\(emote.1)/\(UIScreen.main.scale)")!))!
-                    attachment.image = image
-                    attachment.bounds = CGRect(origin: .zero, size: CGSize(width: image.size.width / 2, height: image.size.height / 2))
-                    let denormalizedRange = emote.0
-                    let normalizedRange = NSRange(location: denormalizedRange.location - offset, length: denormalizedRange.length)
-                    attributedBody.replaceCharacters(in: normalizedRange, with: NSAttributedString(attachment: attachment))
-                    offset += (emote.0.length - 1)
-                }
-                
-                attributedMessage.append(attributedBody)
-            } else {
-                attributedMessage.append(NSAttributedString(string: message.body, attributes: [.font: Constants.chatMessageFont]))
+            DispatchQueue.main.sync {
+//                if self.chatMessages.count > 50 {
+//                    var truncatedMessages = Array(self.chatMessages.dropFirst(25))
+//                    truncatedMessages.append(contentsOf: newViewModels)
+//                    self.chatMessages = truncatedMessages
+//                } else {
+                    self.chatMessages.append(contentsOf: newViewModels)
+//                }
             }
-            
-            return ChatMessageViewModel(message: attributedMessage)
-        }
-        DispatchQueue.main.async {
-            self.chatMessages.append(contentsOf: newViewModels)
         }
     }
 }
@@ -132,22 +105,6 @@ final class ChatMessageCollectionViewCell: UICollectionViewCell {
     
     func bindViewModel(_ viewModel: ChatMessageViewModel) {
         label.attributedText = viewModel.message
-    }
-}
-
-final class ChatMessageViewModel: ListDiffable {
-    let message: NSAttributedString
-    
-    init(message: NSAttributedString) {
-        self.message = message
-    }
-    
-    func diffIdentifier() -> NSObjectProtocol {
-        return message
-    }
-    
-    func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
-        return true
     }
 }
 
