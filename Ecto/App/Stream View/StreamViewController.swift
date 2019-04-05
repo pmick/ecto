@@ -62,7 +62,7 @@ final class StreamViewController: UIViewController {
         player.play()
     }
     
-    private func embedChat(forChannelName name: ChannelName) {
+    private func embedChat(forChannelName name: ChannelName) {        
         let chatViewController = ChatViewController(channelName: name)
         self.addChild(chatViewController)
         let width = ceil(view.bounds.width * 0.2)

@@ -31,13 +31,13 @@ final class ChatViewController: UIViewController {
     private var chatMessages: [ChatMessageViewModel] = [] {
         didSet {
             listAdapter.performUpdates(animated: true) { (finished) in
-                if finished {
+//                if finished {
                     let contentHeight = self.collectionView.contentSize.height
                     let containerHeight = self.collectionView.bounds.size.height
                     if contentHeight > containerHeight {
                         self.collectionView.setContentOffset(CGPoint(x: 0, y: contentHeight - containerHeight), animated: true)
                     }
-                }
+//                }
             }
         }
     }
@@ -108,6 +108,25 @@ final class ChatMessageCollectionViewCell: UICollectionViewCell {
     }
 }
 
+final class ChatMessageSizeCache {
+    static let `default` = ChatMessageSizeCache()
+    
+    private var cache: [String: CGSize] = [:]
+    private let queue = DispatchQueue(label: "com.patrickmick.ecto.chat-message-size-cache")
+    
+    func set(_ size: CGSize, forKey key: String) {
+        queue.sync {
+            cache[key] = size
+        }
+    }
+    
+    func getSize(forKey key: String) -> CGSize? {
+        return queue.sync {
+            return cache[key]
+        }
+    }
+}
+
 final class ChatMessageSectionController: ListGenericSectionController<ChatMessageViewModel> {
     private static let measurementCell = ChatMessageCollectionViewCell(frame: .zero)
     
@@ -128,14 +147,22 @@ final class ChatMessageSectionController: ListGenericSectionController<ChatMessa
     override func sizeForItem(at index: Int) -> CGSize {
         guard let context = collectionContext,
             let object = object else { return .zero }
+        
+        if let cachedSize = ChatMessageSizeCache.default.getSize(forKey: object.message.string) {
+            return cachedSize
+        }
+        
         let width = context.containerSize.width
         let measurementCell = ChatMessageSectionController.measurementCell
         measurementCell.bindViewModel(object)
+        
         let size = measurementCell.contentView.systemLayoutSizeFitting(CGSize(width: width, height: 10_000),
                                                                        withHorizontalFittingPriority: .required,
                                                                        verticalFittingPriority: .fittingSizeLevel)
         
-        return CGSize(width: width, height: ceil(size.height))
+        let normalizedSize = CGSize(width: width, height: ceil(size.height))
+        ChatMessageSizeCache.default.set(normalizedSize, forKey: object.message.string)
+        return normalizedSize
     }
 }
 

@@ -8,17 +8,24 @@
 import Foundation
 import os.log
 
-protocol IRCControllerDelegate: class {
-    func controllerDidReceiveMessages(_ controller: IRCController, messages: [String])
+public protocol IRCControllerDelegate: class {
+    func controllerDidReceiveMessages(_ controller: IRCControllerProtocol, messages: [String])
 }
 
-public final class IRCController {
+public protocol IRCControllerProtocol {
+    var delegate: IRCControllerDelegate? { get set }
+    
+    func connect()
+    func send(_ message: String)
+}
+
+public final class IRCController: IRCControllerProtocol {
     private enum Constants {
         static let messageSeparator = "\r\n"
         static let oneHour: TimeInterval = 60 * 60
     }
     
-    weak var delegate: IRCControllerDelegate?
+    public weak var delegate: IRCControllerDelegate?
     private var streamTask: URLSessionStreamTask
     
     public init(hostname: String, port: Int, urlSession: URLSession = .shared) {
