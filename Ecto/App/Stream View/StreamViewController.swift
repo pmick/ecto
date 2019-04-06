@@ -43,32 +43,39 @@ final class StreamViewController: UIViewController {
         controller.fetchStreamUrl(forStreamNamed: name) { (result) in
             switch result {
             case .success(let url):
-                self.embedPlayer(with: url)
-                self.embedChat(forChannelName: name)
+                self.embedChildren(with: url, channelName: name)
             case .failure(let error):
                 os_log("Error fetching stream url: %s", log: .network, type: .error, error.localizedDescription)
             }
         }
     }
     
-    private func embedPlayer(with url: URL) {
+    private func embedChildren(with url: URL, channelName: String) {
+        let chatViewController = ChatViewController(channelName: channelName)
+        self.addChild(chatViewController)
+        self.view.addSubview(chatViewController.view)
+        
+        chatViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        chatViewController.view.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2).isActive = true
+        chatViewController.view.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        view.trailingAnchor.constraint(equalTo: chatViewController.view.trailingAnchor).isActive = true
+        view.bottomAnchor.constraint(equalTo: chatViewController.view.bottomAnchor).isActive = true
+        chatViewController.didMove(toParent: self)
+        
         let c = AVPlayerViewController()
         let player = AVPlayer(url: url)
         c.player = player
         self.addChild(c)
-        c.view.frame = self.view.bounds
         self.view.addSubview(c.view)
+        
+        c.view.translatesAutoresizingMaskIntoConstraints = false
+        c.view.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        c.view.trailingAnchor.constraint(equalTo: chatViewController.view.leadingAnchor).isActive = true
+        c.view.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        view.bottomAnchor.constraint(equalTo: c.view.bottomAnchor).isActive = true
+        
         c.didMove(toParent: self)
         player.play()
-    }
-    
-    private func embedChat(forChannelName name: ChannelName) {        
-        let chatViewController = ChatViewController(channelName: name)
-        self.addChild(chatViewController)
-        let width = ceil(view.bounds.width * 0.2)
-        chatViewController.view.frame = CGRect(x: view.bounds.maxX - width, y: 0, width: width, height: view.bounds.height)
-        self.view.addSubview(chatViewController.view)
-        chatViewController.didMove(toParent: self)
     }
     
     private func loadStream(forUserId id: UserId) {
