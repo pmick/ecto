@@ -23,21 +23,18 @@ final class ChatViewController: UIViewController {
     }
     
     private var chatController: TwitchIRCController!
-    private lazy var backgroundBlurView = UIVisualEffectView(effect: UIBlurEffect(style: .extraDark))
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private lazy var listAdapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self)
     private let chatMessageQueue = DispatchQueue(label: "com.patrickmick.ecto.emotes")
     private let chatMessageViewModelFactory = ChatMessageViewModelFactory()
     private var chatMessages: [ChatMessageViewModel] = [] {
         didSet {
-            listAdapter.performUpdates(animated: true) { (finished) in
-//                if finished {
-                    let contentHeight = self.collectionView.contentSize.height
-                    let containerHeight = self.collectionView.bounds.size.height
-                    if contentHeight > containerHeight {
-                        self.collectionView.setContentOffset(CGPoint(x: 0, y: contentHeight - containerHeight), animated: true)
-                    }
-//                }
+            listAdapter.performUpdates(animated: false) { (finished) in
+                let contentHeight = self.collectionView.contentSize.height
+                let containerHeight = self.collectionView.bounds.size.height
+                if contentHeight > containerHeight {
+                    self.collectionView.setContentOffset(CGPoint(x: 0, y: contentHeight - containerHeight), animated: false)
+                }
             }
         }
     }
@@ -59,8 +56,7 @@ final class ChatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(backgroundBlurView)
-        backgroundBlurView.constrainFillingSuperview()
+        view.backgroundColor = .black
         
         view.addSubview(collectionView)
         collectionView.contentInsetAdjustmentBehavior = .never
@@ -72,16 +68,11 @@ final class ChatViewController: UIViewController {
     
     private func handleNewMessages(_ messages: [IRCPrivateMessage]) {
         chatMessageQueue.async {
-            let newViewModels = messages.map { return self.chatMessageViewModelFactory.makeChatMessageViewModel(from: $0) }
-            
+            let newViewModels = messages.map(self.chatMessageViewModelFactory.makeChatMessageViewModel)
             DispatchQueue.main.sync {
-//                if self.chatMessages.count > 50 {
-//                    var truncatedMessages = Array(self.chatMessages.dropFirst(25))
-//                    truncatedMessages.append(contentsOf: newViewModels)
-//                    self.chatMessages = truncatedMessages
-//                } else {
-                    self.chatMessages.append(contentsOf: newViewModels)
-//                }
+                var copy = self.chatMessages
+                copy.append(contentsOf: newViewModels)
+                self.chatMessages = Array(copy.suffix(50))
             }
         }
     }
