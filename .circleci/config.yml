@@ -5,7 +5,7 @@ jobs:
       LC_ALL: en_US.UTF-8
       LANG: en_US.UTF-8
     macos:
-      xcode: "10.1.0"
+      xcode: "10.2.0"
     shell: /bin/bash --login -o pipefail
     steps:
       - checkout
@@ -17,7 +17,7 @@ jobs:
       LANG: en_US.UTF-8
       FL_OUTPUT_DIR: output
     macos:
-      xcode: "10.1.0"
+      xcode: "10.2.0"
     shell: /bin/bash --login -o pipefail
     steps:
       - checkout
@@ -28,7 +28,7 @@ jobs:
           keys:
             - homebrew
       - run: sh bootstrap-if-needed.sh
-      - run: brew install xcodegen 2.3.0
+      - run: brew install xcodegen
       - run: xcodegen generate
       - run: bundle install
       - run:
