@@ -13,11 +13,11 @@ public final class PaginatedRequestController<T> where T: Resource & Paginated {
     private var nextResource: T?
     private var isLoadingMore = false
     public private(set) var hasMorePages = true
-    
+
     public init(resource: T) {
         self.resource = resource
     }
-    
+
     public func loadData(completion: @escaping (Result<T.PayloadType>) -> Void) {
         Twitch().request(resource) { result in
             if case .success(let payload) = result {
@@ -27,7 +27,7 @@ public final class PaginatedRequestController<T> where T: Resource & Paginated {
             completion(result)
         }
     }
-    
+
     public func loadMoreData(completion: @escaping (Result<T.PayloadType>) -> Void) {
         guard let nextResource = nextResource, !isLoadingMore, hasMorePages else { return }
         isLoadingMore = true

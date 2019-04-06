@@ -16,7 +16,7 @@ final class TopStreamsSectionController: ListSectionController {
             adapter.performUpdates(animated: true, completion: nil)
         }
     }
-    
+
     lazy var adapter: ListAdapter = {
         let adapter = ListAdapter(updater: ListAdapterUpdater(),
                                   viewController: self.viewController)
@@ -25,10 +25,10 @@ final class TopStreamsSectionController: ListSectionController {
         adapter.scrollViewDelegate = self
         return adapter
     }()
-        
+
     private let paginationController = PaginatedRequestController(resource: StreamsResource())
     private var indexPathOfPreviousStream: IndexPath?
-    
+
     override init() {
         super.init()
         inset = UIEdgeInsets(top: 0, left: 0, bottom: Constants.sectionContentVerticalOffset, right: 0)
@@ -42,11 +42,11 @@ final class TopStreamsSectionController: ListSectionController {
             }
         }
     }
-    
+
     override func sizeForItem(at index: Int) -> CGSize {
         return CGSize(width: collectionContext!.containerSize.width, height: 350)
     }
-    
+
     override func cellForItem(at index: Int) -> UICollectionViewCell {
         guard let cell = collectionContext?.dequeueReusableCell(
             of: EmbeddedCollectionViewCell.self,
@@ -67,7 +67,7 @@ extension TopStreamsSectionController: ListAdapterDataSource {
         }
         return objects
     }
-    
+
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
         switch object {
         case is List<StreamViewModel>: return StreamsBindingController(scrollDirection: .horizontal)
@@ -76,7 +76,7 @@ extension TopStreamsSectionController: ListAdapterDataSource {
         default: fatalError("Not implemented. \(object) not supported.")
         }
     }
-    
+
     func emptyView(for listAdapter: ListAdapter) -> UIView? {
         return nil
     }
@@ -86,18 +86,20 @@ extension TopStreamsSectionController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
+
     func indexPathForPreferredFocusedView(in collectionView: UICollectionView) -> IndexPath? {
         return indexPathOfPreviousStream
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didUpdateFocusIn context: UICollectionViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+
+    func collectionView(_ collectionView: UICollectionView,
+                        didUpdateFocusIn context: UICollectionViewFocusUpdateContext,
+                        with coordinator: UIFocusAnimationCoordinator) {
         guard let nextIndexPath = context.nextFocusedIndexPath else { return }
         if !(adapter.sectionController(forSection: nextIndexPath.section) is SpinnerSectionController) {
             indexPathOfPreviousStream = nextIndexPath
         }
     }
-    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard let context = collectionContext else { return }
         if scrollView.hasReachedTrailingEdge(withBuffer: context.containerSize.width * 2) {
@@ -107,7 +109,8 @@ extension TopStreamsSectionController: UICollectionViewDelegate {
                     self.streams.append(contentsOf: welcome.data)
                     os_log("Appending more top streams %d", log: .network, type: .info, welcome.data.count)
                 case .failure(let error):
-                    os_log("Error loading more top streams: %s", log: .network, type: .error, error.localizedDescription)
+                    os_log("Error loading more top streams: %s",
+                           log: .network, type: .error, error.localizedDescription)
                 }
             }
         }

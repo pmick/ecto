@@ -34,31 +34,32 @@ final class StreamViewModel: ListDiffable {
     let id: String
     let title: String
     let imageUrl: URL
-    
+
     let stream: ChannelNameProviding
-    
+
     init(featured: Featured) {
         self.id = String(featured.stream.id)
         self.title = featured.title
         self.imageUrl = URL(string: featured.stream.preview.large)!
-        
+
         self.stream = featured.stream
     }
-    
+
     init(stream: EctoKit.Stream) {
         self.id = stream.id
         self.title = stream.title
-        // 640x360
-        let largePath = stream.thumbnailUrl.replacingOccurrences(of: "{width}", with: "640").replacingOccurrences(of: "{height}", with: "360")
+        let largePath = stream.thumbnailUrl
+            .replacingOccurrences(of: "{width}", with: "640")
+            .replacingOccurrences(of: "{height}", with: "360")
         self.imageUrl = URL(string: largePath)!
-        
+
         self.stream = stream
     }
-    
+
     func diffIdentifier() -> NSObjectProtocol {
         return id as NSObjectProtocol
     }
-    
+
     func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
         guard self !== object else { return false }
         guard let object = object as? StreamViewModel else { return false }

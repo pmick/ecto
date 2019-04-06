@@ -11,7 +11,8 @@ import IGListKit
 
 final class EmbeddedCollectionViewCell: UICollectionViewCell {
     lazy var collectionView: UICollectionView = {
-        let layout = ListCollectionViewLayout(stickyHeaders: false, scrollDirection: .horizontal, topContentInset: 0, stretchToEdge: true)
+        let layout = ListCollectionViewLayout(stickyHeaders: false, scrollDirection: .horizontal,
+                                              topContentInset: 0, stretchToEdge: true)
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.backgroundColor = .clear
         view.alwaysBounceVertical = false
@@ -20,7 +21,7 @@ final class EmbeddedCollectionViewCell: UICollectionViewCell {
         self.contentView.addSubview(view)
         return view
     }()
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         collectionView.frame = contentView.frame

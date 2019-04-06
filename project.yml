@@ -19,6 +19,9 @@ targets:
       - target: EctoKit 
       - carthage: IGListKit
       - carthage: Kingfisher
+    postBuildScripts:
+      - path: swiftlint.sh
+        name: Run SwiftLint
   EctoTests:
     type: bundle.unit-test
     platform: tvOS
