@@ -28,7 +28,7 @@ jobs:
           keys:
             - homebrew
       - run: sh bootstrap-if-needed.sh
-      - run: brew install xcodegen
+      - run: brew install xcodegen 2.3.0
       - run: xcodegen generate
       - run: bundle install
       - run:
